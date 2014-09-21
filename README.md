@@ -2,7 +2,7 @@ Mosaic4Cap <-> Call - a - Pizza Application
 ======
 
 ## Travis CI
-* Mosaic4Cap-Webapp [![Build Status](https://travis-ci.org/mosaic4cap/mosaic4cap-webapp.svg?branch=master)](https://travis-ci.org/mosaic4cap/)
+* Mosaic4Cap-Webapp [![Build Status](https://travis-ci.org/mosaic4cap/mosaic4cap-webapp.svg?branch=master)](https://travis-ci.org/mosaic4cap/mosaic4cap-webapp/)
 
 ## Waffle.io 
 |Backlog|Spec|Dev|Done|
