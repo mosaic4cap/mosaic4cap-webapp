@@ -39,5 +39,13 @@ public class HomeControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
+
+    @Test
+    public void storeaccountRouteIsAccessable() throws Exception {
+        this.mockMvc.perform(
+                get("/chefui/storeaccount"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }
 
