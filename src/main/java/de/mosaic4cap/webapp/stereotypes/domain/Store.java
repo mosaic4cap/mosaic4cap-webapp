@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * Created by svenklemmer on 29.08.14.
- *
+ * <p/>
  * Representing physical store
  */
 @Entity

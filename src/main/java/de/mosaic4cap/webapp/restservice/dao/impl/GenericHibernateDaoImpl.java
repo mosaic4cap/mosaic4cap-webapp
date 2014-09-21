@@ -56,7 +56,7 @@ public abstract class GenericHibernateDaoImpl<T extends AbstractMosaicEntity> im
                 return genericObj;
             } catch (Exception ex) {
                 transaction.rollback();
-                LOGGER.error("Error in retrieve @GenericDao with Class " +  getClazz(), ex);
+                LOGGER.error("Error in retrieve @GenericDao with Class " + getClazz(), ex);
                 throw ex;
             }
         } finally {

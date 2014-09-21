@@ -1,9 +1,9 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
 import de.mosaic4cap.webapp.Application;
-import de.mosaic4cap.webapp.stereotypes.domain.Store;
 import de.mosaic4cap.webapp.restservice.services.GenericServiceTestCase;
 import de.mosaic4cap.webapp.restservice.services.StoreService;
+import de.mosaic4cap.webapp.stereotypes.domain.Store;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

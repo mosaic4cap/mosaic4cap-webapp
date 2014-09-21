@@ -1,5 +1,6 @@
 package de.mosaic4cap.webapp.restservice.controller;
 
+import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.ChefService;
 import de.mosaic4cap.webapp.stereotypes.domain.Chef;
 import org.apache.log4j.Logger;

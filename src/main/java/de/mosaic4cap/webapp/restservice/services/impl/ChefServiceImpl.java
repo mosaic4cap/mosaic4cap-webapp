@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 public class ChefServiceImpl extends AbstractGenericService<Chef> implements ChefService {
     private static final Logger LOGGER = Logger.getLogger(ChefServiceImpl.class);
 
-    public ChefServiceImpl() { }
+    public ChefServiceImpl() {
+    }
+
     @Autowired
     public ChefServiceImpl(ChefDao dao) {
         super.setDao(dao);

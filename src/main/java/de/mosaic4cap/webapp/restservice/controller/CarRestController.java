@@ -1,5 +1,6 @@
 package de.mosaic4cap.webapp.restservice.controller;
 
+import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.CarService;
 import de.mosaic4cap.webapp.stereotypes.domain.Car;
 import org.apache.log4j.Logger;
@@ -36,7 +37,6 @@ public class CarRestController extends AbstractRestController {
     public List<Car> getAll(
             @PathVariable("store") String store,
             @RequestParam(required = false) String mql
-
 
 
     ) throws Exception {

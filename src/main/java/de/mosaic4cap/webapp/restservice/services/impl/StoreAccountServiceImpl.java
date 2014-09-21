@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 public class StoreAccountServiceImpl extends AbstractGenericService<StoreAccount> implements StoreAccountService {
     private static final Logger LOGGER = Logger.getLogger(StoreAccountServiceImpl.class);
 
-    public StoreAccountServiceImpl() { }
+    public StoreAccountServiceImpl() {
+    }
+
     @Autowired
     public StoreAccountServiceImpl(StoreAccountDao dao) {
         super.setDao(dao);

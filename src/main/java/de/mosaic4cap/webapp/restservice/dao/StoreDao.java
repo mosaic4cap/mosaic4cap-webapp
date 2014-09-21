@@ -8,5 +8,6 @@ import de.mosaic4cap.webapp.stereotypes.domain.Store;
 public interface StoreDao extends GenericDAO<Store> {
 
     public Store retrieve(String key) throws Exception;
+
     public void remove(String key) throws Exception;
 }

@@ -1,5 +1,6 @@
 package de.mosaic4cap.webapp.restservice.controller;
 
+import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.StoreAccountService;
 import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
 import org.apache.log4j.Logger;

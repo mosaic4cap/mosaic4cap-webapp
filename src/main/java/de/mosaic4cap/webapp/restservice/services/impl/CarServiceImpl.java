@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 public class CarServiceImpl extends AbstractGenericService<Car> implements CarService {
     private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
 
-    public CarServiceImpl() { }
+    public CarServiceImpl() {
+    }
 
     @Autowired
     public CarServiceImpl(CarDao dao) {

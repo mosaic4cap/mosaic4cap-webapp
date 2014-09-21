@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 /**
  * Checks the actual memory situation on the server
  * if memory is greater than 20MB than helth.up is displayed else its down
- *
- * TODO: implement 
- *
+ * <p/>
+ * TODO: implement
+ * <p/>
  * Created by svenklemmer on 11.09.14.
  */
 @Component
-public class MemoryHealtIndicator  extends AbstractHealthIndicator {
+public class MemoryHealtIndicator extends AbstractHealthIndicator {
     private static final Logger LOGGER = Logger.getLogger(MemoryHealtIndicator.class);
 
     @Override

@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 public class DriverServiceImpl extends AbstractGenericService<Driver> implements DriverService {
     private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
 
-    public DriverServiceImpl() { }
+    public DriverServiceImpl() {
+    }
+
     @Autowired
     public DriverServiceImpl(DriverDao dao) {
         super.setDao(dao);

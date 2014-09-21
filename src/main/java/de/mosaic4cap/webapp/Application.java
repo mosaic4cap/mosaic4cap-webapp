@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
 
 /**
  * Created by Lobedan on 21.09.2014.
- *
+ * <p/>
  * Entrypoint for mosaic4cap webapplication
  */
 @Configuration

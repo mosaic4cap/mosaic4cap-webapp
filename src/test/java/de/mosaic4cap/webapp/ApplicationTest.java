@@ -28,7 +28,7 @@ public class ApplicationTest {
     private int port;
 
     @Test
-   public void integrationTest() throws Exception {
+    public void integrationTest() throws Exception {
         ResponseEntity<String> entity = new TestRestTemplate().getForEntity("http://localhost:" + this.port + "/health", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }

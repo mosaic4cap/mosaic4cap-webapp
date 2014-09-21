@@ -1,9 +1,9 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
 import de.mosaic4cap.webapp.Application;
-import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
 import de.mosaic4cap.webapp.restservice.services.GenericServiceTestCase;
 import de.mosaic4cap.webapp.restservice.services.StoreAccountService;
+import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertNull;
 public class StoreAccountServiceImplTest extends GenericServiceTestCase {
 
     private static final Logger LOGGER = Logger.getLogger(StoreAccountServiceImplTest.class);
-    
+
     @Autowired
     private StoreAccountService storeAccountService;
 

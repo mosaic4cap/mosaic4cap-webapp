@@ -26,7 +26,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
     @Autowired
     private ChefDao chefDao;
 
-    @Test @Override
+    @Test
+    @Override
     public void testCreate() throws Exception {
         Chef entity = new Chef("1", "2", null);
 
@@ -34,7 +35,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
         assertEquals(returnValue, entity);
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRetrieve() throws Exception {
         Chef setupEntity = chefDao.create(new Chef("value", "value", null));
         assertNotNull(setupEntity);
@@ -42,7 +44,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
         assertNotNull(chefDao.retrieve(setupEntity.getId()));
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRetrieveAll() throws Exception {
         Chef setupEntity = chefDao.create(new Chef("value", "", null));
         Chef setupEntity2 = chefDao.create(new Chef("value2", "", null));
@@ -56,7 +59,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
         assertNotNull(chefDao.retrieveAll());
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testMerge() throws Exception {
         Chef setupEntity = chefDao.create(new Chef("mergeEntity", "", null));
         assertNotNull(setupEntity);
@@ -66,7 +70,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
         assertEquals(updatedEntity, setupEntity);
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRemoveByObject() throws Exception {
         Chef setupEntity = chefDao.create(new Chef("removeByObjectEntity", "", null));
         assertNotNull(setupEntity);
@@ -75,7 +80,8 @@ public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
         assertNull(chefDao.retrieve(setupEntity.getId()));
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRemoveById() throws Exception {
         Chef setupEntity = chefDao.create(new Chef("removeByIdEntity", "", null));
         assertNotNull(setupEntity);

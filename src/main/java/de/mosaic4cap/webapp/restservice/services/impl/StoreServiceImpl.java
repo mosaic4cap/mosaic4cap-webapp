@@ -16,7 +16,9 @@ public class StoreServiceImpl extends AbstractGenericService<Store> implements S
 
     private StoreDao sDao;
 
-    public StoreServiceImpl() { }
+    public StoreServiceImpl() {
+    }
+
     @Autowired
     public StoreServiceImpl(StoreDao dao) {
         super.setDao(dao);

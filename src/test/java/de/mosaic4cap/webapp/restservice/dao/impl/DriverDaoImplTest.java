@@ -27,8 +27,9 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
 
     @Autowired
     private DriverDao driverDao;
-    
-    @Test @Override
+
+    @Test
+    @Override
     public void testCreate() throws Exception {
         Driver entity = new Driver("1", "2", new Date());
 
@@ -36,7 +37,8 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
         assertEquals(returnValue, entity);
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRetrieve() throws Exception {
         Driver setupEntity = driverDao.create(new Driver("value", "value", new Date()));
         assertNotNull(setupEntity);
@@ -44,7 +46,8 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
         assertNotNull(driverDao.retrieve(setupEntity.getId()));
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRetrieveAll() throws Exception {
         Driver setupEntity = driverDao.create(new Driver("value", "", new Date()));
         Driver setupEntity2 = driverDao.create(new Driver("value2", "", new Date()));
@@ -58,7 +61,8 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
         assertNotNull(driverDao.retrieveAll());
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testMerge() throws Exception {
         Driver setupEntity = driverDao.create(new Driver("mergeEntity", "", new Date()));
         assertNotNull(setupEntity);
@@ -68,7 +72,8 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
         assertEquals(updatedEntity, setupEntity);
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRemoveByObject() throws Exception {
         Driver setupEntity = driverDao.create(new Driver("removeByObjectEntity", "", new Date()));
         assertNotNull(setupEntity);
@@ -77,7 +82,8 @@ public class DriverDaoImplTest extends GenericHibernateDaoTestCase {
         assertNull(driverDao.retrieve(setupEntity.getId()));
     }
 
-    @Test @Override
+    @Test
+    @Override
     public void testRemoveById() throws Exception {
         Driver setupEntity = driverDao.create(new Driver("removeByIdEntity", "", new Date()));
         assertNotNull(setupEntity);
