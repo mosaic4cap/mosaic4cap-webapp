@@ -12,6 +12,7 @@ import java.util.List;
  * Simple helper class for loading classes and methods by there names
  * TODO: Need to move to Commons (#24)
  */
+@SuppressWarnings("unchecked")
 public class ClassUtil {
   private static Logger logger = Logger.getLogger(ClassUtil.class);
 

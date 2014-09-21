@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Controller for all management views like store, employee etc.
  */
 @Controller
-@RequestMapping("/manage")
 public class ManagementController extends AbstractChefUIController {
     private static final Logger LOGGER = Logger.getLogger(ManagementController.class);
 
-    @RequestMapping("/store")
+    @RequestMapping("/manage/store")
     public String loadStores() throws Exception {
-        return "store";
+        return "chefui/store";
     }
 
-    @RequestMapping("/employee")
+    @RequestMapping("/manage/employee")
     public String loadEmployees() throws Exception {
-        return "employee";
+        return "chefui/employee";
     }
 }

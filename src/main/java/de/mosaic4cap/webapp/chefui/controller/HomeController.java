@@ -16,6 +16,6 @@ public class HomeController extends AbstractChefUIController {
 
     @RequestMapping("/")
     public String home() {
-        return "test";
+        return "chefui/test";
     }
 }
