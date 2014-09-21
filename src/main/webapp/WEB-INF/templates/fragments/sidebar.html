@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
+
+    <link href="../../../css/sidebar.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="sidebar-wrapper" th:fragment="navigation">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="/"><i class="fa fa-tachometer"></i> Dashboard</a>
+        </li>
+        <li><a href="/storeaccount/"><i class="fa fa-eur"></i> Abrechnungen</a></li>
+        <li><a href="/manage/store"><i class="fa fa-building"></i> Storeverwaltung</a></li>
+        <li><a href="/manage/employee"><i class="fa fa-user"></i> Mitarbeiterverwaltung</a></li>
+        <li><a href="/manage/car"><i class="fa fa-car"></i> Fuhrparkverwaltung</a></li>
+        <li><a href="/manage/sales"><i class="fa fa-line-chart"></i> Umsatzstatistik</a></li>
+        <li><a href="/settings"><i class="fa fa-cogs"></i> Einstellungen</a></li>
+    </ul>
+</div>
+</body>
+</html>

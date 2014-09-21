@@ -1,7 +1,6 @@
 package de.mosaic4cap.webapp.chefui.definitions;
 
 import de.mosaic4cap.webapp.Application;
-import de.mosaic4cap.webapp.chefui.services.notification.Notification;
 import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
 import org.apache.log4j.Logger;
 import org.junit.Ignore;
@@ -12,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -33,13 +31,7 @@ public class ModelDefinitionsTest {
 
     @Test
     public void canGetNotificationList() throws Exception {
-        List<Notification> notifications = modelDefinitions.getNotifications();
-        Collections.sort(notifications);
-
-        List<Notification> no = notificationService.getAll();
-        Collections.sort(no);
-
-        assertEquals(notifications, no);
+        assertEquals(notificationService.getAll(), modelDefinitions.getNotifications());
     }
 
     @Ignore

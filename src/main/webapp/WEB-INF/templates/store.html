@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
+
+    <link href="../../css/bootstrap.theme.css" rel="stylesheet"/>
+    <link href="../../css/sidebar.css" rel="stylesheet"/>
+
+    <script src="" th:src="@{/webjars/jquery/2.1.1/jquery.min.js}"></script>
+    <script src="" th:src="@{/webjars/jquery-ui/1.10.4/ui/jquery-ui.js}"></script>
+    <script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+    <script src="" th:src="@{/webjars/angluarjs/1.3.0-beta.15/angular.min.js}"></script>
+    <script src="" th:src="@{/webjars/angluar-ui-bootstrap/0.11.0-2/ui-bootstrap.min.js}"></script>
+
+    <title></title>
+
+    <style>
+        .store-adress {
+            list-style-image: none;
+            list-style: none;
+            margin-left: -40px;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="fragments/modals :: bankdata"></div>
+<div th:replace="fragments/modals :: adress"></div>
+
+<div th:replace="fragments/header :: navigation"></div>
+
+<div id="wrapper">
+
+    <div th:replace="fragments/sidebar :: navigation"></div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <div class="container-fluid">
+            <div class="row" th:unless="${#lists.isEmpty(allStores)}">
+                <div class="col-md-4" th:each="store : ${allStores}">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Store: Identification</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-2"><i class="fa fa-building-o fa-5x"></i></div>
+                                <div class="col-md-5">
+                                    <ul class="store-adress">
+                                        <li>Max Mustermann</li>
+                                        <li>Musterstra&szlig;e 1</li>
+                                        <li>12345 Musterstadt</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="store-adress">
+                                        <li>Mitarbeiter:
+                                            <small><i>xy</i></small>
+                                        </li>
+                                        <li>Autos:
+                                            <small><i>xy</i></small>
+                                        </li>
+                                        <li>Umsatz:
+                                            <small><i>uvwxyz.xx &euro;</i></small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="btn-group btn-group-justified">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info btn-xs" data-adress-id="testAdress"
+                                            data-toggle="modal" data-target="#adressModal">Anschrift &auml;ndern
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success btn-xs">Ausw&auml;hlen</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info btn-xs" data-bankdata-id="testBankData"
+                                            data-toggle="modal" data-target="#bankDataModal">Bankdaten &auml;ndern
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+</div>
+
+<script src="../../../js/modal.js"></script>
+</body>
+</html>
