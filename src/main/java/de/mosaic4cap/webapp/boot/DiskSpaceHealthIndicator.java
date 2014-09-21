@@ -1,4 +1,4 @@
-package de.mosaic.restservice.actuator;
+package de.mosaic4cap.webapp.boot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

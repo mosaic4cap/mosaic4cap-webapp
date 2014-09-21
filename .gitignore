@@ -1,6 +1,8 @@
 # Created by .gitignore support plugin (hsz.mobi)
 ### Java template
 *.class
+de.mosaic4cap.webapp.iml
+/.idea
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

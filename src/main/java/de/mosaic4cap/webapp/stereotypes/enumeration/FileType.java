@@ -1,4 +1,4 @@
-package de.mosaic.commons.enumeration;
+package de.mosaic4cap.webapp.stereotypes.enumeration;
 
 /**
  * Created by svenklemmer on 13.09.14.

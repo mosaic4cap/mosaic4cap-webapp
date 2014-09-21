@@ -1,4 +1,4 @@
-package de.mosaic.restservice.actuator;
+package de.mosaic4cap.webapp.boot;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
