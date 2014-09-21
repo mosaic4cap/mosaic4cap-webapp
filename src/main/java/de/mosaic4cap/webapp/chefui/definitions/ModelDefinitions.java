@@ -19,7 +19,7 @@ import java.util.List;
  * {@link org.springframework.web.bind.annotation.ControllerAdvice} to make them accessable by every
  * controller in this application
  * <p/>
- * TODO: Split file into several separated definitions
+ * See: #3
  */
 @ControllerAdvice
 public class ModelDefinitions {

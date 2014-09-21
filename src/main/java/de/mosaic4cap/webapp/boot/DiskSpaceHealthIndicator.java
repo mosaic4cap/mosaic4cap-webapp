@@ -40,6 +40,7 @@ public class DiskSpaceHealthIndicator extends AbstractHealthIndicator {
         }
         long totalSpaceInBytes = fileStore.getTotalSpace();
         builder.withDetail("disk.free", diskFreeInBytes);
+        builder.withDetail("disk.used", (totalSpaceInBytes-diskFreeInBytes));
         builder.withDetail("disk.total", totalSpaceInBytes);
     }
 }

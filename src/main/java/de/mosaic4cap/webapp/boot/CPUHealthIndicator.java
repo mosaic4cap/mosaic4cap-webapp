@@ -6,14 +6,14 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by svenklemmer on 11.09.14.
+ * Created by Lobedan on 21.09.2014.
  *
- * Checks the actual memory situation on the server
- * if memory is greater than 20MB than helth.up is displayed else its down
- * See Issue #1
+ * Checks the actual cpu situation on the server
+ * if cpu usage is under 90% than helth.up is displayed else its down
+ * See Issue #2
  */
 @Component
-public class MemoryHealtIndicator extends AbstractHealthIndicator {
+public class CPUHealthIndicator extends AbstractHealthIndicator {
     private static final Logger LOGGER = Logger.getLogger(MemoryHealtIndicator.class);
 
     @Override
