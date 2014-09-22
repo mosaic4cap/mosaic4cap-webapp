@@ -6,25 +6,25 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
-import de.mosaic4cap.webapp.stereotypes.entities.StoreAccount;
 
 /**
  * Created by Lobedan on 22.09.2014. *
  * <p/>
- * Container for storeaccount objects with some buisnesslogic in it
+ * Container for invoice objects with some buisnesslogic in it
  */
-public class StoreAccountContainer extends Container {
- private static final Logger LOGGER = Logger.getLogger(StoreAccountContainer.class);
+public class InvoiceContainer extends Container {
+ private static final Logger LOGGER = Logger.getLogger(InvoiceContainer.class);
 
  private Date date;
- private List<StoreAccount> partials;
+ private List<Invoice> partials;
  private Store store;
 
- public StoreAccountContainer() {
+ public InvoiceContainer() {
  }
 
- public StoreAccountContainer(Date pDate, List<StoreAccount> pPartials, Store pStore) {
+ public InvoiceContainer(Date pDate, List<Invoice> pPartials, Store pStore) {
 	date = pDate;
 	partials = pPartials;
 	store = pStore;
@@ -32,7 +32,7 @@ public class StoreAccountContainer extends Container {
 
  public BigDecimal getECAmount() {
 	BigDecimal sum = new BigDecimal(0);
-	for (StoreAccount s : partials) {
+	for (Invoice s : partials) {
 	 for (BigDecimal b : s.getEcpayment()) {
 		sum = sum.add(b);
 	 }
@@ -42,7 +42,7 @@ public class StoreAccountContainer extends Container {
 
  public BigDecimal getBillAmount() {
 	BigDecimal sum = new BigDecimal(0);
-	for (StoreAccount s : partials) {
+	for (Invoice s : partials) {
 	 for (BigDecimal b : s.getBills()) {
 		sum = sum.add(b);
 	 }
@@ -52,7 +52,7 @@ public class StoreAccountContainer extends Container {
 
  public BigDecimal getAmount() {
 	BigDecimal sum = new BigDecimal(0);
-	for (StoreAccount s : partials) {
+	for (Invoice s : partials) {
 	 sum = sum.add(s.getIncome());
 	}
 	return sum;
@@ -78,11 +78,11 @@ public class StoreAccountContainer extends Container {
 	date = pDate;
  }
 
- public List<StoreAccount> getPartials() {
+ public List<Invoice> getPartials() {
 	return partials;
  }
 
- public void setPartials(List<StoreAccount> pPartials) {
+ public void setPartials(List<Invoice> pPartials) {
 	partials = pPartials;
  }
 }

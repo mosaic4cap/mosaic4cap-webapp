@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import de.mosaic4cap.webapp.Application;
-import de.mosaic4cap.webapp.restservice.dao.StoreAccountDao;
-import de.mosaic4cap.webapp.stereotypes.entities.StoreAccount;
+import de.mosaic4cap.webapp.restservice.dao.InvoiceDao;
+import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -33,15 +33,15 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
-public class StoreAccountRestControllerTest extends RestControllerTestCase {
- private static final Logger LOGGER = Logger.getLogger(StoreAccountRestControllerTest.class);
+public class InvoiceRestControllerTest extends RestControllerTestCase {
+ private static final Logger LOGGER = Logger.getLogger(InvoiceRestControllerTest.class);
  private MockMvc mockMvc;
 
  @Autowired
- private StoreAccountDao dao;
+ private InvoiceDao dao;
 
  @Autowired
- private StoreAccountRestController controller;
+ private InvoiceRestController controller;
 
  @Before
  public void setUp() throws Exception {
@@ -51,10 +51,10 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  @Override
  @Test
  public void testGet() throws Exception {
-	StoreAccount testStoreAccount = dao
-			.create(new StoreAccount(new BigDecimal(3), null, null, null, null, null, new Date()));
+	Invoice testInvoice = dao
+			.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
 	this.mockMvc.perform(
-			get("/rest/1/storeaccount/" + testStoreAccount.getId())
+			get("/rest/1/invoice/" + testInvoice.getId())
 					.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andDo(print());
@@ -64,7 +64,7 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  @Test
  public void testGetAll() throws Exception {
 	this.mockMvc.perform(
-			get("/rest/1/storeaccount/")
+			get("/rest/1/invoice/")
 					.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andDo(print());
@@ -73,10 +73,10 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  @Override
  @Test
  public void testInsert() throws Exception {
-	StoreAccount sampleStoreAccount = new StoreAccount(new BigDecimal(2), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleStoreAccount);
+	Invoice sampleInvoice = new Invoice(new BigDecimal(2), null, null, null, null, null, new Date());
+	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 	this.mockMvc.perform(
-			post("/rest/1/storeaccount/insert")
+			post("/rest/1/invoice/insert")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(json))
 			//                .andExpect(status().isOk())
@@ -87,10 +87,10 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  @Override
  @Test
  public void testUpdate() throws Exception {
-	StoreAccount sampleStoreAccount = new StoreAccount(new BigDecimal(1), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleStoreAccount);
+	Invoice sampleInvoice = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 	this.mockMvc.perform(
-			put("/rest/1/storeaccount/update")
+			put("/rest/1/invoice/update")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(json))
 			//                .andExpect(status().isOk())
@@ -101,10 +101,10 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  @Override
  @Test
  public void testDelete() throws Exception {
-	StoreAccount sampleStoreAccount = new StoreAccount(new BigDecimal(4), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleStoreAccount);
+	Invoice sampleInvoice = new Invoice(new BigDecimal(4), null, null, null, null, null, new Date());
+	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 	this.mockMvc.perform(
-			post("/rest/1/storeaccount/insert")
+			post("/rest/1/invoice/insert")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(json))
 			//                .andExpect(status().isOk())
@@ -112,7 +112,7 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
 			.andReturn();
 
 	this.mockMvc.perform(
-			delete("/rest/1/storeaccount/delete")
+			delete("/rest/1/invoice/delete")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(json))
 			//                .andExpect(status().isOk())
@@ -126,7 +126,7 @@ public class StoreAccountRestControllerTest extends RestControllerTestCase {
  /* StoreAccount sampleStoreAccount = new StoreAccount("A-MK-157", false);
 dao.save(sampleStoreAccount);
 this.mockMvc.perform(
-delete("/storeaccount/delete/")
+delete("/invoice/delete/")
 .contentType(MediaType.TEXT_PLAIN))
 .andExpect(status().isOk())
 .andDo(print())

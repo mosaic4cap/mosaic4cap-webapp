@@ -22,8 +22,8 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "storeaccount")
-public class StoreAccount extends AbstractMosaicEntity {
- private static final Logger LOGGER = Logger.getLogger(StoreAccount.class);
+public class Invoice extends AbstractMosaicEntity {
+ private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
  private BigDecimal income;
 
@@ -45,16 +45,16 @@ public class StoreAccount extends AbstractMosaicEntity {
  @Temporal(TemporalType.DATE)
  private Date date;
 
- public StoreAccount() {
+ public Invoice() {
  }
 
- public StoreAccount(BigDecimal pIncome,
-										 List<BigDecimal> pBills,
-										 List<BigDecimal> pEcpayment,
-										 Driver pDriver,
-										 Store pStore,
-										 Car pCar,
-										 Date pDate) {
+ public Invoice(BigDecimal pIncome,
+								List<BigDecimal> pBills,
+								List<BigDecimal> pEcpayment,
+								Driver pDriver,
+								Store pStore,
+								Car pCar,
+								Date pDate) {
 	income = pIncome;
 	bills = pBills;
 	ecpayment = pEcpayment;
@@ -152,7 +152,7 @@ public class StoreAccount extends AbstractMosaicEntity {
 	 return false;
 	}
 
-	StoreAccount that = (StoreAccount) o;
+	Invoice that = (Invoice) o;
 
 	if (bills != null ? !bills.equals(that.bills) : that.bills != null) {
 	 return false;

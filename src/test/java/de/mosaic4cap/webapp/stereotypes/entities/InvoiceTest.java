@@ -16,8 +16,8 @@ import static org.junit.Assert.assertThat;
  * Created by Lobedan on 22.09.2014.
  */
 @RunWith(JUnit4.class)
-public class StoreAccountTest {
- private static final Logger LOGGER = Logger.getLogger(StoreAccountTest.class);
+public class InvoiceTest {
+ private static final Logger LOGGER = Logger.getLogger(InvoiceTest.class);
 
  @Test
  public void canComputeECAmount() throws Exception {
@@ -28,7 +28,7 @@ public class StoreAccountTest {
 	List<BigDecimal> ecList = new ArrayList<>();
 	ecList.add(new BigDecimal(10.24));
 	ecList.add(new BigDecimal(4.95));
-	StoreAccount sA = new StoreAccount(new BigDecimal(300), billList, ecList, null, null, null, null);
+	Invoice sA = new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null);
 
 	assertThat(sA.getBillAmount(), is(calc(billList)));
 	assertThat(sA.getECAmount(), is(calc(ecList)));

@@ -6,7 +6,7 @@
 
 	<link href="../../../css/bootstrap.theme.css" rel="stylesheet"/>
 	<link href="../../../css/sidebar.css" rel="stylesheet"/>
-	<link href="../../../css/storeaccount.css" rel="stylesheet"/>
+	<link href="../../../css/invoice.css" rel="stylesheet"/>
 
 	<script src="" th:src="@{/webjars/jquery/2.1.0/jquery.min.js}"></script>
 	<script src="" th:src="@{/webjars/jquery-ui/1.10.4/ui/jquery-ui.js}"></script>
@@ -15,6 +15,9 @@
 	<script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
 
 	<title></title>
+	<style>
+
+	</style>
 </head>
 <body>
 <div th:replace="fragments/header :: navigation"></div>
@@ -35,16 +38,6 @@
 										class="label label-success">10 Abgeschlossen</span></strong>
 
 								<div class="btn-group btn-group-sm">
-									<div class="btn-group btn-group-sm">
-										<button type="button" class="btn btn-default dropdown-toggle"
-												data-toggle="dropdown">
-											Store
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu" th:unless="${#lists.isEmpty(allStores)}">
-											<li th:each="store : ${allStores}"><a href="#">Store</a></li>
-										</ul>
-									</div>
 									<button type="button" class="btn btn-default">
 										<i class="fa fa-sort-amount-asc"></i>
 									</button>
@@ -57,44 +50,50 @@
 							<div class="panel-body">
 								<div class="list-group">
 									<a href="#" class="list-group-item ">
-										<h4 class="list-group-item-heading">Abrechung: 22.09.2014 <span
+										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
 												class="label label-danger">Offen</span></h4>
-
 										<p class="list-group-item-text">
-										<ul class="list-inline">
+										<ul class="list-inline invoice-footer">
 											<li>Umsatz: <b>10000,00&euro;</b></li>
 											<li><b>15</b> Teilabrechnungen</li>
+											<li><b>15</b> EC Zahlungen</li>
+											<li><b>15</b> Rechnungen</li>
 										</ul>
 										</p>
 									</a>
-									<a href="#" class="list-group-item">
-										<h4 class="list-group-item-heading">Abrechung: 22.09.2014 <span
-												class="label label-success">Abgeschlossen</span></h4>
-
+									<a href="#" class="list-group-item ">
+										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
+												class="label label-danger">Offen</span></h4>
 										<p class="list-group-item-text">
-										<ul class="list-inline">
+										<ul class="list-inline invoice-footer">
 											<li>Umsatz: <b>10000,00&euro;</b></li>
 											<li><b>15</b> Teilabrechnungen</li>
+											<li><b>15</b> EC Zahlungen</li>
+											<li><b>15</b> Rechnungen</li>
 										</ul>
 										</p>
 									</a>
-									<a href="#" class="list-group-item active">
-										<h4 class="list-group-item-heading">Abrechung: 22.09.2014</h4>
-
+									<a href="#" class="list-group-item ">
+										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
+												class="label label-danger">Offen</span></h4>
 										<p class="list-group-item-text">
-										<ul class="list-inline">
+										<ul class="list-inline invoice-footer">
 											<li>Umsatz: <b>10000,00&euro;</b></li>
 											<li><b>15</b> Teilabrechnungen</li>
+											<li><b>15</b> EC Zahlungen</li>
+											<li><b>15</b> Rechnungen</li>
 										</ul>
 										</p>
 									</a>
-									<a href="#" class="list-group-item">
-										<h4 class="list-group-item-heading">Abrechung: 22.09.2014</h4>
-
+									<a href="#" class="list-group-item ">
+										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
+												class="label label-danger">Offen</span></h4>
 										<p class="list-group-item-text">
-										<ul class="list-inline">
+										<ul class="list-inline invoice-footer">
 											<li>Umsatz: <b>10000,00&euro;</b></li>
 											<li><b>15</b> Teilabrechnungen</li>
+											<li><b>15</b> EC Zahlungen</li>
+											<li><b>15</b> Rechnungen</li>
 										</ul>
 										</p>
 									</a>

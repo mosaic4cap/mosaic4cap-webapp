@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import de.mosaic4cap.webapp.chefui.services.notification.Notification;
 import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
+import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 
 /**
  * Created by svenklemmer on 17.09.14.
@@ -45,4 +46,10 @@ public class ModelDefinitions {
 	l.add(new Object());
 	return l;
  }
+
+ @ModelAttribute(value = "allInvoice")
+ public List<Invoice> getAllInvoices() {
+	return new ArrayList();
+ }
+
 }

@@ -42,9 +42,9 @@ public class HomeControllerTest {
  }
 
  @Test
- public void storeaccountRouteIsAccessable() throws Exception {
+ public void invoiceRouteIsAccessable() throws Exception {
 	this.mockMvc.perform(
-			get("/chefui/storeaccount"))
+			get("/chefui/invoice"))
 			.andExpect(status().isOk())
 			.andDo(print());
  }

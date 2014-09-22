@@ -42,7 +42,7 @@ public class Store extends AbstractMosaicEntity {
 
  @javax.persistence.OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
  @javax.persistence.MapKey(name = "id")
- private Map<Long, StoreAccount> storeaccount;
+ private Map<Long, Invoice> storeaccount;
 
     /*@ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 		@MapKey(name = "id")
@@ -55,7 +55,7 @@ public class Store extends AbstractMosaicEntity {
 							Chef pChef,
 							Map<Long, Driver> pDriver,
 							Map<Long, Car> pCar,
-							Map<Long, StoreAccount> pStoreaccount) {
+							Map<Long, Invoice> pStoreaccount) {
 	key = pKey;
 	chef = pChef;
 	driver = pDriver;
@@ -79,11 +79,11 @@ public class Store extends AbstractMosaicEntity {
 	car = pCar;
  }
 
- public Map<Long, StoreAccount> getStoreaccount() {
+ public Map<Long, Invoice> getStoreaccount() {
 	return storeaccount;
  }
 
- public void setStoreaccount(Map<Long, StoreAccount> pStoreaccount) {
+ public void setStoreaccount(Map<Long, Invoice> pStoreaccount) {
 	storeaccount = pStoreaccount;
  }
 
