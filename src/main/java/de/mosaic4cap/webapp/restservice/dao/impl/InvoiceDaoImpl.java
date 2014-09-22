@@ -11,5 +11,5 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  */
 @Dao
 public class InvoiceDaoImpl extends GenericHibernateDaoImpl<Invoice> implements InvoiceDao {
- private static final Logger LOGGER = Logger.getLogger(InvoiceDaoImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceDaoImpl.class);
 }

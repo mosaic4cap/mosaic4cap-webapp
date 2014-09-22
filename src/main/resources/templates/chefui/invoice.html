@@ -48,52 +48,17 @@
 
 							</div>
 							<div class="panel-body">
-								<div class="list-group">
-									<a href="#" class="list-group-item ">
-										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
+								<div class="list-group" th:unless="${#lists.isEmpty(allInvoices)}">
+									<a href="#" class="list-group-item" th:each="invoice : ${allInvoices}">
+										<h4 class="list-group-item-heading">Abrechnung: <i th:text="${{invoice.date}}">dd.MM.yyyy</i><span
 												class="label label-danger">Offen</span></h4>
+
 										<p class="list-group-item-text">
 										<ul class="list-inline invoice-footer">
-											<li>Umsatz: <b>10000,00&euro;</b></li>
-											<li><b>15</b> Teilabrechnungen</li>
-											<li><b>15</b> EC Zahlungen</li>
-											<li><b>15</b> Rechnungen</li>
-										</ul>
-										</p>
-									</a>
-									<a href="#" class="list-group-item ">
-										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
-												class="label label-danger">Offen</span></h4>
-										<p class="list-group-item-text">
-										<ul class="list-inline invoice-footer">
-											<li>Umsatz: <b>10000,00&euro;</b></li>
-											<li><b>15</b> Teilabrechnungen</li>
-											<li><b>15</b> EC Zahlungen</li>
-											<li><b>15</b> Rechnungen</li>
-										</ul>
-										</p>
-									</a>
-									<a href="#" class="list-group-item ">
-										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
-												class="label label-danger">Offen</span></h4>
-										<p class="list-group-item-text">
-										<ul class="list-inline invoice-footer">
-											<li>Umsatz: <b>10000,00&euro;</b></li>
-											<li><b>15</b> Teilabrechnungen</li>
-											<li><b>15</b> EC Zahlungen</li>
-											<li><b>15</b> Rechnungen</li>
-										</ul>
-										</p>
-									</a>
-									<a href="#" class="list-group-item ">
-										<h4 class="list-group-item-heading">Abrechnung: 22.09.2014 <span
-												class="label label-danger">Offen</span></h4>
-										<p class="list-group-item-text">
-										<ul class="list-inline invoice-footer">
-											<li>Umsatz: <b>10000,00&euro;</b></li>
-											<li><b>15</b> Teilabrechnungen</li>
-											<li><b>15</b> EC Zahlungen</li>
-											<li><b>15</b> Rechnungen</li>
+										<li>Umsatz: <b> <span th:text="${invoice.amount}">0,00</span>&euro;</b></li>
+										<li><b th:text="${invoice.partialsCount}">0</b> Teilabrechnungen</li>
+										<li><b th:text="${invoice.ecCount}">0</b> EC Zahlungen</li>
+										<li><b th:text="${invoice.billCount}">0</b> Rechnungen</li>
 										</ul>
 										</p>
 									</a>

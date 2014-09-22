@@ -11,5 +11,5 @@ import de.mosaic4cap.webapp.stereotypes.entities.Driver;
  */
 @Dao
 public class DriverDaoImpl extends GenericHibernateDaoImpl<Driver> implements DriverDao {
- private static final Logger LOGGER = Logger.getLogger(DriverDaoImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(DriverDaoImpl.class);
 }

@@ -34,95 +34,95 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class InvoiceRestControllerTest extends RestControllerTestCase {
- private static final Logger LOGGER = Logger.getLogger(InvoiceRestControllerTest.class);
- private MockMvc mockMvc;
+	private static final Logger LOGGER = Logger.getLogger(InvoiceRestControllerTest.class);
+	private MockMvc mockMvc;
 
- @Autowired
- private InvoiceDao dao;
+	@Autowired
+	private InvoiceDao dao;
 
- @Autowired
- private InvoiceRestController controller;
+	@Autowired
+	private InvoiceRestController controller;
 
- @Before
- public void setUp() throws Exception {
-	this.mockMvc = standaloneSetup(controller).build();
- }
+	@Before
+	public void setUp() throws Exception {
+		this.mockMvc = standaloneSetup(controller).build();
+	}
 
- @Override
- @Test
- public void testGet() throws Exception {
-	Invoice testInvoice = dao
-			.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
-	this.mockMvc.perform(
-			get("/rest/1/invoice/" + testInvoice.getId())
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGet() throws Exception {
+		Invoice testInvoice = dao
+				.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
+		this.mockMvc.perform(
+				get("/rest/1/invoice/" + testInvoice.getId())
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testGetAll() throws Exception {
-	this.mockMvc.perform(
-			get("/rest/1/invoice/")
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGetAll() throws Exception {
+		this.mockMvc.perform(
+				get("/rest/1/invoice/")
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testInsert() throws Exception {
-	Invoice sampleInvoice = new Invoice(new BigDecimal(2), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
-	this.mockMvc.perform(
-			post("/rest/1/invoice/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			//                .andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testInsert() throws Exception {
+		Invoice sampleInvoice = new Invoice(new BigDecimal(2), null, null, null, null, null, new Date());
+		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
+		this.mockMvc.perform(
+				post("/rest/1/invoice/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				//                .andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testUpdate() throws Exception {
-	Invoice sampleInvoice = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
-	this.mockMvc.perform(
-			put("/rest/1/invoice/update")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			//                .andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testUpdate() throws Exception {
+		Invoice sampleInvoice = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
+		this.mockMvc.perform(
+				put("/rest/1/invoice/update")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				//                .andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDelete() throws Exception {
-	Invoice sampleInvoice = new Invoice(new BigDecimal(4), null, null, null, null, null, new Date());
-	String json = new ObjectMapper().writeValueAsString(sampleInvoice);
-	this.mockMvc.perform(
-			post("/rest/1/invoice/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			//                .andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
+	@Override
+	@Test
+	public void testDelete() throws Exception {
+		Invoice sampleInvoice = new Invoice(new BigDecimal(4), null, null, null, null, null, new Date());
+		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
+		this.mockMvc.perform(
+				post("/rest/1/invoice/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				//                .andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
 
-	this.mockMvc.perform(
-			delete("/rest/1/invoice/delete")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			//                .andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+		this.mockMvc.perform(
+				delete("/rest/1/invoice/delete")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				//                .andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDeleteByObject() throws Exception {
+	@Override
+	@Test
+	public void testDeleteByObject() throws Exception {
  /* StoreAccount sampleStoreAccount = new StoreAccount("A-MK-157", false);
 dao.save(sampleStoreAccount);
 this.mockMvc.perform(
@@ -132,6 +132,6 @@ delete("/invoice/delete/")
 .andDo(print())
 .andReturn();
 */
-	assertTrue(true);
- }
+		assertTrue(true);
+	}
 }

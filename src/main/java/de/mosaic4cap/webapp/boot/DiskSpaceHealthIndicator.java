@@ -14,34 +14,34 @@ import org.springframework.stereotype.Component;
 /**
  * Checks actual disc space situation
  * if theres enough space builder.up is called else its down
- * <p/>
+ * <p>
  * Created by Lobedan on 03.09.2014.
  */
 @Component
 public class DiskSpaceHealthIndicator extends AbstractHealthIndicator {
 
- private final FileStore fileStore;
- private final long thresholdBytes;
+	private final FileStore fileStore;
+	private final long thresholdBytes;
 
- @Autowired
- public DiskSpaceHealthIndicator(@Value("${health.filestore.path:${user.dir}}") String path,
-																 @Value("${health.filestore.threshold.bytes:10485760}") long aThresholdBytes) throws
-																																																							IOException {
-	fileStore = Files.getFileStore(Paths.get(path));
-	this.thresholdBytes = aThresholdBytes;
- }
-
- @Override
- protected void doHealthCheck(Health.Builder builder) throws Exception {
-	long diskFreeInBytes = fileStore.getUnallocatedSpace();
-	if (diskFreeInBytes >= thresholdBytes) {
-	 builder.up();
-	} else {
-	 builder.down();
+	@Autowired
+	public DiskSpaceHealthIndicator(@Value("${health.filestore.path:${user.dir}}") String path,
+																	@Value("${health.filestore.threshold.bytes:10485760}") long aThresholdBytes) throws
+																																																							 IOException {
+		fileStore = Files.getFileStore(Paths.get(path));
+		this.thresholdBytes = aThresholdBytes;
 	}
-	long totalSpaceInBytes = fileStore.getTotalSpace();
-	builder.withDetail("disk.free", diskFreeInBytes);
-	builder.withDetail("disk.used", (totalSpaceInBytes - diskFreeInBytes));
-	builder.withDetail("disk.total", totalSpaceInBytes);
- }
+
+	@Override
+	protected void doHealthCheck(Health.Builder builder) throws Exception {
+		long diskFreeInBytes = fileStore.getUnallocatedSpace();
+		if (diskFreeInBytes >= thresholdBytes) {
+			builder.up();
+		} else {
+			builder.down();
+		}
+		long totalSpaceInBytes = fileStore.getTotalSpace();
+		builder.withDetail("disk.free", diskFreeInBytes);
+		builder.withDetail("disk.used", (totalSpaceInBytes - diskFreeInBytes));
+		builder.withDetail("disk.total", totalSpaceInBytes);
+	}
 }

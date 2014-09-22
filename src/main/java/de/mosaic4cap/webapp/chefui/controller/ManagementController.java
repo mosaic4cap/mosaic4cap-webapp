@@ -8,20 +8,20 @@ import de.mosaic4cap.webapp.core.AbstractChefUIController;
 
 /**
  * Created by svenklemmer on 18.09.14.
- * <p/>
+ * <p>
  * Controller for all management views like store, employee etc.
  */
 @Controller
 public class ManagementController extends AbstractChefUIController {
- private static final Logger LOGGER = Logger.getLogger(ManagementController.class);
+	private static final Logger LOGGER = Logger.getLogger(ManagementController.class);
 
- @RequestMapping("/manage/store")
- public String loadStores() throws Exception {
-	return "chefui/store";
- }
+	@RequestMapping("/manage/store")
+	public String loadStores() throws Exception {
+		return "chefui/store";
+	}
 
- @RequestMapping("/manage/employee")
- public String loadEmployees() throws Exception {
-	return "chefui/employee";
- }
+	@RequestMapping("/manage/employee")
+	public String loadEmployees() throws Exception {
+		return "chefui/employee";
+	}
 }

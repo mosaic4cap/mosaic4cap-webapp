@@ -31,94 +31,94 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class DriverRestControllerTest extends RestControllerTestCase {
- private static final Logger LOGGER = Logger.getLogger(DriverRestControllerTest.class);
- private MockMvc mockMvc;
+	private static final Logger LOGGER = Logger.getLogger(DriverRestControllerTest.class);
+	private MockMvc mockMvc;
 
- @Autowired
- private DriverDao dao;
+	@Autowired
+	private DriverDao dao;
 
- @Autowired
- private DriverRestController controller;
+	@Autowired
+	private DriverRestController controller;
 
- @Before
- public void setUp() throws Exception {
-	this.mockMvc = standaloneSetup(controller).build();
- }
+	@Before
+	public void setUp() throws Exception {
+		this.mockMvc = standaloneSetup(controller).build();
+	}
 
- @Override
- @Test
- public void testGet() throws Exception {
-	Driver testDriver = dao.create(new Driver("value", "", null));
-	this.mockMvc.perform(
-			get("/rest/1/driver/" + testDriver.getId())
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGet() throws Exception {
+		Driver testDriver = dao.create(new Driver("value", "", null));
+		this.mockMvc.perform(
+				get("/rest/1/driver/" + testDriver.getId())
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testGetAll() throws Exception {
-	this.mockMvc.perform(
-			get("/rest/1/driver/")
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGetAll() throws Exception {
+		this.mockMvc.perform(
+				get("/rest/1/driver/")
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testInsert() throws Exception {
-	Driver sampleDriver = new Driver("value2", "", null);
-	String json = new ObjectMapper().writeValueAsString(sampleDriver);
-	this.mockMvc.perform(
-			post("/rest/1/driver/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testInsert() throws Exception {
+		Driver sampleDriver = new Driver("value2", "", null);
+		String json = new ObjectMapper().writeValueAsString(sampleDriver);
+		this.mockMvc.perform(
+				post("/rest/1/driver/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testUpdate() throws Exception {
-	Driver sampleDriver = new Driver("value3", "", null);
-	String json = new ObjectMapper().writeValueAsString(sampleDriver);
-	this.mockMvc.perform(
-			put("/rest/1/driver/update")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testUpdate() throws Exception {
+		Driver sampleDriver = new Driver("value3", "", null);
+		String json = new ObjectMapper().writeValueAsString(sampleDriver);
+		this.mockMvc.perform(
+				put("/rest/1/driver/update")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDelete() throws Exception {
-	Driver sampleDriver = new Driver("value4", "", null);
-	String json = new ObjectMapper().writeValueAsString(sampleDriver);
-	this.mockMvc.perform(
-			post("/rest/1/driver/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
+	@Override
+	@Test
+	public void testDelete() throws Exception {
+		Driver sampleDriver = new Driver("value4", "", null);
+		String json = new ObjectMapper().writeValueAsString(sampleDriver);
+		this.mockMvc.perform(
+				post("/rest/1/driver/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
 
-	this.mockMvc.perform(
-			delete("/rest/1/driver/delete")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+		this.mockMvc.perform(
+				delete("/rest/1/driver/delete")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDeleteByObject() throws Exception {
+	@Override
+	@Test
+	public void testDeleteByObject() throws Exception {
  /* Driver sampleDriver = new Driver("A-MK-157", false);
 dao.save(sampleDriver);
 this.mockMvc.perform(
@@ -128,6 +128,6 @@ delete("/driver/delete/")
 .andDo(print())
 .andReturn();
 */
-	assertTrue(true);
- }
+		assertTrue(true);
+	}
 }

@@ -31,94 +31,94 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class ChefRestControllerTest extends RestControllerTestCase {
- private static final Logger LOGGER = Logger.getLogger(ChefRestControllerTest.class);
- private MockMvc mockMvc;
+	private static final Logger LOGGER = Logger.getLogger(ChefRestControllerTest.class);
+	private MockMvc mockMvc;
 
- @Autowired
- private ChefDao dao;
+	@Autowired
+	private ChefDao dao;
 
- @Autowired
- private ChefRestController controller;
+	@Autowired
+	private ChefRestController controller;
 
- @Before
- public void setUp() throws Exception {
-	this.mockMvc = standaloneSetup(controller).build();
- }
+	@Before
+	public void setUp() throws Exception {
+		this.mockMvc = standaloneSetup(controller).build();
+	}
 
- @Override
- @Test
- public void testGet() throws Exception {
-	Chef testChef = dao.create(new Chef("value", "", null));
-	this.mockMvc.perform(
-			get("/rest/1/chef/1" + testChef.getId())
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGet() throws Exception {
+		Chef testChef = dao.create(new Chef("value", "", null));
+		this.mockMvc.perform(
+				get("/rest/1/chef/1" + testChef.getId())
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testGetAll() throws Exception {
-	this.mockMvc.perform(
-			get("/rest/1/chef")
-					.accept(MediaType.APPLICATION_JSON))
-			//                .andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGetAll() throws Exception {
+		this.mockMvc.perform(
+				get("/rest/1/chef")
+						.accept(MediaType.APPLICATION_JSON))
+				//                .andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testInsert() throws Exception {
-	Chef sampleChef = new Chef("value2", "3", null);
-	String json = new ObjectMapper().writeValueAsString(sampleChef);
-	this.mockMvc.perform(
-			post("/rest/1/chef/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testInsert() throws Exception {
+		Chef sampleChef = new Chef("value2", "3", null);
+		String json = new ObjectMapper().writeValueAsString(sampleChef);
+		this.mockMvc.perform(
+				post("/rest/1/chef/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testUpdate() throws Exception {
-	Chef sampleChef = new Chef("value3", "4", null);
-	String json = new ObjectMapper().writeValueAsString(sampleChef);
-	this.mockMvc.perform(
-			put("/rest/1/chef/update")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testUpdate() throws Exception {
+		Chef sampleChef = new Chef("value3", "4", null);
+		String json = new ObjectMapper().writeValueAsString(sampleChef);
+		this.mockMvc.perform(
+				put("/rest/1/chef/update")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDelete() throws Exception {
-	Chef sampleChef = new Chef("value4", "6", null);
-	String json = new ObjectMapper().writeValueAsString(sampleChef);
-	this.mockMvc.perform(
-			post("/rest/1/chef/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
+	@Override
+	@Test
+	public void testDelete() throws Exception {
+		Chef sampleChef = new Chef("value4", "6", null);
+		String json = new ObjectMapper().writeValueAsString(sampleChef);
+		this.mockMvc.perform(
+				post("/rest/1/chef/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
 
-	this.mockMvc.perform(
-			delete("/rest/1/chef/delete")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+		this.mockMvc.perform(
+				delete("/rest/1/chef/delete")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDeleteByObject() throws Exception {
+	@Override
+	@Test
+	public void testDeleteByObject() throws Exception {
  /* Chef sampleChef = new Chef("A-MK-157", false);
 dao.save(sampleChef);
 this.mockMvc.perform(
@@ -128,6 +128,6 @@ delete("/chef/delete/")
 .andDo(print())
 .andReturn();
 */
-	assertTrue(true);
- }
+		assertTrue(true);
+	}
 }

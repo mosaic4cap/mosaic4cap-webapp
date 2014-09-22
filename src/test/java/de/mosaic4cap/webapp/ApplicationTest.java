@@ -24,13 +24,13 @@ import static org.junit.Assert.assertEquals;
 @DirtiesContext
 public class ApplicationTest {
 
- @Value("${local.server.port}")
- private int port;
+	@Value("${local.server.port}")
+	private int port;
 
- @Test
- public void integrationTest() throws Exception {
-	ResponseEntity<String> entity = new TestRestTemplate()
-			.getForEntity("http://localhost:" + this.port + "/health", String.class);
-	assertEquals(HttpStatus.OK, entity.getStatusCode());
- }
+	@Test
+	public void integrationTest() throws Exception {
+		ResponseEntity<String> entity = new TestRestTemplate()
+				.getForEntity("http://localhost:" + this.port + "/health", String.class);
+		assertEquals(HttpStatus.OK, entity.getStatusCode());
+	}
 }

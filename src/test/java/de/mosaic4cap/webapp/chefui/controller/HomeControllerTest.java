@@ -22,31 +22,31 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class HomeControllerTest {
- private static final Logger LOGGER = Logger.getLogger(HomeControllerTest.class);
+	private static final Logger LOGGER = Logger.getLogger(HomeControllerTest.class);
 
- @Autowired
- private HomeController controller;
- private MockMvc mockMvc;
+	@Autowired
+	private HomeController controller;
+	private MockMvc mockMvc;
 
- @Before
- public void setup() {
-	this.mockMvc = standaloneSetup(controller).build();
- }
+	@Before
+	public void setup() {
+		this.mockMvc = standaloneSetup(controller).build();
+	}
 
- @Test
- public void homeRouteIsAccessable() throws Exception {
-	this.mockMvc.perform(
-			get("/chefui/"))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Test
+	public void homeRouteIsAccessable() throws Exception {
+		this.mockMvc.perform(
+				get("/chefui/"))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Test
- public void invoiceRouteIsAccessable() throws Exception {
-	this.mockMvc.perform(
-			get("/chefui/invoice"))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Test
+	public void invoiceRouteIsAccessable() throws Exception {
+		this.mockMvc.perform(
+				get("/chefui/invoice"))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 }
 

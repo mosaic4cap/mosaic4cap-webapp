@@ -13,29 +13,29 @@ import cucumber.api.java.en.Then;
  * Created by Lobedan on 09.09.2014.
  */
 public class ZipStepdef {
- private static Logger logger = Logger.getLogger(ZipStepdef.class);
- @Value("${storage.tmpDir}")
- private String filepath;
+	private static Logger logger = Logger.getLogger(ZipStepdef.class);
+	@Value("${storage.tmpDir}")
+	private String filepath;
 
- private String zipUrl;
+	private String zipUrl;
 
- @Given("^a zipUrl \"([^\"]*)\"$")
- public void initZipUrl(String pZipUrl) {
-	zipUrl = pZipUrl;
- }
+	@Given("^a zipUrl \"([^\"]*)\"$")
+	public void initZipUrl(String pZipUrl) {
+		zipUrl = pZipUrl;
+	}
 
- @Then("it can be downloaded")
- public void downloadZip() throws Exception {
-	filepath = ZipUtil.downloadZipFile(zipUrl, "file.zip");
- }
+	@Then("it can be downloaded")
+	public void downloadZip() throws Exception {
+		filepath = ZipUtil.downloadZipFile(zipUrl, "file.zip");
+	}
 
- @And("it can be read as ZipInputStream")
- public void initStream() throws Exception {
-	ZipInputStream zipInputStream = ZipUtil.readZipFile(filepath);
- }
+	@And("it can be read as ZipInputStream")
+	public void initStream() throws Exception {
+		ZipInputStream zipInputStream = ZipUtil.readZipFile(filepath);
+	}
 
- @And("delete from local")
- public void deleteZip() throws Exception {
-	ZipUtil.deleteLocalZipFile(filepath);
- }
+	@And("delete from local")
+	public void deleteZip() throws Exception {
+		ZipUtil.deleteLocalZipFile(filepath);
+	}
 }

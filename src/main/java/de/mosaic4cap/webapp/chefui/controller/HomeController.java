@@ -8,20 +8,20 @@ import de.mosaic4cap.webapp.core.AbstractChefUIController;
 
 /**
  * Created by svenklemmer on 16.09.14.
- * <p/>
+ * <p>
  * Controller for all base views like dashboard
  */
 @Controller
 public class HomeController extends AbstractChefUIController {
- private static final Logger LOGGER = Logger.getLogger(HomeController.class);
+	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 
- @RequestMapping("/")
- public String home() {
-	return "chefui/test";
- }
+	@RequestMapping("/")
+	public String home() {
+		return "chefui/test";
+	}
 
- @RequestMapping("/invoice")
- public String invoice() {
-	return "chefui/invoice";
- }
+	@RequestMapping("/invoice")
+	public String invoice() {
+		return "chefui/invoice";
+	}
 }

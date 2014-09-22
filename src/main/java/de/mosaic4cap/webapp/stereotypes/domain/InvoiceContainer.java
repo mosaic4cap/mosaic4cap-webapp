@@ -11,78 +11,94 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
 /**
  * Created by Lobedan on 22.09.2014. *
- * <p/>
+ * <p>
  * Container for invoice objects with some buisnesslogic in it
  */
 public class InvoiceContainer extends Container {
- private static final Logger LOGGER = Logger.getLogger(InvoiceContainer.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceContainer.class);
 
- private Date date;
- private List<Invoice> partials;
- private Store store;
+	private Date date;
+	private List<Invoice> partials;
+	private Store store;
 
- public InvoiceContainer() {
- }
-
- public InvoiceContainer(Date pDate, List<Invoice> pPartials, Store pStore) {
-	date = pDate;
-	partials = pPartials;
-	store = pStore;
- }
-
- public BigDecimal getECAmount() {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : partials) {
-	 for (BigDecimal b : s.getEcpayment()) {
-		sum = sum.add(b);
-	 }
+	public InvoiceContainer() {
 	}
-	return sum;
- }
 
- public BigDecimal getBillAmount() {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : partials) {
-	 for (BigDecimal b : s.getBills()) {
-		sum = sum.add(b);
-	 }
+	public InvoiceContainer(Date pDate, List<Invoice> pPartials, Store pStore) {
+		date = pDate;
+		partials = pPartials;
+		store = pStore;
 	}
-	return sum;
- }
 
- public BigDecimal getAmount() {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : partials) {
-	 sum = sum.add(s.getIncome());
+	public BigDecimal getECAmount() {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : partials) {
+			for (BigDecimal b : s.getEcpayment()) {
+				sum = sum.add(b);
+			}
+		}
+		return sum;
 	}
-	return sum;
- }
 
- public int getPartialsCount() {
-	return partials.size();
- }
+	public BigDecimal getBillAmount() {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : partials) {
+			for (BigDecimal b : s.getBills()) {
+				sum = sum.add(b);
+			}
+		}
+		return sum;
+	}
 
- public Store getStore() {
-	return store;
- }
+	public BigDecimal getAmount() {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : partials) {
+			sum = sum.add(s.getIncome());
+		}
+		return sum;
+	}
 
- public void setStore(Store pStore) {
-	store = pStore;
- }
+	public int getECCount() {
+		int sum = 0;
+		for (Invoice invoice : partials) {
+			sum += invoice.getEcpayment().size();
+		}
+		return sum;
+	}
 
- public Date getDate() {
-	return date;
- }
+	public int getBillCount() {
+		int sum = 0;
+		for (Invoice invoice : partials) {
+			sum += invoice.getBills().size();
+		}
+		return sum;
+	}
 
- public void setDate(Date pDate) {
-	date = pDate;
- }
+	public int getPartialsCount() {
+		return partials.size();
+	}
 
- public List<Invoice> getPartials() {
-	return partials;
- }
+	public Store getStore() {
+		return store;
+	}
 
- public void setPartials(List<Invoice> pPartials) {
-	partials = pPartials;
- }
+	public void setStore(Store pStore) {
+		store = pStore;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date pDate) {
+		date = pDate;
+	}
+
+	public List<Invoice> getPartials() {
+		return partials;
+	}
+
+	public void setPartials(List<Invoice> pPartials) {
+		partials = pPartials;
+	}
 }

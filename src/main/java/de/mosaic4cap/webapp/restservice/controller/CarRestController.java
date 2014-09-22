@@ -19,58 +19,58 @@ import de.mosaic4cap.webapp.stereotypes.entities.Car;
  */
 @RestController
 public class CarRestController extends AbstractRestController {
- private static final Logger LOGGER = Logger.getLogger(CarRestController.class);
+	private static final Logger LOGGER = Logger.getLogger(CarRestController.class);
 
- @Autowired
- private CarService carService;
+	@Autowired
+	private CarService carService;
 
- @RequestMapping(value = "/{store}/car/{id}", method = RequestMethod.GET)
- public Car get(
-		 @PathVariable("store") String store,
-		 @PathVariable("id") long id,
-		 @RequestParam(required = false) String mql
- ) throws Exception {
-	return carService.get(id);
- }
+	@RequestMapping(value = "/{store}/car/{id}", method = RequestMethod.GET)
+	public Car get(
+			@PathVariable("store") String store,
+			@PathVariable("id") long id,
+			@RequestParam(required = false) String mql
+	) throws Exception {
+		return carService.get(id);
+	}
 
- @RequestMapping(value = "/{store}/car", method = RequestMethod.GET)
- public List<Car> getAll(
-		 @PathVariable("store") String store,
-		 @RequestParam(required = false) String mql
+	@RequestMapping(value = "/{store}/car", method = RequestMethod.GET)
+	public List<Car> getAll(
+			@PathVariable("store") String store,
+			@RequestParam(required = false) String mql
 
- ) throws Exception {
-	return carService.getAll();
- }
+	) throws Exception {
+		return carService.getAll();
+	}
 
- @RequestMapping(value = "/{store}/car/insert", method = RequestMethod.POST)
- public Car insert(
-		 @PathVariable("store") String store,
-		 Car insertObj
- ) throws Exception {
-	return carService.insert(insertObj);
- }
+	@RequestMapping(value = "/{store}/car/insert", method = RequestMethod.POST)
+	public Car insert(
+			@PathVariable("store") String store,
+			Car insertObj
+	) throws Exception {
+		return carService.insert(insertObj);
+	}
 
- @RequestMapping(value = "/{store}/car/update", method = RequestMethod.PUT)
- public Car update(
-		 @PathVariable("store") String store,
-		 Car updateObj
- ) throws Exception {
-	return carService.update(updateObj);
- }
+	@RequestMapping(value = "/{store}/car/update", method = RequestMethod.PUT)
+	public Car update(
+			@PathVariable("store") String store,
+			Car updateObj
+	) throws Exception {
+		return carService.update(updateObj);
+	}
 
- @RequestMapping(value = "/{store}/car/delete/{id}", method = RequestMethod.DELETE)
- public void delete(
-		 @PathVariable("store") String store,
-		 @PathVariable("id") long objId
- ) throws Exception {
-	carService.delete(objId);
- }
+	@RequestMapping(value = "/{store}/car/delete/{id}", method = RequestMethod.DELETE)
+	public void delete(
+			@PathVariable("store") String store,
+			@PathVariable("id") long objId
+	) throws Exception {
+		carService.delete(objId);
+	}
 
- @RequestMapping(value = "/{store}/car/delete", method = RequestMethod.DELETE)
- public void delete(
-		 @PathVariable("store") String store,
-		 Car deleteObj
- ) throws Exception {
-	carService.delete(deleteObj);
- }
+	@RequestMapping(value = "/{store}/car/delete", method = RequestMethod.DELETE)
+	public void delete(
+			@PathVariable("store") String store,
+			Car deleteObj
+	) throws Exception {
+		carService.delete(deleteObj);
+	}
 }

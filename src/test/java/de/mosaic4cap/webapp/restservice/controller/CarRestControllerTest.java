@@ -31,94 +31,94 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class CarRestControllerTest extends RestControllerTestCase {
- private static final Logger LOGGER = Logger.getLogger(CarRestControllerTest.class);
- private MockMvc mockMvc;
+	private static final Logger LOGGER = Logger.getLogger(CarRestControllerTest.class);
+	private MockMvc mockMvc;
 
- @Autowired
- private CarDao dao;
+	@Autowired
+	private CarDao dao;
 
- @Autowired
- private CarRestController controller;
+	@Autowired
+	private CarRestController controller;
 
- @Before
- public void setUp() throws Exception {
-	this.mockMvc = standaloneSetup(controller).build();
- }
+	@Before
+	public void setUp() throws Exception {
+		this.mockMvc = standaloneSetup(controller).build();
+	}
 
- @Override
- @Test
- public void testGet() throws Exception {
-	Car testCar = dao.create(new Car("Test", false));
-	this.mockMvc.perform(
-			get("/rest/1/car/" + testCar.getId())
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGet() throws Exception {
+		Car testCar = dao.create(new Car("Test", false));
+		this.mockMvc.perform(
+				get("/rest/1/car/" + testCar.getId())
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testGetAll() throws Exception {
-	this.mockMvc.perform(
-			get("/rest/1/car/")
-					.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andDo(print());
- }
+	@Override
+	@Test
+	public void testGetAll() throws Exception {
+		this.mockMvc.perform(
+				get("/rest/1/car/")
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andDo(print());
+	}
 
- @Override
- @Test
- public void testInsert() throws Exception {
-	Car sampleCar = new Car("A-MK-143", false);
-	String json = new ObjectMapper().writeValueAsString(sampleCar);
-	this.mockMvc.perform(
-			post("/rest/1/car/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testInsert() throws Exception {
+		Car sampleCar = new Car("A-MK-143", false);
+		String json = new ObjectMapper().writeValueAsString(sampleCar);
+		this.mockMvc.perform(
+				post("/rest/1/car/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testUpdate() throws Exception {
-	Car sampleCar = new Car("A-MK-143", false);
-	String json = new ObjectMapper().writeValueAsString(sampleCar);
-	this.mockMvc.perform(
-			put("/rest/1/car/update")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+	@Override
+	@Test
+	public void testUpdate() throws Exception {
+		Car sampleCar = new Car("A-MK-143", false);
+		String json = new ObjectMapper().writeValueAsString(sampleCar);
+		this.mockMvc.perform(
+				put("/rest/1/car/update")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDelete() throws Exception {
-	Car sampleCar = new Car("A-MK-143", false);
-	String json = new ObjectMapper().writeValueAsString(sampleCar);
-	this.mockMvc.perform(
-			post("/rest/1/car/insert")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
+	@Override
+	@Test
+	public void testDelete() throws Exception {
+		Car sampleCar = new Car("A-MK-143", false);
+		String json = new ObjectMapper().writeValueAsString(sampleCar);
+		this.mockMvc.perform(
+				post("/rest/1/car/insert")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
 
-	this.mockMvc.perform(
-			delete("/rest/1/car/delete")
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(json))
-			.andExpect(status().isOk())
-			.andDo(print())
-			.andReturn();
- }
+		this.mockMvc.perform(
+				delete("/rest/1/car/delete")
+						.contentType(MediaType.APPLICATION_JSON)
+						.content(json))
+				.andExpect(status().isOk())
+				.andDo(print())
+				.andReturn();
+	}
 
- @Override
- @Test
- public void testDeleteByObject() throws Exception {
+	@Override
+	@Test
+	public void testDeleteByObject() throws Exception {
  /* Car sampleCar = new Car("A-MK-157", false);
 dao.save(sampleCar);
 this.mockMvc.perform(
@@ -128,6 +128,6 @@ delete("/car/delete/")
 .andDo(print())
 .andReturn();
 */
-	assertTrue(true);
- }
+		assertTrue(true);
+	}
 }

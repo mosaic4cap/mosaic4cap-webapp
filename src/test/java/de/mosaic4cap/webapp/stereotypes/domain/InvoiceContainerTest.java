@@ -21,66 +21,66 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(JUnit4.class)
 public class InvoiceContainerTest {
- private static final Logger LOGGER = Logger.getLogger(InvoiceContainerTest.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceContainerTest.class);
 
- private InvoiceContainer container;
+	private InvoiceContainer container;
 
- @Before
- public void setup() {
-	List<Invoice> partials = new ArrayList<>();
+	@Before
+	public void setup() {
+		List<Invoice> partials = new ArrayList<>();
 
-	List<BigDecimal> billList = new ArrayList<>();
-	billList.add(new BigDecimal(10.20));
-	billList.add(new BigDecimal(4.12));
+		List<BigDecimal> billList = new ArrayList<>();
+		billList.add(new BigDecimal(10.20));
+		billList.add(new BigDecimal(4.12));
 
-	List<BigDecimal> ecList = new ArrayList<>();
-	ecList.add(new BigDecimal(10.24));
-	ecList.add(new BigDecimal(4.95));
-	partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		List<BigDecimal> ecList = new ArrayList<>();
+		ecList.add(new BigDecimal(10.24));
+		ecList.add(new BigDecimal(4.95));
+		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
 
-	billList.add(new BigDecimal(50));
-	ecList.remove(1);
-	partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		billList.add(new BigDecimal(50));
+		ecList.remove(1);
+		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
 
-	billList.remove(1);
-	billList.remove(0);
-	partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		billList.remove(1);
+		billList.remove(0);
+		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
 
-	billList.clear();
-	ecList.clear();
-	partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		billList.clear();
+		ecList.clear();
+		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
 
-	container = new InvoiceContainer(new Date(), partials, null);
- }
-
- @Test
- public void canComputeAmounts() throws Exception {
-	assertThat(container.getAmount(), is(calcIn(container.getPartials())));
-	assertThat(container.getECAmount(), is(calcEC(container.getPartials())));
-	assertThat(container.getBillAmount(), is(calcBill(container.getPartials())));
- }
-
- private BigDecimal calcIn(List<Invoice> l) {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : l) {
-	 sum = sum.add(s.getIncome());
+		container = new InvoiceContainer(new Date(), partials, null);
 	}
-	return sum;
- }
 
- private BigDecimal calcEC(List<Invoice> l) {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : l) {
-	 sum = sum.add(s.getECAmount());
+	@Test
+	public void canComputeAmounts() throws Exception {
+		assertThat(container.getAmount(), is(calcIn(container.getPartials())));
+		assertThat(container.getECAmount(), is(calcEC(container.getPartials())));
+		assertThat(container.getBillAmount(), is(calcBill(container.getPartials())));
 	}
-	return sum;
- }
 
- private BigDecimal calcBill(List<Invoice> l) {
-	BigDecimal sum = new BigDecimal(0);
-	for (Invoice s : l) {
-	 sum = sum.add(s.getBillAmount());
+	private BigDecimal calcIn(List<Invoice> l) {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : l) {
+			sum = sum.add(s.getIncome());
+		}
+		return sum;
 	}
-	return sum;
- }
+
+	private BigDecimal calcEC(List<Invoice> l) {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : l) {
+			sum = sum.add(s.getECAmount());
+		}
+		return sum;
+	}
+
+	private BigDecimal calcBill(List<Invoice> l) {
+		BigDecimal sum = new BigDecimal(0);
+		for (Invoice s : l) {
+			sum = sum.add(s.getBillAmount());
+		}
+		return sum;
+	}
 }

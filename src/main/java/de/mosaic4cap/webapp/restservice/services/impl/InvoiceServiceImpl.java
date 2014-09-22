@@ -13,13 +13,13 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  */
 @Service
 public class InvoiceServiceImpl extends AbstractGenericService<Invoice> implements InvoiceService {
- private static final Logger LOGGER = Logger.getLogger(InvoiceServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceServiceImpl.class);
 
- public InvoiceServiceImpl() {
- }
+	public InvoiceServiceImpl() {
+	}
 
- @Autowired
- public InvoiceServiceImpl(InvoiceDao dao) {
-	super.setDao(dao);
- }
+	@Autowired
+	public InvoiceServiceImpl(InvoiceDao dao) {
+		super.setDao(dao);
+	}
 }

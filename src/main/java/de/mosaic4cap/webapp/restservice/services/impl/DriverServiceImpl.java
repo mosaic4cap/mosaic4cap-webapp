@@ -13,13 +13,13 @@ import de.mosaic4cap.webapp.stereotypes.entities.Driver;
  */
 @Service
 public class DriverServiceImpl extends AbstractGenericService<Driver> implements DriverService {
- private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
 
- public DriverServiceImpl() {
- }
+	public DriverServiceImpl() {
+	}
 
- @Autowired
- public DriverServiceImpl(DriverDao dao) {
-	super.setDao(dao);
- }
+	@Autowired
+	public DriverServiceImpl(DriverDao dao) {
+		super.setDao(dao);
+	}
 }

@@ -13,26 +13,26 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
  */
 @Service
 public class StoreServiceImpl extends AbstractGenericService<Store> implements StoreService {
- private static final Logger LOGGER = Logger.getLogger(StoreServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(StoreServiceImpl.class);
 
- private StoreDao sDao;
+	private StoreDao sDao;
 
- public StoreServiceImpl() {
- }
+	public StoreServiceImpl() {
+	}
 
- @Autowired
- public StoreServiceImpl(StoreDao dao) {
-	super.setDao(dao);
-	this.sDao = dao;
- }
+	@Autowired
+	public StoreServiceImpl(StoreDao dao) {
+		super.setDao(dao);
+		this.sDao = dao;
+	}
 
- @Override
- public Store retrieve(String key) throws Exception {
-	return sDao.retrieve(key);
- }
+	@Override
+	public Store retrieve(String key) throws Exception {
+		return sDao.retrieve(key);
+	}
 
- @Override
- public void remove(String key) throws Exception {
-	sDao.remove(key);
- }
+	@Override
+	public void remove(String key) throws Exception {
+		sDao.remove(key);
+	}
 }

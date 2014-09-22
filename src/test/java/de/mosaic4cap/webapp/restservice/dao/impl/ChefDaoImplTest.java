@@ -22,72 +22,72 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class ChefDaoImplTest extends GenericHibernateDaoTestCase {
- private static final Logger LOGGER = Logger.getLogger(ChefDaoImplTest.class);
+	private static final Logger LOGGER = Logger.getLogger(ChefDaoImplTest.class);
 
- @Autowired
- private ChefDao chefDao;
+	@Autowired
+	private ChefDao chefDao;
 
- @Test
- @Override
- public void testCreate() throws Exception {
-	Chef entity = new Chef("1", "2", null);
+	@Test
+	@Override
+	public void testCreate() throws Exception {
+		Chef entity = new Chef("1", "2", null);
 
-	Chef returnValue = chefDao.create(entity);
-	assertEquals(returnValue, entity);
- }
+		Chef returnValue = chefDao.create(entity);
+		assertEquals(returnValue, entity);
+	}
 
- @Test
- @Override
- public void testRetrieve() throws Exception {
-	Chef setupEntity = chefDao.create(new Chef("value", "value", null));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRetrieve() throws Exception {
+		Chef setupEntity = chefDao.create(new Chef("value", "value", null));
+		assertNotNull(setupEntity);
 
-	assertNotNull(chefDao.retrieve(setupEntity.getId()));
- }
+		assertNotNull(chefDao.retrieve(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testRetrieveAll() throws Exception {
-	Chef setupEntity = chefDao.create(new Chef("value", "", null));
-	Chef setupEntity2 = chefDao.create(new Chef("value2", "", null));
-	Chef setupEntity3 = chefDao.create(new Chef("value3", "", null));
-	Chef setupEntity4 = chefDao.create(new Chef("value4", "", null));
-	assertNotNull(setupEntity);
-	assertNotNull(setupEntity2);
-	assertNotNull(setupEntity3);
-	assertNotNull(setupEntity4);
+	@Test
+	@Override
+	public void testRetrieveAll() throws Exception {
+		Chef setupEntity = chefDao.create(new Chef("value", "", null));
+		Chef setupEntity2 = chefDao.create(new Chef("value2", "", null));
+		Chef setupEntity3 = chefDao.create(new Chef("value3", "", null));
+		Chef setupEntity4 = chefDao.create(new Chef("value4", "", null));
+		assertNotNull(setupEntity);
+		assertNotNull(setupEntity2);
+		assertNotNull(setupEntity3);
+		assertNotNull(setupEntity4);
 
-	assertNotNull(chefDao.retrieveAll());
- }
+		assertNotNull(chefDao.retrieveAll());
+	}
 
- @Test
- @Override
- public void testMerge() throws Exception {
-	Chef setupEntity = chefDao.create(new Chef("mergeEntity", "", null));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testMerge() throws Exception {
+		Chef setupEntity = chefDao.create(new Chef("mergeEntity", "", null));
+		assertNotNull(setupEntity);
 
-	setupEntity.setLastName("mergeUpdateEntity");
-	Chef updatedEntity = chefDao.merge(setupEntity);
-	assertEquals(updatedEntity, setupEntity);
- }
+		setupEntity.setLastName("mergeUpdateEntity");
+		Chef updatedEntity = chefDao.merge(setupEntity);
+		assertEquals(updatedEntity, setupEntity);
+	}
 
- @Test
- @Override
- public void testRemoveByObject() throws Exception {
-	Chef setupEntity = chefDao.create(new Chef("removeByObjectEntity", "", null));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRemoveByObject() throws Exception {
+		Chef setupEntity = chefDao.create(new Chef("removeByObjectEntity", "", null));
+		assertNotNull(setupEntity);
 
-	chefDao.remove(setupEntity);
-	assertNull(chefDao.retrieve(setupEntity.getId()));
- }
+		chefDao.remove(setupEntity);
+		assertNull(chefDao.retrieve(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testRemoveById() throws Exception {
-	Chef setupEntity = chefDao.create(new Chef("removeByIdEntity", "", null));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRemoveById() throws Exception {
+		Chef setupEntity = chefDao.create(new Chef("removeByIdEntity", "", null));
+		assertNotNull(setupEntity);
 
-	chefDao.remove(setupEntity.getId());
-	assertNull(chefDao.retrieve(setupEntity.getId()));
- }
+		chefDao.remove(setupEntity.getId());
+		assertNull(chefDao.retrieve(setupEntity.getId()));
+	}
 }

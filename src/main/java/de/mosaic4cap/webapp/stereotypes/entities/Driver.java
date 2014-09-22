@@ -16,93 +16,93 @@ import org.apache.log4j.Logger;
 @Entity
 @Table(name = "driver")
 public class Driver extends AbstractMosaicEntity {
- private static final Logger LOGGER = Logger.getLogger(Driver.class);
+	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
- @Column(name = "firstname", length = 25)
- private String firstName;
+	@Column(name = "firstname", length = 25)
+	private String firstName;
 
- @Column(name = "lastname", length = 25)
- private String lastName;
+	@Column(name = "lastname", length = 25)
+	private String lastName;
 
- @Temporal(TemporalType.DATE)
- private Date birthDay;
+	@Temporal(TemporalType.DATE)
+	private Date birthDay;
 
- public Driver() {
- }
-
- public Driver(String pFirstName, String pLastName, Date pBirthDay) {
-	firstName = pFirstName;
-	lastName = pLastName;
-	birthDay = pBirthDay;
- }
-
- public String getFirstName() {
-	return firstName;
- }
-
- public void setFirstName(String pFirstName) {
-	firstName = pFirstName;
- }
-
- public String getLastName() {
-	return lastName;
- }
-
- public void setLastName(String pLastName) {
-	lastName = pLastName;
- }
-
- public Date getBirthDay() {
-	return birthDay;
- }
-
- public void setBirthDay(Date pBirthDay) {
-	birthDay = pBirthDay;
- }
-
- @Override
- public boolean equals(Object o) {
-
-	if (this == o) {
-	 return true;
-	}
-	if (o == null || getClass() != o.getClass()) {
-	 return false;
-	}
-	if (!super.equals(o)) {
-	 return false;
+	public Driver() {
 	}
 
-	Driver lDriver = (Driver) o;
-
-	if (birthDay != null ? !birthDay.equals(lDriver.birthDay) : lDriver.birthDay != null) {
-	 return false;
-	}
-	if (firstName != null ? !firstName.equals(lDriver.firstName) : lDriver.firstName != null) {
-	 return false;
-	}
-	if (lastName != null ? !lastName.equals(lDriver.lastName) : lDriver.lastName != null) {
-	 return false;
+	public Driver(String pFirstName, String pLastName, Date pBirthDay) {
+		firstName = pFirstName;
+		lastName = pLastName;
+		birthDay = pBirthDay;
 	}
 
-	return true;
- }
+	public String getFirstName() {
+		return firstName;
+	}
 
- @Override
- public int hashCode() {
-	int lresult = super.hashCode();
-	lresult = 31 * lresult + (firstName != null ? firstName.hashCode() : 0);
-	lresult = 31 * lresult + (lastName != null ? lastName.hashCode() : 0);
-	lresult = 31 * lresult + (birthDay != null ? birthDay.hashCode() : 0);
-	return lresult;
- }
+	public void setFirstName(String pFirstName) {
+		firstName = pFirstName;
+	}
 
- @Override
- public String toString() {
-	return "Driver{" +
-				 "firstName='" + firstName + '\'' +
-				 ", lastName='" + lastName + '\'' +
-				 ", birthDay=" + birthDay +
-				 '}';
- }
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String pLastName) {
+		lastName = pLastName;
+	}
+
+	public Date getBirthDay() {
+		return birthDay;
+	}
+
+	public void setBirthDay(Date pBirthDay) {
+		birthDay = pBirthDay;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		if (!super.equals(o)) {
+			return false;
+		}
+
+		Driver lDriver = (Driver) o;
+
+		if (birthDay != null ? !birthDay.equals(lDriver.birthDay) : lDriver.birthDay != null) {
+			return false;
+		}
+		if (firstName != null ? !firstName.equals(lDriver.firstName) : lDriver.firstName != null) {
+			return false;
+		}
+		if (lastName != null ? !lastName.equals(lDriver.lastName) : lDriver.lastName != null) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int lresult = super.hashCode();
+		lresult = 31 * lresult + (firstName != null ? firstName.hashCode() : 0);
+		lresult = 31 * lresult + (lastName != null ? lastName.hashCode() : 0);
+		lresult = 31 * lresult + (birthDay != null ? birthDay.hashCode() : 0);
+		return lresult;
+	}
+
+	@Override
+	public String toString() {
+		return "Driver{" +
+					 "firstName='" + firstName + '\'' +
+					 ", lastName='" + lastName + '\'' +
+					 ", birthDay=" + birthDay +
+					 '}';
+	}
 }

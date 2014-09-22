@@ -19,57 +19,57 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  */
 @RestController
 public class InvoiceRestController extends AbstractRestController {
- private static final Logger LOGGER = Logger.getLogger(InvoiceRestController.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceRestController.class);
 
- @Autowired
- private InvoiceService invoiceService;
+	@Autowired
+	private InvoiceService invoiceService;
 
- @RequestMapping(value = "/{store}/invoice/{id}", method = RequestMethod.GET)
- public Invoice get(
-		 @PathVariable("store") String store,
-		 @PathVariable("id") long id,
-		 @RequestParam(required = false) String mql
- ) throws Exception {
-	return invoiceService.get(id);
- }
+	@RequestMapping(value = "/{store}/invoice/{id}", method = RequestMethod.GET)
+	public Invoice get(
+			@PathVariable("store") String store,
+			@PathVariable("id") long id,
+			@RequestParam(required = false) String mql
+	) throws Exception {
+		return invoiceService.get(id);
+	}
 
- @RequestMapping(value = "/{store}/invoice", method = RequestMethod.GET)
- public List<Invoice> getAll(
-		 @PathVariable("store") String store,
-		 @RequestParam(required = false) String mql
- ) throws Exception {
-	return invoiceService.getAll();
- }
+	@RequestMapping(value = "/{store}/invoice", method = RequestMethod.GET)
+	public List<Invoice> getAll(
+			@PathVariable("store") String store,
+			@RequestParam(required = false) String mql
+	) throws Exception {
+		return invoiceService.getAll();
+	}
 
- @RequestMapping(value = "/{store}/invoice/insert", method = RequestMethod.POST)
- public Invoice insert(
-		 @PathVariable("store") String store,
-		 Invoice insertObj
- ) throws Exception {
-	return invoiceService.insert(insertObj);
- }
+	@RequestMapping(value = "/{store}/invoice/insert", method = RequestMethod.POST)
+	public Invoice insert(
+			@PathVariable("store") String store,
+			Invoice insertObj
+	) throws Exception {
+		return invoiceService.insert(insertObj);
+	}
 
- @RequestMapping(value = "/{store}/invoice/update", method = RequestMethod.PUT)
- public Invoice update(
-		 @PathVariable("store") String store,
-		 Invoice updateObj
- ) throws Exception {
-	return invoiceService.update(updateObj);
- }
+	@RequestMapping(value = "/{store}/invoice/update", method = RequestMethod.PUT)
+	public Invoice update(
+			@PathVariable("store") String store,
+			Invoice updateObj
+	) throws Exception {
+		return invoiceService.update(updateObj);
+	}
 
- @RequestMapping(value = "/{store}/invoice/delete/{id}", method = RequestMethod.DELETE)
- public void delete(
-		 @PathVariable("store") String store,
-		 @PathVariable("id") long objId
- ) throws Exception {
-	invoiceService.delete(objId);
- }
+	@RequestMapping(value = "/{store}/invoice/delete/{id}", method = RequestMethod.DELETE)
+	public void delete(
+			@PathVariable("store") String store,
+			@PathVariable("id") long objId
+	) throws Exception {
+		invoiceService.delete(objId);
+	}
 
- @RequestMapping(value = "/{store}/invoice/delete", method = RequestMethod.DELETE)
- public void delete(
-		 @PathVariable("store") String store,
-		 Invoice deleteObj
- ) throws Exception {
-	invoiceService.delete(deleteObj);
- }
+	@RequestMapping(value = "/{store}/invoice/delete", method = RequestMethod.DELETE)
+	public void delete(
+			@PathVariable("store") String store,
+			Invoice deleteObj
+	) throws Exception {
+		invoiceService.delete(deleteObj);
+	}
 }

@@ -13,13 +13,13 @@ import de.mosaic4cap.webapp.stereotypes.entities.Chef;
  */
 @Service
 public class ChefServiceImpl extends AbstractGenericService<Chef> implements ChefService {
- private static final Logger LOGGER = Logger.getLogger(ChefServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(ChefServiceImpl.class);
 
- public ChefServiceImpl() {
- }
+	public ChefServiceImpl() {
+	}
 
- @Autowired
- public ChefServiceImpl(ChefDao dao) {
-	super.setDao(dao);
- }
+	@Autowired
+	public ChefServiceImpl(ChefDao dao) {
+		super.setDao(dao);
+	}
 }

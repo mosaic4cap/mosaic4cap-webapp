@@ -26,81 +26,81 @@ import static org.junit.Assert.assertNull;
 @ContextConfiguration(classes = Application.class)
 public class InvoiceServiceImplTest extends GenericServiceTestCase {
 
- private static final Logger LOGGER = Logger.getLogger(InvoiceServiceImplTest.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceServiceImplTest.class);
 
- @Autowired
- private InvoiceService invoiceService;
+	@Autowired
+	private InvoiceService invoiceService;
 
- @Test
- @Override
- public void testInsert() throws Exception {
-	Invoice entity = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+	@Test
+	@Override
+	public void testInsert() throws Exception {
+		Invoice entity = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
 
-	Invoice returnValue = invoiceService.insert(entity);
-	assertEquals(returnValue, entity);
- }
+		Invoice returnValue = invoiceService.insert(entity);
+		assertEquals(returnValue, entity);
+	}
 
- @Test
- @Override
- public void testGet() throws Exception {
-	Invoice setupEntity = invoiceService
-			.insert(new Invoice(new BigDecimal(2), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testGet() throws Exception {
+		Invoice setupEntity = invoiceService
+				.insert(new Invoice(new BigDecimal(2), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	assertNotNull(invoiceService.get(setupEntity.getId()));
- }
+		assertNotNull(invoiceService.get(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testGetAll() throws Exception {
-	Invoice setupEntity = invoiceService
-			.insert(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
-	Invoice setupEntity2 = invoiceService
-			.insert(new Invoice(new BigDecimal(4), null, null, null, null, null, new Date()));
-	Invoice setupEntity3 = invoiceService
-			.insert(new Invoice(new BigDecimal(5), null, null, null, null, null, new Date()));
-	Invoice setupEntity4 = invoiceService
-			.insert(new Invoice(new BigDecimal(6), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
-	assertNotNull(setupEntity2);
-	assertNotNull(setupEntity3);
-	assertNotNull(setupEntity4);
+	@Test
+	@Override
+	public void testGetAll() throws Exception {
+		Invoice setupEntity = invoiceService
+				.insert(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
+		Invoice setupEntity2 = invoiceService
+				.insert(new Invoice(new BigDecimal(4), null, null, null, null, null, new Date()));
+		Invoice setupEntity3 = invoiceService
+				.insert(new Invoice(new BigDecimal(5), null, null, null, null, null, new Date()));
+		Invoice setupEntity4 = invoiceService
+				.insert(new Invoice(new BigDecimal(6), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
+		assertNotNull(setupEntity2);
+		assertNotNull(setupEntity3);
+		assertNotNull(setupEntity4);
 
-	assertNotNull(invoiceService.getAll());
- }
+		assertNotNull(invoiceService.getAll());
+	}
 
- @Test
- @Override
- public void testUpdate() throws Exception {
-	Invoice setupEntity = invoiceService
-			.insert(new Invoice(new BigDecimal(7), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
-	setupEntity.setIncome(new BigDecimal(1234));
+	@Test
+	@Override
+	public void testUpdate() throws Exception {
+		Invoice setupEntity = invoiceService
+				.insert(new Invoice(new BigDecimal(7), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
+		setupEntity.setIncome(new BigDecimal(1234));
 
-	Invoice updatedEntity = invoiceService.update(setupEntity);
-	assertEquals(updatedEntity, setupEntity);
- }
+		Invoice updatedEntity = invoiceService.update(setupEntity);
+		assertEquals(updatedEntity, setupEntity);
+	}
 
- @Test
- @Override
- public void testDeleteByObject() throws Exception {
-	Invoice setupEntity = invoiceService
-			.insert(new Invoice(new BigDecimal(8), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testDeleteByObject() throws Exception {
+		Invoice setupEntity = invoiceService
+				.insert(new Invoice(new BigDecimal(8), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	invoiceService.delete(setupEntity);
-	assertNull(invoiceService.get(setupEntity.getId()));
- }
+		invoiceService.delete(setupEntity);
+		assertNull(invoiceService.get(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testDeleteById() throws Exception {
-	Invoice setupEntity = invoiceService
-			.insert(new Invoice(new BigDecimal(9), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testDeleteById() throws Exception {
+		Invoice setupEntity = invoiceService
+				.insert(new Invoice(new BigDecimal(9), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	invoiceService.delete(setupEntity.getId());
-	assertNull(invoiceService.get(setupEntity.getId()));
- }
+		invoiceService.delete(setupEntity.getId());
+		assertNull(invoiceService.get(setupEntity.getId()));
+	}
 }
 

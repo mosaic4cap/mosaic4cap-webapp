@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  *
  * @Repository capabilities cause its iterally the same but
  * its more clear
- * <p/>
+ * <p>
  * Created by Lobedan on 30.08.2014.
  */
 @Repository

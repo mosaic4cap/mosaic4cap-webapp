@@ -11,5 +11,5 @@ import de.mosaic4cap.webapp.stereotypes.entities.Chef;
  */
 @Dao
 public class ChefDaoImpl extends GenericHibernateDaoImpl<Chef> implements ChefDao {
- private static final Logger LOGGER = Logger.getLogger(ChefDaoImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(ChefDaoImpl.class);
 }

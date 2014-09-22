@@ -13,13 +13,13 @@ import de.mosaic4cap.webapp.stereotypes.entities.Car;
  */
 @Service
 public class CarServiceImpl extends AbstractGenericService<Car> implements CarService {
- private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
 
- public CarServiceImpl() {
- }
+	public CarServiceImpl() {
+	}
 
- @Autowired
- public CarServiceImpl(CarDao dao) {
-	super.setDao(dao);
- }
+	@Autowired
+	public CarServiceImpl(CarDao dao) {
+		super.setDao(dao);
+	}
 }

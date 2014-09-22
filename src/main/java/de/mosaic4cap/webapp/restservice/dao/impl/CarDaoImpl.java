@@ -11,6 +11,6 @@ import de.mosaic4cap.webapp.stereotypes.entities.Car;
  */
 @Dao
 public class CarDaoImpl extends GenericHibernateDaoImpl<Car> implements CarDao {
- private static final Logger LOGGER = Logger.getLogger(CarDaoImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(CarDaoImpl.class);
 }
 

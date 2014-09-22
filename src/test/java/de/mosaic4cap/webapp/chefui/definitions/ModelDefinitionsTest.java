@@ -22,28 +22,28 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class ModelDefinitionsTest {
- private static final Logger LOGGER = Logger.getLogger(ModelDefinitionsTest.class);
+	private static final Logger LOGGER = Logger.getLogger(ModelDefinitionsTest.class);
 
- @Autowired
- private ModelDefinitions modelDefinitions;
+	@Autowired
+	private ModelDefinitions modelDefinitions;
 
- @Autowired
- private NotificationService notificationService;
+	@Autowired
+	private NotificationService notificationService;
 
- @Test
- public void canGetNotificationList() throws Exception {
-	assertEquals(notificationService.getAll(), modelDefinitions.getNotifications());
- }
+	@Test
+	public void canGetNotificationList() throws Exception {
+		assertEquals(notificationService.getAll(), modelDefinitions.getNotifications());
+	}
 
- @Ignore
- public void canGetAllStores() throws Exception {
-	List<Object> l = new ArrayList<>();
-	l.add(new Object());
-	l.add(new Object());
-	l.add(new Object());
-	l.add(new Object());
-	l.add(new Object());
-	l.add(new Object());
-	assertEquals(l, modelDefinitions.getAllStores());
- }
+	@Ignore
+	public void canGetAllStores() throws Exception {
+		List<Object> l = new ArrayList<>();
+		l.add(new Object());
+		l.add(new Object());
+		l.add(new Object());
+		l.add(new Object());
+		l.add(new Object());
+		l.add(new Object());
+		assertEquals(l, modelDefinitions.getAllStores());
+	}
 }

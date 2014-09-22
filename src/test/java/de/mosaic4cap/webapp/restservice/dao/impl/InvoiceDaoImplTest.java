@@ -25,80 +25,80 @@ import static org.junit.Assert.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class InvoiceDaoImplTest extends GenericHibernateDaoTestCase {
- private static final Logger LOGGER = Logger.getLogger(InvoiceDaoImplTest.class);
+	private static final Logger LOGGER = Logger.getLogger(InvoiceDaoImplTest.class);
 
- @Autowired
- private InvoiceDao invoiceDao;
+	@Autowired
+	private InvoiceDao invoiceDao;
 
- @Test
- @Override
- public void testCreate() throws Exception {
-	Invoice entity = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+	@Test
+	@Override
+	public void testCreate() throws Exception {
+		Invoice entity = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
 
-	Invoice returnValue = invoiceDao.create(entity);
-	assertEquals(returnValue, entity);
- }
+		Invoice returnValue = invoiceDao.create(entity);
+		assertEquals(returnValue, entity);
+	}
 
- @Test
- @Override
- public void testRetrieve() throws Exception {
-	Invoice setupEntity = invoiceDao
-			.create(new Invoice(new BigDecimal(2), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRetrieve() throws Exception {
+		Invoice setupEntity = invoiceDao
+				.create(new Invoice(new BigDecimal(2), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	assertNotNull(invoiceDao.retrieve(setupEntity.getId()));
- }
+		assertNotNull(invoiceDao.retrieve(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testRetrieveAll() throws Exception {
-	Invoice setupEntity = invoiceDao
-			.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
-	Invoice setupEntity2 = invoiceDao
-			.create(new Invoice(new BigDecimal(4), null, null, null, null, null, new Date()));
-	Invoice setupEntity3 = invoiceDao
-			.create(new Invoice(new BigDecimal(5), null, null, null, null, null, new Date()));
-	Invoice setupEntity4 = invoiceDao
-			.create(new Invoice(new BigDecimal(6), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
-	assertNotNull(setupEntity2);
-	assertNotNull(setupEntity3);
-	assertNotNull(setupEntity4);
+	@Test
+	@Override
+	public void testRetrieveAll() throws Exception {
+		Invoice setupEntity = invoiceDao
+				.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
+		Invoice setupEntity2 = invoiceDao
+				.create(new Invoice(new BigDecimal(4), null, null, null, null, null, new Date()));
+		Invoice setupEntity3 = invoiceDao
+				.create(new Invoice(new BigDecimal(5), null, null, null, null, null, new Date()));
+		Invoice setupEntity4 = invoiceDao
+				.create(new Invoice(new BigDecimal(6), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
+		assertNotNull(setupEntity2);
+		assertNotNull(setupEntity3);
+		assertNotNull(setupEntity4);
 
-	assertNotNull(invoiceDao.retrieveAll());
- }
+		assertNotNull(invoiceDao.retrieveAll());
+	}
 
- @Test
- @Override
- public void testMerge() throws Exception {
-	Invoice setupEntity = invoiceDao
-			.create(new Invoice(new BigDecimal(7), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
-	setupEntity.setIncome(new BigDecimal(12));
+	@Test
+	@Override
+	public void testMerge() throws Exception {
+		Invoice setupEntity = invoiceDao
+				.create(new Invoice(new BigDecimal(7), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
+		setupEntity.setIncome(new BigDecimal(12));
 
-	Invoice updatedEntity = invoiceDao.merge(setupEntity);
-	assertEquals(updatedEntity, setupEntity);
- }
+		Invoice updatedEntity = invoiceDao.merge(setupEntity);
+		assertEquals(updatedEntity, setupEntity);
+	}
 
- @Test
- @Override
- public void testRemoveByObject() throws Exception {
-	Invoice setupEntity = invoiceDao
-			.create(new Invoice(new BigDecimal(8), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRemoveByObject() throws Exception {
+		Invoice setupEntity = invoiceDao
+				.create(new Invoice(new BigDecimal(8), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	invoiceDao.remove(setupEntity);
-	assertNull(invoiceDao.retrieve(setupEntity.getId()));
- }
+		invoiceDao.remove(setupEntity);
+		assertNull(invoiceDao.retrieve(setupEntity.getId()));
+	}
 
- @Test
- @Override
- public void testRemoveById() throws Exception {
-	Invoice setupEntity = invoiceDao
-			.create(new Invoice(new BigDecimal(9), null, null, null, null, null, new Date()));
-	assertNotNull(setupEntity);
+	@Test
+	@Override
+	public void testRemoveById() throws Exception {
+		Invoice setupEntity = invoiceDao
+				.create(new Invoice(new BigDecimal(9), null, null, null, null, null, new Date()));
+		assertNotNull(setupEntity);
 
-	invoiceDao.remove(setupEntity.getId());
-	assertNull(invoiceDao.retrieve(setupEntity.getId()));
- }
+		invoiceDao.remove(setupEntity.getId());
+		assertNull(invoiceDao.retrieve(setupEntity.getId()));
+	}
 }
