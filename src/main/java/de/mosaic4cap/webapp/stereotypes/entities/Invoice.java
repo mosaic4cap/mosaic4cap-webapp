@@ -15,6 +15,8 @@ import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 
+import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
+
 /**
  * Created by Lobedan on 30.08.2014.
  * <p>
@@ -45,6 +47,8 @@ public class Invoice extends AbstractMosaicEntity {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
+	private InvoiceType state = InvoiceType.OPEN;
+
 	public Invoice() {
 	}
 
@@ -62,6 +66,15 @@ public class Invoice extends AbstractMosaicEntity {
 		store = pStore;
 		car = pCar;
 		date = pDate;
+		setState(InvoiceType.OPEN);
+	}
+
+	public InvoiceType getState() {
+		return state;
+	}
+
+	public void setState(InvoiceType aState) {
+		state = aState;
 	}
 
 	@Transient

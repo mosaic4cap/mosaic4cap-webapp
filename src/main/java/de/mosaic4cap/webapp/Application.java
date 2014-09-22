@@ -6,6 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * Created by Lobedan on 21.09.2014.
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
+@ImportResource("/META-INF/mosaic4cap-thymeleaf.xml")
 public class Application extends SpringBootServletInitializer {
 
 	//CHECKSTYLE:OFF

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
+import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 
 /**
  * Created by Lobedan on 22.09.2014. *
@@ -20,6 +21,7 @@ public class InvoiceContainer extends Container {
 	private Date date;
 	private List<Invoice> partials;
 	private Store store;
+	private InvoiceType state = InvoiceType.OPEN;
 
 	public InvoiceContainer() {
 	}
@@ -30,7 +32,7 @@ public class InvoiceContainer extends Container {
 		store = pStore;
 	}
 
-	public BigDecimal getECAmount() {
+	public BigDecimal getEcAmount() {
 		BigDecimal sum = new BigDecimal(0);
 		for (Invoice s : partials) {
 			for (BigDecimal b : s.getEcpayment()) {
@@ -58,7 +60,7 @@ public class InvoiceContainer extends Container {
 		return sum;
 	}
 
-	public int getECCount() {
+	public int getEcCount() {
 		int sum = 0;
 		for (Invoice invoice : partials) {
 			sum += invoice.getEcpayment().size();
@@ -76,6 +78,14 @@ public class InvoiceContainer extends Container {
 
 	public int getPartialsCount() {
 		return partials.size();
+	}
+
+	public InvoiceType getState() {
+		return state;
+	}
+
+	public void setState(InvoiceType aState) {
+		state = aState;
 	}
 
 	public Store getStore() {

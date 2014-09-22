@@ -56,7 +56,7 @@ public class InvoiceContainerTest {
 	@Test
 	public void canComputeAmounts() throws Exception {
 		assertThat(container.getAmount(), is(calcIn(container.getPartials())));
-		assertThat(container.getECAmount(), is(calcEC(container.getPartials())));
+		assertThat(container.getEcAmount(), is(calcEC(container.getPartials())));
 		assertThat(container.getBillAmount(), is(calcBill(container.getPartials())));
 	}
 
