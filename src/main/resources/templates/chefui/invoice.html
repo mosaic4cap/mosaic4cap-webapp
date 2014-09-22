@@ -51,7 +51,8 @@
 								<div class="list-group" th:unless="${#lists.isEmpty(allInvoices)}">
 									<a href="#" class="list-group-item" th:each="invoice : ${allInvoices}">
 										<h4 class="list-group-item-heading">Abrechnung: <i th:text="${{invoice.date}}">dd.MM.yyyy</i>
-											<span class="label label-danger" th:text="${invoice.state}">Offen</span>
+											<span class="label" th:classappend="${invoice.state.cssClass}"
+												  th:text="${invoice.state.txt}">Offen</span>
 										</h4>
 
 										<p class="list-group-item-text">

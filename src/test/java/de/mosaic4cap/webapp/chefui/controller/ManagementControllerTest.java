@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import de.mosaic4cap.webapp.Application;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -37,15 +36,13 @@ public class ManagementControllerTest {
 	public void storeRouteIsAccessable() throws Exception {
 		this.mockMvc.perform(
 				get("/chefui/manage/store"))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Test
 	public void employeeRouteIsAccessable() throws Exception {
 		this.mockMvc.perform(
 				get("/chefui/manage/employee"))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 }

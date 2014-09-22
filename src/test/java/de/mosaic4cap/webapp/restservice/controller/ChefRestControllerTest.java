@@ -52,8 +52,7 @@ public class ChefRestControllerTest extends RestControllerTestCase {
 		this.mockMvc.perform(
 				get("/rest/1/chef/1" + testChef.getId())
 						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Override
@@ -76,7 +75,6 @@ public class ChefRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -90,7 +88,6 @@ public class ChefRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -104,7 +101,6 @@ public class ChefRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 
 		this.mockMvc.perform(
@@ -112,7 +108,6 @@ public class ChefRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 

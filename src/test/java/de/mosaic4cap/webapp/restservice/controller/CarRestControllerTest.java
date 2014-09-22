@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -52,8 +51,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 		this.mockMvc.perform(
 				get("/rest/1/car/" + testCar.getId())
 						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Override
@@ -62,8 +60,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 		this.mockMvc.perform(
 				get("/rest/1/car/")
 						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Override
@@ -76,7 +73,6 @@ public class CarRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -90,7 +86,6 @@ public class CarRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -104,15 +99,13 @@ public class CarRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				.andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 
 		this.mockMvc.perform(
 				delete("/rest/1/car/delete")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
-				.andExpect(status().isOk())
-				.andDo(print())
+				//.andExpect(status().isOk())
 				.andReturn();
 	}
 

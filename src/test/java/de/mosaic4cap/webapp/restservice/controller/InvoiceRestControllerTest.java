@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -56,8 +55,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 		this.mockMvc.perform(
 				get("/rest/1/invoice/" + testInvoice.getId())
 						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Override
@@ -66,8 +64,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 		this.mockMvc.perform(
 				get("/rest/1/invoice/")
 						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(print());
+				.andExpect(status().isOk());
 	}
 
 	@Override
@@ -80,7 +77,6 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				//                .andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -94,7 +90,6 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
 				//                .andExpect(status().isOk())
-				.andDo(print())
 				.andReturn();
 	}
 
@@ -107,16 +102,14 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 				post("/rest/1/invoice/insert")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
-				//                .andExpect(status().isOk())
-				.andDo(print())
+				//				.andExpect(status().isOk())
 				.andReturn();
 
 		this.mockMvc.perform(
 				delete("/rest/1/invoice/delete")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(json))
-				//                .andExpect(status().isOk())
-				.andDo(print())
+				.andExpect(status().isOk())
 				.andReturn();
 	}
 
