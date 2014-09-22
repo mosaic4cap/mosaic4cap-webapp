@@ -12,5 +12,32 @@ package de.mosaic4cap.webapp.stereotypes.enumeration;
  * open and still not closed
  */
 public enum InvoiceType {
-	OPEN, CLOSED, PENDING;
+	OPEN("Offen", " label-danger"),
+	CLOSED("Abgeschlossen", " label-success"),
+	PENDING("In Bearbeitung", " label-warning");
+
+	private String txt;
+	private String cssClass;
+
+	InvoiceType(String aTxt, String aCssClass) {
+		txt = aTxt;
+		cssClass = aCssClass;
+	}
+
+	public String getCssClass() {
+
+		return cssClass;
+	}
+
+	public void setCssClass(String aCssClass) {
+		cssClass = aCssClass;
+	}
+
+	public String getTxt() {
+		return txt;
+	}
+
+	public void setTxt(String aTxt) {
+		txt = aTxt;
+	}
 }
