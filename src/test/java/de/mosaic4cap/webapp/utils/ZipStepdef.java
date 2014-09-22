@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.zip.ZipInputStream;
 
@@ -12,8 +13,10 @@ import java.util.zip.ZipInputStream;
  */
 public class ZipStepdef {
     private static Logger logger = Logger.getLogger(ZipStepdef.class);
+    @Value("${storage.tmpDir}")
+    private String filepath;
 
-    private String zipUrl, filepath;
+    private String zipUrl;
     private ZipInputStream zipInputStream;
 
     @Given("^a zipUrl \"([^\"]*)\"$")
