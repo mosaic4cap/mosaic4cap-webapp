@@ -3,7 +3,7 @@ package de.mosaic4cap.webapp.restservice.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.dao.StoreAccountDao;
-import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
+import de.mosaic4cap.webapp.stereotypes.entities.StoreAccount;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;

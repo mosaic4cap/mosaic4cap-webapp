@@ -3,7 +3,7 @@ package de.mosaic4cap.webapp.restservice.services.impl;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.services.ChefService;
 import de.mosaic4cap.webapp.restservice.services.GenericServiceTestCase;
-import de.mosaic4cap.webapp.stereotypes.domain.Chef;
+import de.mosaic4cap.webapp.stereotypes.entities.Chef;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

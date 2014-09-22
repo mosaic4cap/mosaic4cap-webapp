@@ -1,7 +1,7 @@
 package de.mosaic4cap.webapp.restservice.dao.impl;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
-import de.mosaic4cap.webapp.stereotypes.domain.AbstractMosaicEntity;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

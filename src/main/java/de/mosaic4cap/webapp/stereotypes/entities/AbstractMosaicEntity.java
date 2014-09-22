@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.stereotypes.domain;
+package de.mosaic4cap.webapp.stereotypes.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.log4j.Logger;

@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.services.impl;
 
 import de.mosaic4cap.webapp.restservice.dao.StoreDao;
 import de.mosaic4cap.webapp.restservice.services.StoreService;
-import de.mosaic4cap.webapp.stereotypes.domain.Store;
+import de.mosaic4cap.webapp.stereotypes.entities.Store;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

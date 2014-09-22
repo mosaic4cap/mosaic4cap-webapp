@@ -1,6 +1,6 @@
 package de.mosaic4cap.webapp.restservice.dao;
 
-import de.mosaic4cap.webapp.stereotypes.domain.Store;
+import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
 /**
  * Created by Lobedan on 30.08.2014.

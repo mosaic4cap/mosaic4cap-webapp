@@ -3,7 +3,7 @@ package de.mosaic4cap.webapp.restservice.dao.impl;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.dao.GenericHibernateDaoTestCase;
 import de.mosaic4cap.webapp.restservice.dao.StoreAccountDao;
-import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
+import de.mosaic4cap.webapp.stereotypes.entities.StoreAccount;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

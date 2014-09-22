@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.controller;
 
 import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.StoreAccountService;
-import de.mosaic4cap.webapp.stereotypes.domain.StoreAccount;
+import de.mosaic4cap.webapp.stereotypes.entities.StoreAccount;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.controller;
 
 import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.DriverService;
-import de.mosaic4cap.webapp.stereotypes.domain.Driver;
+import de.mosaic4cap.webapp.stereotypes.entities.Driver;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

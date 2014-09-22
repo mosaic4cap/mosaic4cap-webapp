@@ -3,7 +3,7 @@ package de.mosaic4cap.webapp.restservice.services.impl;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.services.DriverService;
 import de.mosaic4cap.webapp.restservice.services.GenericServiceTestCase;
-import de.mosaic4cap.webapp.stereotypes.domain.Driver;
+import de.mosaic4cap.webapp.stereotypes.entities.Driver;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

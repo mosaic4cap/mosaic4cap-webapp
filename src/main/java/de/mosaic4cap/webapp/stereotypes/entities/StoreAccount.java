@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.stereotypes.domain;
+package de.mosaic4cap.webapp.stereotypes.entities;
 
 import org.apache.log4j.Logger;
 
@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * Created by Lobedan on 30.08.2014.
+ *
+ * Representing storeaccount
  */
 @Entity
 @Table(name = "storeaccount")
@@ -44,13 +46,7 @@ public class StoreAccount extends AbstractMosaicEntity {
     public StoreAccount() {
     }
 
-    public StoreAccount(BigDecimal pIncome,
-                        List<BigDecimal> pBills,
-                        List<BigDecimal> pEcpayment,
-                        Driver pDriver,
-                        Store pStore,
-                        Car pCar,
-                        Date pDate) {
+    public StoreAccount(BigDecimal pIncome, List<BigDecimal> pBills, List<BigDecimal> pEcpayment, Driver pDriver, Store pStore, Car pCar, Date pDate) {
         income = pIncome;
         bills = pBills;
         ecpayment = pEcpayment;
@@ -58,6 +54,21 @@ public class StoreAccount extends AbstractMosaicEntity {
         store = pStore;
         car = pCar;
         date = pDate;
+    }
+
+    public BigDecimal getBillAmount() {
+        BigDecimal sum = new BigDecimal(0);
+        for (BigDecimal d : bills) {
+            sum = sum.add(d);
+        }
+        return sum;
+    }
+    public BigDecimal getECAmount() {
+        BigDecimal sum = new BigDecimal(0);
+        for (BigDecimal d : ecpayment) {
+            sum = sum.add(d);
+        }
+        return sum;
     }
 
     public BigDecimal getIncome() {

@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.dao.impl;
 
 import de.mosaic4cap.webapp.restservice.dao.DriverDao;
 import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
-import de.mosaic4cap.webapp.stereotypes.domain.Driver;
+import de.mosaic4cap.webapp.stereotypes.entities.Driver;
 import org.apache.log4j.Logger;
 
 /**

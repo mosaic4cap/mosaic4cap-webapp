@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.services.impl;
 
 import de.mosaic4cap.webapp.restservice.dao.CarDao;
 import de.mosaic4cap.webapp.restservice.services.CarService;
-import de.mosaic4cap.webapp.stereotypes.domain.Car;
+import de.mosaic4cap.webapp.stereotypes.entities.Car;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

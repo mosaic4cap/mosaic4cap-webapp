@@ -2,7 +2,7 @@ package de.mosaic4cap.webapp.restservice.dao.impl;
 
 import de.mosaic4cap.webapp.restservice.dao.StoreDao;
 import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
-import de.mosaic4cap.webapp.stereotypes.domain.Store;
+import de.mosaic4cap.webapp.stereotypes.entities.Store;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +21,7 @@ public class StoreDaoImpl extends GenericHibernateDaoImpl<Store> implements Stor
             final Transaction transaction = getSessionFactory().getCurrentSession().beginTransaction();
             try {
                 Store store = (Store) getSessionFactory().getCurrentSession()
-                        .createQuery("from de.mosaic4cap.webapp.stereotypes.domain.Store WHERE store_key = :s_key")
+                        .createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE store_key = :s_key")
                         .setString(":s_key", key).uniqueResult();
                 transaction.commit();
                 return store;
