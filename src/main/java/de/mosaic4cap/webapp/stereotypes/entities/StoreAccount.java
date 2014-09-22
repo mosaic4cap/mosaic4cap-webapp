@@ -9,13 +9,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Lobedan on 30.08.2014.
- *
+ * <p/>
  * Representing storeaccount
  */
 @Entity
@@ -56,17 +57,24 @@ public class StoreAccount extends AbstractMosaicEntity {
         date = pDate;
     }
 
+    @Transient
     public BigDecimal getBillAmount() {
         BigDecimal sum = new BigDecimal(0);
-        for (BigDecimal d : bills) {
-            sum = sum.add(d);
+        if (bills != null) {
+            for (BigDecimal d : bills) {
+                sum = sum.add(d);
+            }
         }
         return sum;
     }
+
+    @Transient
     public BigDecimal getECAmount() {
         BigDecimal sum = new BigDecimal(0);
-        for (BigDecimal d : ecpayment) {
-            sum = sum.add(d);
+        if (ecpayment != null) {
+            for (BigDecimal d : ecpayment) {
+                sum = sum.add(d);
+            }
         }
         return sum;
     }
