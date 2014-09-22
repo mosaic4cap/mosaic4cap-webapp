@@ -4,6 +4,7 @@
 	<link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
 	<link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
 
+	<link href="../../../css/bootstrap.theme.css" rel="stylesheet"/>
 	<link href="../../../css/navigation.css" rel="stylesheet"/>
 </head>
 <body>
@@ -26,8 +27,16 @@
 
 			<!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right"><!-- /right navbar -->
+				<ul class="nav navbar-nav">
+					<ul class="breadcrumb list-inline">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Library</a></li>
+						<li class="active">Data</li>
+					</ul>
+					<!-- /.navbar breadcrumb -->
+				</ul>
 
+				<ul class="nav navbar-nav navbar-right"><!-- /right section navbar -->
 					<li class="dropdown"><!-- dropdown notifications -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"
 						   th:unless="${#lists.isEmpty(notifications)}">
@@ -81,7 +90,6 @@
 					</li>
 					<!-- /.dropdown notifications -->
 
-
 					<li class="dropdown"><!-- dropdown usermanagement -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span
 								class="caret"></span></a>
@@ -93,7 +101,6 @@
 						</ul>
 					</li>
 					<!-- /.dropdown usermanagement -->
-
 				</ul>
 				<!-- /.right navbar -->
 			</div>
