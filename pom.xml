@@ -35,6 +35,8 @@
 		<main.basedir>${project.basedir}/../..</main.basedir>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 
+		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+
 		<!-- base framework versions -->
 		<!--<tomcat.version>7.0.54</tomcat.version>-->
 		<tomcat.version>8.0.11</tomcat.version>
@@ -79,11 +81,7 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<scope>provided</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -162,11 +160,6 @@
 		</dependency>
 
 		<!-- webjars nice feature - dependencies -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>webjars-locator</artifactId>
-			<version>0.1</version>
-		</dependency>
 		<!-- js libaries -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -183,18 +176,6 @@
 			<artifactId>jquery-ui</artifactId>
 			<version>1.10.4</version>
 		</dependency>
-
-		<!-- chart and diagramms -->
-		<!--<dependency>-->
-		<!--<groupId>org.webjars</groupId>-->
-		<!--<artifactId>highstock</artifactId>-->
-		<!--<version>2.0.3</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		<!--<groupId>org.webjars</groupId>-->
-		<!--<artifactId>highcharts-ng</artifactId>-->
-		<!--<version>0.0.6</version>-->
-		<!--</dependency>-->
 
 		<!-- style libaries -->
 		<dependency>
@@ -307,23 +288,24 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.4</version>
+				<version>2.6</version>
 				<configuration>
+					<forkMode>always</forkMode>
 					<skipTests>false</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
 
-		<!--<resources>-->
-		<!--<resource>-->
-		<!--<directory>src/main/resources</directory>-->
-		<!--</resource>-->
-		<!--</resources>-->
-		<!--<testResources>-->
-		<!--<testResource>-->
-		<!--<directory>src/test/resources</directory>-->
-		<!--</testResource>-->
-		<!--</testResources>-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 
 	</build>
 
