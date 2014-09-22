@@ -49,7 +49,9 @@ public class ModelDefinitions {
 
  @ModelAttribute(value = "allInvoice")
  public List<Invoice> getAllInvoices() {
-	return new ArrayList();
+	List<Invoice> invoices = new ArrayList<>();
+
+	return invoices;
  }
 
 }
