@@ -1,24 +1,25 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
-import de.mosaic4cap.webapp.restservice.dao.CarDao;
-import de.mosaic4cap.webapp.restservice.services.CarService;
-import de.mosaic4cap.webapp.stereotypes.entities.Car;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import de.mosaic4cap.webapp.restservice.dao.CarDao;
+import de.mosaic4cap.webapp.restservice.services.CarService;
+import de.mosaic4cap.webapp.stereotypes.entities.Car;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
 @Service
 public class CarServiceImpl extends AbstractGenericService<Car> implements CarService {
-    private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
+ private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
 
-    public CarServiceImpl() {
-    }
+ public CarServiceImpl() {
+ }
 
-    @Autowired
-    public CarServiceImpl(CarDao dao) {
-        super.setDao(dao);
-    }
+ @Autowired
+ public CarServiceImpl(CarDao dao) {
+	super.setDao(dao);
+ }
 }

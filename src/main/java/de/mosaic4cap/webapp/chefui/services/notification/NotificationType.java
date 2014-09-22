@@ -9,25 +9,25 @@ package de.mosaic4cap.webapp.chefui.services.notification;
  */
 public enum NotificationType {
 
-    DEPLOYMENT("fa fa-yelp"),
-    STOREACCOUNT("fa fa-usd");
+ DEPLOYMENT("fa fa-yelp"),
+ STOREACCOUNT("fa fa-usd");
 
-    private String iconCss;
+ private String iconCss;
 
-    NotificationType(String aIconCss) {
-        iconCss = aIconCss;
-    }
+ NotificationType(String aIconCss) {
+	iconCss = aIconCss;
+ }
 
-    public String getIconCss() {
-        return iconCss;
-    }
+ public String getIconCss() {
+	return iconCss;
+ }
 
-    public void setIconCss(String aIconCss) {
-        iconCss = aIconCss;
-    }
+ public void setIconCss(String aIconCss) {
+	iconCss = aIconCss;
+ }
 
-    @Override
-    public String toString() {
-        return iconCss;
-    }
+ @Override
+ public String toString() {
+	return iconCss;
+ }
 }

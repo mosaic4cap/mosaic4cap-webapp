@@ -1,14 +1,15 @@
 package de.mosaic4cap.webapp.chefui.definitions;
 
-import de.mosaic4cap.webapp.chefui.services.notification.Notification;
-import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.mosaic4cap.webapp.chefui.services.notification.Notification;
+import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
 
 /**
  * Created by svenklemmer on 17.09.14.
@@ -23,25 +24,25 @@ import java.util.List;
  */
 @ControllerAdvice
 public class ModelDefinitions {
-    private static final Logger LOGGER = Logger.getLogger(ModelDefinitions.class);
+ private static final Logger LOGGER = Logger.getLogger(ModelDefinitions.class);
 
-    @Autowired
-    private NotificationService notificationService;
+ @Autowired
+ private NotificationService notificationService;
 
-    @ModelAttribute(value = "notifications")
-    public List<Notification> getNotifications() throws Exception {
-        return notificationService.getAll();
-    }
+ @ModelAttribute(value = "notifications")
+ public List<Notification> getNotifications() throws Exception {
+	return notificationService.getAll();
+ }
 
-    @ModelAttribute(value = "allStores")
-    public List getAllStores() {
-        List<Object> l = new ArrayList<>();
-        l.add(new Object());
-        l.add(new Object());
-        l.add(new Object());
-        l.add(new Object());
-        l.add(new Object());
-        l.add(new Object());
-        return l;
-    }
+ @ModelAttribute(value = "allStores")
+ public List getAllStores() {
+	List<Object> l = new ArrayList<>();
+	l.add(new Object());
+	l.add(new Object());
+	l.add(new Object());
+	l.add(new Object());
+	l.add(new Object());
+	l.add(new Object());
+	return l;
+ }
 }

@@ -1,8 +1,8 @@
 package de.mosaic4cap.webapp.restservice.dao;
 
-import org.hibernate.SessionFactory;
-
 import java.util.List;
+
+import org.hibernate.SessionFactory;
 
 /**
  * Created by svenklemmer on 29.08.14.
@@ -11,52 +11,51 @@ import java.util.List;
  * the ID though.
  */
 public interface GenericDAO<T> {
-    /**
-     * Persists a new Instance
-     *
-     * @param newInstance ..
-     * @return ..
-     */
-    T create(T newInstance) throws Exception;
+ /**
+	* Persists a new Instance
+	*
+	* @param newInstance ..
+	* @return ..
+	*/
+ T create(T newInstance) throws Exception;
 
-    /**
-     * Finds an Entity by ID
-     *
-     * @param id ..
-     * @return ..
-     */
-    T retrieve(Long id) throws Exception;
+ /**
+	* Finds an Entity by ID
+	*
+	* @param id ..
+	* @return ..
+	*/
+ T retrieve(Long id) throws Exception;
 
-    /**
-     * Retrieves all Entities of the parameterized type
-     *
-     * @return ..
-     */
-    List<T> retrieveAll() throws Exception;
+ /**
+	* Retrieves all Entities of the parameterized type
+	*
+	* @return ..
+	*/
+ List<T> retrieveAll() throws Exception;
 
-    /**
-     * Reattaches a transient Entity to the persistenceContext
-     *
-     * @param transientObject ..
-     */
-    T merge(T transientObject) throws Exception;
+ /**
+	* Reattaches a transient Entity to the persistenceContext
+	*
+	* @param transientObject ..
+	*/
+ T merge(T transientObject) throws Exception;
 
-    /**
-     * Removes an Entity
-     *
-     * @param persistentObject ..
-     */
-    void remove(T persistentObject) throws Exception;
+ /**
+	* Removes an Entity
+	*
+	* @param persistentObject ..
+	*/
+ void remove(T persistentObject) throws Exception;
 
+ /**
+	* Removes an Entity by its ID
+	*
+	* @param id ..
+	*/
+ void remove(Long id) throws Exception;
 
-    /**
-     * Removes an Entity by its ID
-     *
-     * @param id ..
-     */
-    void remove(Long id) throws Exception;
+ public SessionFactory getSessionFactory();
 
-    public SessionFactory getSessionFactory();
-
-    public void setSessionFactory(SessionFactory pSessionFactory);
+ public void setSessionFactory(SessionFactory pSessionFactory);
 }

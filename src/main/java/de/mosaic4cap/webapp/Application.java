@@ -17,14 +17,14 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class Application extends SpringBootServletInitializer {
 
-    //CHECKSTYLE:OFF
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
-    }
+ //CHECKSTYLE:OFF
+ public static void main(String[] args) throws Exception {
+	SpringApplication.run(Application.class, args);
+ }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
-    }
-    //CHECKSTYLE:ON
+ @Override
+ protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	return application.sources(Application.class);
+ }
+ //CHECKSTYLE:ON
 }
