@@ -14,10 +14,11 @@
 	<script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 	<script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
 
-	<title></title>
-	<style>
+	<script src="" th:src="@{/webjars/highcharts/4.0.3/highcharts.js}"></script>
+	<script src="../../../js/sales-charts.js"></script>
 
-	</style>
+	<title></title>
+
 </head>
 <body>
 <div th:replace="fragments/header :: navigation"></div>
@@ -28,7 +29,42 @@
 
 	<!-- Page Content -->
 	<div id="page-content-wrapper">
-
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="chart-container" id="daily-sales"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="weekly-sales"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="monthly-sales"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div id="yearly-sales"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+			</div>
+		</div>
 	</div>
 	<!-- /#page-content-wrapper -->
 

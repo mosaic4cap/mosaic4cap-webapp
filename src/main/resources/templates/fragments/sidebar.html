@@ -10,18 +10,25 @@
 <div id="sidebar-wrapper" th:fragment="navigation-chefui">
 	<ul class="sidebar-nav">
 		<li class="sidebar-brand">
-			<a href="/chefui/"><i class="fa fa-tachometer"></i> Dashboard</a>
+			<a href="/chefui/"><i class="fa fa-tachometer"></i> <span
+					th:text="#{sidebar.dashboard}">Dashboard</span></a>
 		</li>
-		<li><a href="/chefui/schedule/"><i class="fa fa-calendar"></i> Dienstplan</a></li>
-		<li><a href="/chefui/invoice/"><i class="fa fa-eur"></i> Abrechnungen</a></li>
-		<li><a href="/chefui/manage/store"><i class="fa fa-building"></i> Storeverwaltung</a></li>
-		<li><a href="/chefui/manage/sales"><i class="fa fa-line-chart"></i> Umsatzstatistik</a></li>
-		<li><a href="/chefui/settings"><i class="fa fa-cogs"></i> Einstellungen</a></li>
+		<li><a href="#"><i class="fa fa-calendar"></i> <s><span th:text="#{sidebar.schedule}">Dienstplan</span></s></a>
+		</li>
+		<li><a href="/chefui/manage/store"><i class="fa fa-building"></i> <span th:text="#{sidebar.store}">Storeverwaltung</span></a>
+		</li>
+		<li><a href="/chefui/manage/sales"><i class="fa fa-line-chart"></i> <span th:text="#{sidebar.sales}">Umsatzstatistik</span></a>
+		</li>
+		<li><a href="#"><i class="fa fa-cogs"></i> <s><span th:text="#{sidebar.settings}">Einstellungen</span></s></a>
+		</li>
 
-		<li><br/></li>
-		<li><br/></li>
-		<li><a href="/chefui/manage/employee"><i class="fa fa-user"></i> Mitarbeiterverwaltung</a></li>
-		<li><a href="/chefui/manage/car"><i class="fa fa-car"></i> Fuhrparkverwaltung</a></li>
+		<li><h4>Store xy</h4></li>
+		<li><a href="/chefui/invoice/"><i class="fa fa-eur"></i> <span
+				th:text="#{sidebar.store.invoice}">Abrechnungen</span></a></li>
+		<li><a href="/chefui/manage/employee"><i class="fa fa-user"></i> <span th:text="#{sidebar.store.employee}">Mitarbeiter</span></a>
+		</li>
+		<li><a href="/chefui/manage/car"><i class="fa fa-car"></i> <span th:text="#{sidebar.store.car}">Fuhrpark</span></a>
+		</li>
 	</ul>
 </div>
 </body>
