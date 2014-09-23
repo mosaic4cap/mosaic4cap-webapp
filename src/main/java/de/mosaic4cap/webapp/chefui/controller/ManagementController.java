@@ -24,4 +24,9 @@ public class ManagementController extends AbstractChefUIController {
 	public String loadEmployees() throws Exception {
 		return "chefui/employee";
 	}
+
+	@RequestMapping("/manage/sales")
+	public String loadSales() throws Exception {
+		return "chefui/sales";
+	}
 }
