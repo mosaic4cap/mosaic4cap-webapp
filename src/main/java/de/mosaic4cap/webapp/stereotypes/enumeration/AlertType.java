@@ -1,5 +1,9 @@
 package de.mosaic4cap.webapp.stereotypes.enumeration;
 
+import java.awt.Color;
+
+import de.mosaic4cap.webapp.stereotypes.domain.HTMLColor;
+
 /**
  * Created by Lobedan on 22.09.2014.
  * <p>
@@ -9,10 +13,20 @@ package de.mosaic4cap.webapp.stereotypes.enumeration;
  * TODO: insert HTMLColor {@link de.mosaic4cap.webapp.stereotypes.domain.HTMLColor} (#8)
  */
 public enum AlertType {
-	DEFAULT("btn-default", "label-default", "", "", "", "", "", "", "", ""),
-	PRIMARY("btn-primary", "label-primary", "", "", "", "panel-primary", "", "", "text-primary", "bg-primary"),
-	ACTIVE("active", "", "", "", "active", "", "active", "", "text-muted", ""),
-	INFO("btn-info",
+	DEFAULT(null, "btn-default", "label-default", "", "", "", "", "", "", "", ""),
+	PRIMARY(new HTMLColor(new Color(66, 139, 202), "428bca"),
+					"btn-primary",
+					"label-primary",
+					"",
+					"",
+					"",
+					"panel-primary",
+					"",
+					"",
+					"text-primary",
+					"bg-primary"),
+	ACTIVE(null, "active", "", "", "", "active", "", "active", "", "text-muted", ""),
+	INFO(new HTMLColor(new Color(91, 192, 222), "5bc0de"), "btn-info",
 			 "label-info",
 			 "alert-info",
 			 "progress-bar-info",
@@ -22,7 +36,7 @@ public enum AlertType {
 			 "",
 			 "text-muted",
 			 "bg-info"),
-	DANGER("btn-danger",
+	DANGER(new HTMLColor(new Color(217, 83, 79), "d9534f"), "btn-danger",
 				 "label-danger",
 				 "alert-danger",
 				 "progress-bar-danger",
@@ -32,7 +46,7 @@ public enum AlertType {
 				 "has-error",
 				 "text-danger",
 				 "bg-danger"),
-	WARNING("btn-warning",
+	WARNING(new HTMLColor(new Color(240, 173, 78), "f0ad4e"), "btn-warning",
 					"label-warning",
 					"alert-warning",
 					"progress-bar-warning",
@@ -42,7 +56,7 @@ public enum AlertType {
 					"has-warning",
 					"text-warning",
 					"bg-warning"),
-	SUCCESS("btn-success",
+	SUCCESS(new HTMLColor(new Color(92, 184, 92), "5cb85c"), "btn-success",
 					"label-success",
 					"alert-success",
 					"progress-bar-success",
@@ -53,6 +67,7 @@ public enum AlertType {
 					"text-success",
 					"bg-success");
 
+	private HTMLColor basecolor;
 	private String button;
 	private String label;
 	private String alert;
@@ -65,13 +80,13 @@ public enum AlertType {
 	private String bg;
 
 	//CHECKSTYLE:OFF
-	AlertType(String aButton,
+	AlertType(HTMLColor aBasecolor,
+						String aButton,
 						String aLabel,
 						String aAlert,
 						String aProgressbar,
-						String aListGroupItem,
-						String aPanel, String aTable, String aInput, String aText, String aBg) {
-
+						String aListGroupItem, String aPanel, String aTable, String aInput, String aText, String aBg) {
+		basecolor = aBasecolor;
 		button = aButton;
 		label = aLabel;
 		alert = aAlert;
@@ -84,6 +99,14 @@ public enum AlertType {
 		bg = aBg;
 	}
 	//CHECKSTYLE:ON
+
+	public HTMLColor getBasecolor() {
+		return basecolor;
+	}
+
+	public void setBasecolor(HTMLColor aBasecolor) {
+		basecolor = aBasecolor;
+	}
 
 	public String getButton() {
 		return button;
