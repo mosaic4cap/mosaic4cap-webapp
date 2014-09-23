@@ -6,7 +6,7 @@ package de.mosaic4cap.webapp.stereotypes.enumeration;
  * Globale alert type used by cuple of classes or enums
  * it holds informations for bootstrap design in order to display the right color
  * <p>
- * TODO: insert HTMLColor {@link de.mosaic4cap.webapp.stereotypes.domain.HTMLColor} (#
+ * TODO: insert HTMLColor {@link de.mosaic4cap.webapp.stereotypes.domain.HTMLColor} (#8)
  */
 public enum AlertType {
 	DEFAULT("btn-default", "label-default", "", "", "", "", "", "", "", ""),
