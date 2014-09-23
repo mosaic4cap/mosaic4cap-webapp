@@ -1,10 +1,6 @@
 package de.mosaic4cap.webapp.chefui.definitions;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,36 +10,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Created by svenklemmer on 17.09.14.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
-public class ModelDefinitionsTest {
-	private static final Logger LOGGER = Logger.getLogger(ModelDefinitionsTest.class);
+public class NotificationDefinitionsTest {
+	private static final Logger LOGGER = Logger.getLogger(NotificationDefinitionsTest.class);
 
 	@Autowired
-	private ModelDefinitions modelDefinitions;
+	private NotificationDefinitions definitions;
 
 	@Autowired
 	private NotificationService notificationService;
 
 	@Test
 	public void canGetNotificationList() throws Exception {
-		assertEquals(notificationService.getAll(), modelDefinitions.getNotifications());
-	}
-
-	@Ignore
-	public void canGetAllStores() throws Exception {
-		List<Object> l = new ArrayList<>();
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		assertEquals(l, modelDefinitions.getAllStores());
+		assertThat(notificationService.getAll(), is(definitions.getNotifications()));
 	}
 }

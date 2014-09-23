@@ -7,51 +7,26 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import de.mosaic4cap.webapp.chefui.services.notification.Notification;
-import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
 import de.mosaic4cap.webapp.stereotypes.domain.InvoiceContainer;
 import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 /**
- * Created by svenklemmer on 17.09.14.
- * <p>
- * This class hold methods which are injected into templates by spring's
- * {@link org.springframework.web.bind.annotation.ModelAttribute} because there are template fragments
- * inside every template e.g header, footer, this class is annotadet with
- * {@link org.springframework.web.bind.annotation.ControllerAdvice} to make them accessable by every
- * controller in this application
- * <p>
- * See: #3
+ * Created by Lobedan on 24.09.2014.
  */
-@ControllerAdvice
-public class ModelDefinitions {
-	private static final Logger LOGGER = Logger.getLogger(ModelDefinitions.class);
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = Application.class)
+public class InvoiceDefinitionsTest {
+	private static final Logger LOGGER = Logger.getLogger(InvoiceDefinitionsTest.class);
 
 	@Autowired
-	private NotificationService notificationService;
+	private InvoiceDefinitions definitions;
 
-	@ModelAttribute(value = "notifications")
-	public List<Notification> getNotifications() throws Exception {
-		return notificationService.getAll();
-	}
-
-	@ModelAttribute(value = "allStores")
-	public List getAllStores() {
-		List<Object> l = new ArrayList<>();
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		l.add(new Object());
-		return l;
-	}
-
-	@ModelAttribute(value = "allInvoices")
-	public List<InvoiceContainer> getAllInvoices() {
+	//	@Test
+	public void canGetAllInvoices() throws Exception {
 		List<Invoice> partials = new ArrayList<>();
 
 		List<BigDecimal> billList = new ArrayList<>();
@@ -79,6 +54,7 @@ public class ModelDefinitions {
 		invoiceContainers.add(new InvoiceContainer(new Date(), partials, null));
 		invoiceContainers.add(new InvoiceContainer(new Date(), partials, null));
 		invoiceContainers.add(new InvoiceContainer(new Date(), partials, null));
-		return invoiceContainers;
+
+		assertThat(invoiceContainers, is(definitions.getAllInvoices()));
 	}
 }
