@@ -3,7 +3,7 @@ jdk:
 - oraclejdk8 
   
 before_install:
--mvn dependency:tree
+- mvn dependency:tree
 
 notifications:
   email:
