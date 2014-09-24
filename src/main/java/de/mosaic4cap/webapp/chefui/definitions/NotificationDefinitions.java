@@ -20,7 +20,7 @@ import de.mosaic4cap.webapp.chefui.services.notification.NotificationService;
  * controller in this application
  */
 @ControllerAdvice
-public class NotificationDefinitions {
+public class NotificationDefinitions implements Definitions {
 	private static final Logger LOGGER = Logger.getLogger(NotificationDefinitions.class);
 
 	@Autowired

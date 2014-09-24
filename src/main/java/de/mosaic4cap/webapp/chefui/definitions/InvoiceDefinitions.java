@@ -21,7 +21,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  * html template
  */
 @ControllerAdvice
-public class InvoiceDefinitions {
+public class InvoiceDefinitions implements Definitions {
 	private static final Logger LOGGER = Logger.getLogger(InvoiceDefinitions.class);
 
 	@ModelAttribute(value = "allInvoices")

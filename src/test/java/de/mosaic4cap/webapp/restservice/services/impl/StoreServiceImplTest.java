@@ -1,6 +1,7 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Created by Lobedan on 30.08.2014.
+ *
+ * TODO: #Issue 12
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
@@ -90,5 +93,13 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 
 		storeService.delete(setupEntity.getId());
 		assertNull(storeService.get(setupEntity.getId()));
+	}
+
+	@Ignore
+	public void testGetByChef() throws Exception {
+	}
+
+	@Ignore
+	public void testGetAllByChef() throws Exception {
 	}
 }

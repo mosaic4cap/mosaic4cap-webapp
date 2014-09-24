@@ -1,6 +1,7 @@
 package de.mosaic4cap.webapp.restservice.dao.impl;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,9 @@ import static org.junit.Assert.assertNull;
 
 /**
  * Created by Lobedan on 30.08.2014.
+ *
+ * TODO: Issue #12
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class StoreDaoImplTest extends GenericHibernateDaoTestCase {
@@ -108,4 +110,12 @@ public class StoreDaoImplTest extends GenericHibernateDaoTestCase {
 	//        storeDao.remove(setupEntity.getKey());
 	//        assertNull(storeDao.retrieve(setupEntity.getKey()));
 	//    }
+
+	@Ignore
+	public void testRetrieveByChef() throws Exception {
+	}
+
+	@Ignore
+	public void testRetrieveAllByChef() throws Exception {
+	}
 }

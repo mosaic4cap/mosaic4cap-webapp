@@ -1,5 +1,7 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,4 +37,16 @@ public class StoreServiceImpl extends AbstractGenericService<Store> implements S
 	public void remove(String key) throws Exception {
 		sDao.remove(key);
 	}
+
+	@Override
+	public Store get(Long id, Long chef) throws Exception {
+		return sDao.retrieve(id, chef);
+	}
+
+	@Override
+	public List<Store> getAll(Long chef) throws Exception {
+		return sDao.retrieveAll(chef);
+	}
+
+
 }
