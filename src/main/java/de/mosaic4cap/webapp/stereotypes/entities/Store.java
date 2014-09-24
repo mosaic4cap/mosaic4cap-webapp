@@ -42,7 +42,7 @@ public class Store extends AbstractMosaicEntity {
 
 	@javax.persistence.OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@javax.persistence.MapKey(name = "id")
-	private Map<Long, Invoice> storeaccount;
+	private Map<Long, Invoice> invoice;
 
     /*@ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 		@MapKey(name = "id")
@@ -51,16 +51,16 @@ public class Store extends AbstractMosaicEntity {
 	public Store() {
 	}
 
-	public Store(String pKey,
-							 Chef pChef,
-							 Map<Long, Driver> pDriver,
-							 Map<Long, Car> pCar,
-							 Map<Long, Invoice> pStoreaccount) {
-		key = pKey;
-		chef = pChef;
-		driver = pDriver;
-		car = pCar;
-		storeaccount = pStoreaccount;
+	public Store(String aKey,
+							 Chef aChef,
+							 Map<Long, Driver> aDriver,
+							 Map<Long, Car> aCar,
+							 Map<Long, Invoice> aInvoice) {
+		key = aKey;
+		chef = aChef;
+		driver = aDriver;
+		car = aCar;
+		invoice = aInvoice;
 	}
 
 	public Map<Long, Driver> getDriver() {
@@ -79,12 +79,12 @@ public class Store extends AbstractMosaicEntity {
 		car = pCar;
 	}
 
-	public Map<Long, Invoice> getStoreaccount() {
-		return storeaccount;
+	public Map<Long, Invoice> getInvoice() {
+		return invoice;
 	}
 
-	public void setStoreaccount(Map<Long, Invoice> pStoreaccount) {
-		storeaccount = pStoreaccount;
+	public void setInvoice(Map<Long, Invoice> aInvoice) {
+		invoice = aInvoice;
 	}
 
 	public String getKey() {
@@ -115,21 +115,21 @@ public class Store extends AbstractMosaicEntity {
 			return false;
 		}
 
-		Store lStore = (Store) o;
+		Store store = (Store) o;
 
-		if (car != null ? !car.equals(lStore.car) : lStore.car != null) {
+		if (car != null ? !car.equals(store.car) : store.car != null) {
 			return false;
 		}
-		if (chef != null ? !chef.equals(lStore.chef) : lStore.chef != null) {
+		if (chef != null ? !chef.equals(store.chef) : store.chef != null) {
 			return false;
 		}
-		if (driver != null ? !driver.equals(lStore.driver) : lStore.driver != null) {
+		if (driver != null ? !driver.equals(store.driver) : store.driver != null) {
 			return false;
 		}
-		if (key != null ? !key.equals(lStore.key) : lStore.key != null) {
+		if (invoice != null ? !invoice.equals(store.invoice) : store.invoice != null) {
 			return false;
 		}
-		if (storeaccount != null ? !storeaccount.equals(lStore.storeaccount) : lStore.storeaccount != null) {
+		if (key != null ? !key.equals(store.key) : store.key != null) {
 			return false;
 		}
 
@@ -138,13 +138,13 @@ public class Store extends AbstractMosaicEntity {
 
 	@Override
 	public int hashCode() {
-		int lresult = super.hashCode();
-		lresult = 31 * lresult + (key != null ? key.hashCode() : 0);
-		lresult = 31 * lresult + (chef != null ? chef.hashCode() : 0);
-		lresult = 31 * lresult + (driver != null ? driver.hashCode() : 0);
-		lresult = 31 * lresult + (car != null ? car.hashCode() : 0);
-		lresult = 31 * lresult + (storeaccount != null ? storeaccount.hashCode() : 0);
-		return lresult;
+		int result = super.hashCode();
+		result = 31 * result + (key != null ? key.hashCode() : 0);
+		result = 31 * result + (chef != null ? chef.hashCode() : 0);
+		result = 31 * result + (driver != null ? driver.hashCode() : 0);
+		result = 31 * result + (car != null ? car.hashCode() : 0);
+		result = 31 * result + (invoice != null ? invoice.hashCode() : 0);
+		return result;
 	}
 
 	@Override
@@ -154,7 +154,7 @@ public class Store extends AbstractMosaicEntity {
 					 ", chef=" + chef +
 					 ", driver=" + driver +
 					 ", car=" + car +
-					 ", storeaccount=" + storeaccount +
+					 ", invoice=" + invoice +
 					 '}';
 	}
 }

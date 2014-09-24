@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -20,10 +22,10 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 /**
  * Created by Lobedan on 30.08.2014.
  * <p>
- * Representing storeaccount
+ * Representing an invoice from a store
  */
 @Entity
-@Table(name = "storeaccount")
+@Table(name = "invoice")
 public class Invoice extends AbstractMosaicEntity {
 	private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
@@ -47,6 +49,7 @@ public class Invoice extends AbstractMosaicEntity {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
+	@Enumerated(EnumType.ORDINAL)
 	private InvoiceType state = InvoiceType.OPEN;
 
 	public Invoice() {
@@ -206,7 +209,7 @@ public class Invoice extends AbstractMosaicEntity {
 
 	@Override
 	public String toString() {
-		return "StoreAccount{" +
+		return "Invoice{" +
 					 "income=" + income +
 					 ", bills=" + bills +
 					 ", ecpayment=" + ecpayment +
@@ -214,6 +217,7 @@ public class Invoice extends AbstractMosaicEntity {
 					 ", store=" + store +
 					 ", car=" + car +
 					 ", date=" + date +
+					 ", state=" + state +
 					 '}';
 	}
 }
