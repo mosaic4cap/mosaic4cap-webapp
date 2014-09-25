@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "adress")
-public class Adress extends AbstractMosaicEntity {
+public class Adress extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Adress.class);
 
 	private String street;

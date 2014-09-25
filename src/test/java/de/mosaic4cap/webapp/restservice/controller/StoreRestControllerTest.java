@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.dao.StoreDao;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
+import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -48,7 +49,7 @@ public class StoreRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testGet() throws Exception {
-		Store testStore = dao.create(new Store("2", null, null, null, null));
+		Store testStore = dao.create(new Store("2", StoreType.HQ,  null, null, null, null));
 		this.mockMvc.perform(
 				get("/rest/1" + testStore.getId())
 						.accept(MediaType.APPLICATION_JSON))
@@ -67,7 +68,7 @@ public class StoreRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testInsert() throws Exception {
-		Store sampleStore = new Store("3", null, null, null, null);
+		Store sampleStore = new Store("3", StoreType.HQ, null, null, null, null);
 		String json = new ObjectMapper().writeValueAsString(sampleStore);
 		this.mockMvc.perform(
 				post("/rest/insert")
@@ -80,7 +81,7 @@ public class StoreRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testUpdate() throws Exception {
-		Store sampleStore = new Store("4", null, null, null, null);
+		Store sampleStore = new Store("4", StoreType.HQ, null, null, null, null);
 		String json = new ObjectMapper().writeValueAsString(sampleStore);
 		this.mockMvc.perform(
 				put("/rest/update")
@@ -93,7 +94,7 @@ public class StoreRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testDelete() throws Exception {
-		Store sampleStore = new Store("5", null, null, null, null);
+		Store sampleStore = new Store("5", StoreType.HQ, null, null, null, null);
 		String json = new ObjectMapper().writeValueAsString(sampleStore);
 		this.mockMvc.perform(
 				post("/rest/insert")

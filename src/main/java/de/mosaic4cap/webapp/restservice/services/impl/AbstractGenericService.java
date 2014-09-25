@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
 import de.mosaic4cap.webapp.restservice.services.GenericService;
-import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public abstract class AbstractGenericService<T extends AbstractMosaicEntity, ID extends Serializable> implements GenericService<T, ID> {
+public abstract class AbstractGenericService<T extends AbstractMosaic4CapEntity, ID extends Serializable> implements GenericService<T, ID> {
 	private static final Logger LOGGER = Logger.getLogger(AbstractGenericService.class);
 
 	private GenericDAO<T, ID> dao;

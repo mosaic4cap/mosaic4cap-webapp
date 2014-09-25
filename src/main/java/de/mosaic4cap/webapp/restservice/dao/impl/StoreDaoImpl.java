@@ -24,8 +24,7 @@ public class StoreDaoImpl extends HibernateDao<Store, Long> implements StoreDao 
 			final Transaction transaction = getSessionFactory().getCurrentSession().beginTransaction();
 			try {
 				Store store = (Store) getSessionFactory().getCurrentSession()
-						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE store_key = :s_key")
-						.setString(":s_key", key).uniqueResult();
+						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE store_key = '" + key + "'").uniqueResult();
 				transaction.commit();
 				return store;
 			} catch (Exception ex) {
@@ -37,6 +36,14 @@ public class StoreDaoImpl extends HibernateDao<Store, Long> implements StoreDao 
 			getSessionFactory().getCurrentSession().close();
 		}
 	}
+
+
+//  Caused by: org.h2.jdbc.JdbcSQLException:
+// Datenumwandlungsfehler beim Umwandeln von "'A01'
+// (chef: ""id"" BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_4F8ED3A3_252F_4DC5_B6EF_AEE19752044B) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_4F8ED3A3_252F_4DC5_B6EF_AEE19752044B)"
+//  Data conversion error converting "'A01' (chef: ""id"" BIGINT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_4F8ED3A3_252F_4DC5_B6EF_AEE19752044B) NOT NULL NULL_TO_DEFAULT SEQUENCE
+// PUBLIC.SYSTEM_SEQUENCE_4F8ED3A3_252F_4DC5_B6EF_AEE19752044B)"; SQL statement:
+//  INSERT INTO store (id, store_key, chef_id) VALUES (1, 'A01', 1), (2, 'A02', 1), (3, 'A03', 1) [22018-181]
 
 	@Override
 	@Transactional

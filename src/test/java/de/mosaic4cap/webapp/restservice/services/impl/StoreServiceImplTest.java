@@ -12,6 +12,7 @@ import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.services.GenericServiceTestCase;
 import de.mosaic4cap.webapp.restservice.services.StoreService;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
+import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -34,7 +35,7 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testInsert() throws Exception {
-		Store entity = new Store("1", null, null, null, null);
+		Store entity = new Store("1", StoreType.HQ, null, null, null, null);
 
 		Store returnValue = storeService.insert(entity);
 		assertEquals(returnValue, entity);
@@ -43,7 +44,7 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGet() throws Exception {
-		Store setupEntity = storeService.insert(new Store("2", null, null, null, null));
+		Store setupEntity = storeService.insert(new Store("2",StoreType.HQ,  null, null, null, null));
 		assertNotNull(setupEntity);
 
 		assertNotNull(storeService.get(setupEntity.getId()));
@@ -52,10 +53,10 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGetAll() throws Exception {
-		Store setupEntity = storeService.insert(new Store("3", null, null, null, null));
-		Store setupEntity2 = storeService.insert(new Store("4", null, null, null, null));
-		Store setupEntity3 = storeService.insert(new Store("5", null, null, null, null));
-		Store setupEntity4 = storeService.insert(new Store("6", null, null, null, null));
+		Store setupEntity = storeService.insert(new Store("3", StoreType.HQ, null, null, null, null));
+		Store setupEntity2 = storeService.insert(new Store("4", StoreType.HQ, null, null, null, null));
+		Store setupEntity3 = storeService.insert(new Store("5", StoreType.HQ, null, null, null, null));
+		Store setupEntity4 = storeService.insert(new Store("6", StoreType.HQ, null, null, null, null));
 		assertNotNull(setupEntity);
 		assertNotNull(setupEntity2);
 		assertNotNull(setupEntity3);
@@ -67,9 +68,9 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testUpdate() throws Exception {
-		Store setupEntity = storeService.insert(new Store("7", null, null, null, null));
+		Store setupEntity = storeService.insert(new Store("7", StoreType.HQ, null, null, null, null));
 		assertNotNull(setupEntity);
-		setupEntity.setKey("1234");
+		setupEntity.setStoreKey("1234");
 
 		Store updatedEntity = storeService.update(setupEntity);
 		assertEquals(updatedEntity, setupEntity);
@@ -78,7 +79,7 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteByObject() throws Exception {
-		Store setupEntity = storeService.insert(new Store("8", null, null, null, null));
+		Store setupEntity = storeService.insert(new Store("8", StoreType.HQ, null, null, null, null));
 		assertNotNull(setupEntity);
 
 		storeService.delete(setupEntity);
@@ -88,7 +89,7 @@ public class StoreServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteById() throws Exception {
-		Store setupEntity = storeService.insert(new Store("9", null, null, null, null));
+		Store setupEntity = storeService.insert(new Store("9", StoreType.HQ, null, null, null, null));
 		assertNotNull(setupEntity);
 
 		storeService.delete(setupEntity.getId());

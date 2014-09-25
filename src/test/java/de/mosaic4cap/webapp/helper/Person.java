@@ -5,14 +5,14 @@ import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
 
-import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
 
 /**
  * Created by svenklemmer on 25.09.14.
  */
 @Entity
 @Table(name = "junit_person")
-public class Person extends AbstractMosaicEntity {
+public class Person extends AbstractMosaic4CapEntity {
   private static final Logger LOGGER = Logger.getLogger(Person.class);
 
   private String value;

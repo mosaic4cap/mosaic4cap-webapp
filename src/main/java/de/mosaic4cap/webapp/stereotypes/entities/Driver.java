@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "driver")
-public class Driver extends AbstractMosaicEntity {
+public class Driver extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
 	@Column(name = "firstname", length = 25)

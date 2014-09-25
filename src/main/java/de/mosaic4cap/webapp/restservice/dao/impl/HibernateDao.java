@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
 import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
-import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
 
 /**
  * Created by svenklemmer on 29.08.14.
@@ -23,7 +23,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
 @SuppressWarnings("unchecked")
 @ImportResource("classpath:/META-INF/mosaic4cap-persistence.xml")
 @Dao
-public class HibernateDao<T extends AbstractMosaicEntity, ID extends Serializable> implements GenericDAO<T, ID> {
+public class HibernateDao<T extends AbstractMosaic4CapEntity, ID extends Serializable> implements GenericDAO<T, ID> {
 
 	private static final Logger LOGGER = Logger.getLogger(HibernateDao.class);
 

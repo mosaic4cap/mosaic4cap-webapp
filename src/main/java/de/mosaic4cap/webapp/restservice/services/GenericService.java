@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
-import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public interface GenericService<T extends AbstractMosaicEntity, ID extends Serializable> {
+public interface GenericService<T extends AbstractMosaic4CapEntity, ID extends Serializable> {
 
 	/**
 	 * Persists a new Instance

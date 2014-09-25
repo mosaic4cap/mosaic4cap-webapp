@@ -40,7 +40,7 @@
 		<!-- base framework versions -->
 		<!--<tomcat.version>7.0.54</tomcat.version>-->
 		<tomcat.version>8.0.11</tomcat.version>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 
 		<!-- startclass for spring boot -->
 		<start-class>de.mosaic4cap.webapp.Application</start-class>
@@ -217,6 +217,12 @@
 			<artifactId>hsqldb</artifactId>
 			<version>2.3.2</version>
 		</dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.174</version>
+        </dependency>
+
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>

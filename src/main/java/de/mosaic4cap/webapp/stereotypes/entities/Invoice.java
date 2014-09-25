@@ -26,7 +26,7 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
  */
 @Entity
 @Table(name = "invoice")
-public class Invoice extends AbstractMosaicEntity {
+public class Invoice extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
 	private BigDecimal income;

@@ -1,16 +1,21 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
+
+import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
 
 /**
  * Created by svenklemmer on 29.08.14.
@@ -19,11 +24,15 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "store")
-public class Store extends AbstractMosaicEntity {
+public class Store extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Store.class);
 
-	@Column(name = "store_key", length = 10)
-	private String key;
+	@Column(name = "store_key")
+	private String storeKey;
+
+  @Column(name = "store_type")
+  @Enumerated(EnumType.ORDINAL)
+  private StoreType storeType;
 
 	/**
 	 * The Chef this store belongs to
@@ -34,7 +43,7 @@ public class Store extends AbstractMosaicEntity {
 
 	@javax.persistence.OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@javax.persistence.MapKey(name = "id")
-	private Map<Long, Driver> driver;
+	private List<Driver> driver;
 
 	@javax.persistence.OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@javax.persistence.MapKey(name = "id")
@@ -44,117 +53,128 @@ public class Store extends AbstractMosaicEntity {
 	@javax.persistence.MapKey(name = "id")
 	private Map<Long, Invoice> invoice;
 
-    /*@ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-		@MapKey(name = "id")
-    private Map<Long, Customer> customer; */
+	public Store() { }
 
-	public Store() {
-	}
+  public Store(String aStoreKey,
+               StoreType aStoreType,
+               Chef aChef,
+               List<Driver> aDriver,
+               Map<Long, Car> aCar,
+               Map<Long, Invoice> aInvoice) {
+    storeKey = aStoreKey;
+    storeType = aStoreType;
+    chef = aChef;
+    driver = aDriver;
+    car = aCar;
+    invoice = aInvoice;
+  }
 
-	public Store(String aKey,
-							 Chef aChef,
-							 Map<Long, Driver> aDriver,
-							 Map<Long, Car> aCar,
-							 Map<Long, Invoice> aInvoice) {
-		key = aKey;
-		chef = aChef;
-		driver = aDriver;
-		car = aCar;
-		invoice = aInvoice;
-	}
+  public Map<Long, Invoice> getInvoice() {
+    return invoice;
+  }
 
-	public Map<Long, Driver> getDriver() {
-		return driver;
-	}
+  public void setInvoice(Map<Long, Invoice> aInvoice) {
+    invoice = aInvoice;
+  }
 
-	public void setDriver(Map<Long, Driver> pDriver) {
-		driver = pDriver;
-	}
+  public Map<Long, Car> getCar() {
+    return car;
+  }
 
-	public Map<Long, Car> getCar() {
-		return car;
-	}
+  public void setCar(Map<Long, Car> aCar) {
+    car = aCar;
+  }
 
-	public void setCar(Map<Long, Car> pCar) {
-		car = pCar;
-	}
+  public List<Driver> getDriver() {
+    return driver;
+  }
 
-	public Map<Long, Invoice> getInvoice() {
-		return invoice;
-	}
+  public void setDriver(List<Driver> aDriver) {
+    driver = aDriver;
+  }
 
-	public void setInvoice(Map<Long, Invoice> aInvoice) {
-		invoice = aInvoice;
-	}
+  public Chef getChef() {
+    return chef;
+  }
 
-	public String getKey() {
-		return key;
-	}
+  public void setChef(Chef aChef) {
+    chef = aChef;
+  }
 
-	public void setKey(String pKey) {
-		key = pKey;
-	}
+  public StoreType getStoreType() {
+    return storeType;
+  }
 
-	public Chef getChef() {
-		return chef;
-	}
+  public void setStoreType(StoreType aStoreType) {
+    storeType = aStoreType;
+  }
 
-	public void setChef(Chef pChef) {
-		chef = pChef;
-	}
+  public String getStoreKey() {
+    return storeKey;
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		if (!super.equals(o)) {
-			return false;
-		}
+  public void setStoreKey(String aStoreKey) {
+    storeKey = aStoreKey;
+  }
 
-		Store store = (Store) o;
+  @Override
+  public boolean equals(Object o) {
 
-		if (car != null ? !car.equals(store.car) : store.car != null) {
-			return false;
-		}
-		if (chef != null ? !chef.equals(store.chef) : store.chef != null) {
-			return false;
-		}
-		if (driver != null ? !driver.equals(store.driver) : store.driver != null) {
-			return false;
-		}
-		if (invoice != null ? !invoice.equals(store.invoice) : store.invoice != null) {
-			return false;
-		}
-		if (key != null ? !key.equals(store.key) : store.key != null) {
-			return false;
-		}
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
-		return true;
-	}
+    Store store = (Store) o;
 
-	@Override
-	public int hashCode() {
-		int result = super.hashCode();
-		result = 31 * result + (key != null ? key.hashCode() : 0);
-		result = 31 * result + (chef != null ? chef.hashCode() : 0);
-		result = 31 * result + (driver != null ? driver.hashCode() : 0);
-		result = 31 * result + (car != null ? car.hashCode() : 0);
-		result = 31 * result + (invoice != null ? invoice.hashCode() : 0);
-		return result;
-	}
+    if (car != null ? !car.equals(store.car) : store.car != null) {
+      return false;
+    }
+    if (chef != null ? !chef.equals(store.chef) : store.chef != null) {
+      return false;
+    }
+    if (driver != null ? !driver.equals(store.driver) : store.driver != null) {
+      return false;
+    }
+    if (invoice != null ? !invoice.equals(store.invoice) : store.invoice != null) {
+      return false;
+    }
+    if (storeKey != null ? !storeKey.equals(store.storeKey) : store.storeKey != null) {
+      return false;
+    }
+    if (storeType != store.storeType) {
+      return false;
+    }
 
-	@Override
-	public String toString() {
-		return "Store{" +
-					 "key='" + key + '\'' +
-					 ", chef=" + chef +
-					 ", driver=" + driver +
-					 ", car=" + car +
-					 ", invoice=" + invoice +
-					 '}';
-	}
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    result = 31 * result + (storeKey != null ? storeKey.hashCode() : 0);
+    result = 31 * result + (storeType != null ? storeType.hashCode() : 0);
+    result = 31 * result + (chef != null ? chef.hashCode() : 0);
+    result = 31 * result + (driver != null ? driver.hashCode() : 0);
+    result = 31 * result + (car != null ? car.hashCode() : 0);
+    result = 31 * result + (invoice != null ? invoice.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Store{" +
+           "storeKey='" + storeKey + '\'' +
+           ", storeType=" + storeType +
+           ", chef=" + chef +
+           ", driver=" + driver +
+           ", car=" + car +
+           ", invoice=" + invoice +
+           '}';
+  }
 }

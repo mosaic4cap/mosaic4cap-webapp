@@ -15,8 +15,8 @@ import org.apache.log4j.Logger;
  * Superclass for all entities holding id, equals and hashcode
  */
 @MappedSuperclass
-public abstract class AbstractMosaicEntity implements Serializable {
-	private static final Logger LOGGER = Logger.getLogger(AbstractMosaicEntity.class);
+public abstract class AbstractMosaic4CapEntity implements Serializable {
+	private static final Logger LOGGER = Logger.getLogger(AbstractMosaic4CapEntity.class);
 
 	@Id
 	@GeneratedValue
@@ -44,7 +44,7 @@ public abstract class AbstractMosaicEntity implements Serializable {
 			return false;
 		}
 
-		AbstractMosaicEntity that = (AbstractMosaicEntity) o;
+		AbstractMosaic4CapEntity that = (AbstractMosaic4CapEntity) o;
 
 		if (getBusinessKey() != null ? !getBusinessKey().equals(that.getBusinessKey()) : that.getBusinessKey() != null) {
 			return false;
