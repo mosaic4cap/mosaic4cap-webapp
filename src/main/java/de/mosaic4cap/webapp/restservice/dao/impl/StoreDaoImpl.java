@@ -14,7 +14,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
  * Created by svenklemmer on 29.08.14.
  */
 @Dao
-public class StoreDaoImpl extends GenericHibernateDaoImpl<Store> implements StoreDao {
+public class StoreDaoImpl extends HibernateDao<Store, Long> implements StoreDao {
 	private static final Logger LOGGER = Logger.getLogger(StoreDaoImpl.class);
 
 	@Override
@@ -46,6 +46,7 @@ public class StoreDaoImpl extends GenericHibernateDaoImpl<Store> implements Stor
 	}
 
 	@Override
+  @Transactional
 	public Store retrieve(Long id, Long chef) throws Exception {
 		try {
 			final Transaction transaction = getSessionFactory().getCurrentSession().beginTransaction();
@@ -68,6 +69,7 @@ public class StoreDaoImpl extends GenericHibernateDaoImpl<Store> implements Stor
 	}
 
 	@Override
+  @Transactional
 	@SuppressWarnings("unchecked")
 	public List<Store> retrieveAll(Long chef) throws Exception {
 		try {

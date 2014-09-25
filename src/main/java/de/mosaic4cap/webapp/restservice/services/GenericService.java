@@ -1,13 +1,15 @@
 package de.mosaic4cap.webapp.restservice.services;
 
+import java.io.Serializable;
 import java.util.List;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public interface GenericService<T> {
+public interface GenericService<T extends AbstractMosaicEntity, ID extends Serializable> {
 
 	/**
 	 * Persists a new Instance
@@ -23,7 +25,7 @@ public interface GenericService<T> {
 	 * @param id ..
 	 * @return ..
 	 */
-	T get(Long id) throws Exception;
+	T get(ID id) throws Exception;
 
 	/**
 	 * Retrieves all Entities of the parameterized type
@@ -51,9 +53,9 @@ public interface GenericService<T> {
 	 *
 	 * @param id ..
 	 */
-	void delete(Long id) throws Exception;
+	void delete(ID id) throws Exception;
 
-	public GenericDAO<T> getDao();
+	public GenericDAO<T, ID> getDao();
 
-	public void setDao(GenericDAO<T> pDao);
+	public void setDao(GenericDAO<T, ID> pDao);
 }

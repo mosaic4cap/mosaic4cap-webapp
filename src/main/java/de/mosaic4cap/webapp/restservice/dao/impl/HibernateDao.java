@@ -1,6 +1,8 @@
 package de.mosaic4cap.webapp.restservice.dao.impl;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.Transactional;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
+import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
 import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
 
 /**
@@ -19,9 +22,10 @@ import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
  */
 @SuppressWarnings("unchecked")
 @ImportResource("classpath:/META-INF/mosaic4cap-persistence.xml")
-public abstract class GenericHibernateDaoImpl<T extends AbstractMosaicEntity> implements GenericDAO<T> {
+@Dao
+public class HibernateDao<T extends AbstractMosaicEntity, ID extends Serializable> implements GenericDAO<T, ID> {
 
-	private static final Logger LOGGER = Logger.getLogger(GenericHibernateDaoImpl.class);
+	private static final Logger LOGGER = Logger.getLogger(HibernateDao.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -47,7 +51,7 @@ public abstract class GenericHibernateDaoImpl<T extends AbstractMosaicEntity> im
 
 	@Override
 	@Transactional
-	public T retrieve(Long id) throws Exception {
+	public T retrieve(ID id) throws Exception {
 		try {
 			final Transaction transaction = sessionFactory.getCurrentSession().beginTransaction();
 			try {
@@ -122,7 +126,7 @@ public abstract class GenericHibernateDaoImpl<T extends AbstractMosaicEntity> im
 
 	@Override
 	@Transactional
-	public void remove(Long id) throws Exception {
+	public void removeById(ID id) throws Exception {
 		T object = this.retrieve(id);
 		try {
 			final Transaction transaction = sessionFactory.getCurrentSession().beginTransaction();
@@ -139,7 +143,25 @@ public abstract class GenericHibernateDaoImpl<T extends AbstractMosaicEntity> im
 		}
 	}
 
-	public SessionFactory getSessionFactory() {
+  @Override
+  public List<T> create(T... newInstance) throws Exception {
+    List<T> createdObjects = new ArrayList<>();
+    for (T obj : newInstance) {
+      createdObjects.add(this.create(obj));
+    }
+    return createdObjects;
+  }
+
+  @Override
+  public List<T> merge(T... transientObjects) throws Exception {
+    List<T> createdObjects = new ArrayList<>();
+    for (T obj : transientObjects) {
+      createdObjects.add(this.merge(obj));
+    }
+    return createdObjects;
+  }
+
+  public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 

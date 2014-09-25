@@ -1,19 +1,21 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
 import de.mosaic4cap.webapp.restservice.services.GenericService;
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public abstract class AbstractGenericService<T> implements GenericService<T> {
+public abstract class AbstractGenericService<T extends AbstractMosaicEntity, ID extends Serializable> implements GenericService<T, ID> {
 	private static final Logger LOGGER = Logger.getLogger(AbstractGenericService.class);
 
-	private GenericDAO<T> dao;
+	private GenericDAO<T, ID> dao;
 
 	@Override
 	public T insert(T newInstance) throws Exception {
@@ -21,7 +23,7 @@ public abstract class AbstractGenericService<T> implements GenericService<T> {
 	}
 
 	@Override
-	public T get(Long id) throws Exception {
+	public T get(ID id) throws Exception {
 		return dao.retrieve(id);
 	}
 
@@ -43,17 +45,17 @@ public abstract class AbstractGenericService<T> implements GenericService<T> {
 	}
 
 	@Override
-	public void delete(Long id) throws Exception {
-		dao.remove(id);
+	public void delete(ID id) throws Exception {
+		dao.removeById(id);
 	}
 
 	@Override
-	public GenericDAO<T> getDao() {
+	public GenericDAO<T, ID> getDao() {
 		return dao;
 	}
 
 	@Override
-	public void setDao(GenericDAO<T> pDao) {
+	public void setDao(GenericDAO<T, ID> pDao) {
 		this.dao = pDao;
 	}
 }

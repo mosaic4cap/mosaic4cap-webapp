@@ -1,16 +1,18 @@
 package de.mosaic4cap.webapp.restservice.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 
+import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaicEntity;
+
 /**
  * Created by svenklemmer on 29.08.14.
  * Basic CRUD operations. Based on pattern "genericDAO".
- * Because all our Entities have an ID of type "long", we don't need to generify
- * the ID though.
  */
-public interface GenericDAO<T> {
+public interface GenericDAO<T extends AbstractMosaicEntity, ID extends Serializable> {
+
 	/**
 	 * Persists a new Instance
 	 *
@@ -20,12 +22,20 @@ public interface GenericDAO<T> {
 	T create(T newInstance) throws Exception;
 
 	/**
+	 * Persists multiple new instances
+	 *
+	 * @param newInstance ..
+	 * @return ..
+	 */
+	List<T> create(T... newInstance) throws Exception;
+
+	/**
 	 * Finds an Entity by ID
 	 *
 	 * @param id ..
 	 * @return ..
 	 */
-	T retrieve(Long id) throws Exception;
+	T retrieve(ID id) throws Exception;
 
 	/**
 	 * Retrieves all Entities of the parameterized type
@@ -35,11 +45,20 @@ public interface GenericDAO<T> {
 	List<T> retrieveAll() throws Exception;
 
 	/**
-	 * Reattaches a transient Entity to the persistenceContext
+	 * Modifies given transient object
 	 *
 	 * @param transientObject ..
 	 */
 	T merge(T transientObject) throws Exception;
+
+  /**
+   * Modifies multiple given transient objects
+   *
+   * @param transientObjects
+   * @return list of those merged objects
+   * @throws Exception
+   */
+  List<T> merge(T... transientObjects) throws Exception;
 
 	/**
 	 * Removes an Entity
@@ -53,7 +72,7 @@ public interface GenericDAO<T> {
 	 *
 	 * @param id ..
 	 */
-	void remove(Long id) throws Exception;
+	void removeById(ID id) throws Exception;
 
 	public SessionFactory getSessionFactory();
 

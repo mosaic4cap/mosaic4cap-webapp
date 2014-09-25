@@ -14,7 +14,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
  * Created by Lobedan on 30.08.2014.
  */
 @Service
-public class StoreServiceImpl extends AbstractGenericService<Store> implements StoreService {
+public class StoreServiceImpl extends AbstractGenericService<Store, Long> implements StoreService {
 	private static final Logger LOGGER = Logger.getLogger(StoreServiceImpl.class);
 
 	private StoreDao sDao;

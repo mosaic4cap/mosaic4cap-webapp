@@ -12,7 +12,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.Driver;
  * Created by Lobedan on 30.08.2014.
  */
 @Service
-public class DriverServiceImpl extends AbstractGenericService<Driver> implements DriverService {
+public class DriverServiceImpl extends AbstractGenericService<Driver, Long> implements DriverService {
 	private static final Logger LOGGER = Logger.getLogger(DriverServiceImpl.class);
 
 	public DriverServiceImpl() {

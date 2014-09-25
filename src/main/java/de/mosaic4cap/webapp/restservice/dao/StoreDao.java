@@ -7,11 +7,23 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public interface StoreDao extends GenericDAO<Store> {
+public interface StoreDao extends GenericDAO<Store, Long> {
 
-	public Store retrieve(String key) throws Exception;
+  /**
+   * Gets a Store by its identifier key
+   *
+   * @param key
+   * @return
+   * @throws Exception
+   */
+	Store retrieve(String key) throws Exception;
 
-	public void remove(String key) throws Exception;
+  /**
+   * removes a store found by its identifier key
+   * @param key
+   * @throws Exception
+   */
+	void remove(String key) throws Exception;
 
 	/**
 	 * Gets Store by its chef
@@ -20,7 +32,7 @@ public interface StoreDao extends GenericDAO<Store> {
 	 * @return
 	 * @throws Exception
 	 */
-	public Store retrieve(Long id, Long chef) throws Exception;
+	Store retrieve(Long id, Long chef) throws Exception;
 
 	/**
 	 * Gets all Stores by its chef
@@ -29,5 +41,5 @@ public interface StoreDao extends GenericDAO<Store> {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Store> retrieveAll(Long chef) throws Exception;
+	List<Store> retrieveAll(Long chef) throws Exception;
 }

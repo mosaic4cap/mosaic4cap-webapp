@@ -12,7 +12,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.Car;
  * Created by Lobedan on 30.08.2014.
  */
 @Service
-public class CarServiceImpl extends AbstractGenericService<Car> implements CarService {
+public class CarServiceImpl extends AbstractGenericService<Car, Long> implements CarService {
 	private static final Logger LOGGER = Logger.getLogger(CarServiceImpl.class);
 
 	public CarServiceImpl() {

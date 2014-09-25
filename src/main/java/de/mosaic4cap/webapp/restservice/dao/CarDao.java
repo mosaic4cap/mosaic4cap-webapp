@@ -5,5 +5,5 @@ import de.mosaic4cap.webapp.stereotypes.entities.Car;
 /**
  * Created by Lobedan on 30.08.2014.
  */
-public interface CarDao extends GenericDAO<Car> {
+public interface CarDao extends GenericDAO<Car, Long> {
 }

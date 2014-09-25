@@ -29,11 +29,13 @@
 		<property name="packagesToScan">
 			<list>
 				<value>de.mosaic4cap.webapp.stereotypes.entities</value>
+				<value>de.mosaic4cap.webapp.helper</value>
 			</list>
 		</property>
 		<property name="annotatedPackages">
 			<list>
 				<value>de.mosaic4cap.webapp.stereotypes.entities</value>
+                <value>de.mosaic4cap.webapp.helper</value>
 			</list>
 		</property>
 	</bean>

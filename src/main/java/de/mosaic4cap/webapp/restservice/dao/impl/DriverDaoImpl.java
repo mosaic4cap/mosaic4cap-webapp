@@ -1,7 +1,5 @@
 package de.mosaic4cap.webapp.restservice.dao.impl;
 
-import org.apache.log4j.Logger;
-
 import de.mosaic4cap.webapp.restservice.dao.DriverDao;
 import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
 import de.mosaic4cap.webapp.stereotypes.entities.Driver;
@@ -10,6 +8,4 @@ import de.mosaic4cap.webapp.stereotypes.entities.Driver;
  * Created by Lobedan on 30.08.2014.
  */
 @Dao
-public class DriverDaoImpl extends GenericHibernateDaoImpl<Driver> implements DriverDao {
-	private static final Logger LOGGER = Logger.getLogger(DriverDaoImpl.class);
-}
+public class DriverDaoImpl extends HibernateDao<Driver, Long> implements DriverDao { }
