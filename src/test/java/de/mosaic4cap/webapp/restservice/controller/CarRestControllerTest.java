@@ -47,7 +47,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testGet() throws Exception {
-		Car testCar = dao.create(new Car("Test", false));
+		Car testCar = dao.create(new Car("Test", false, null));
 		this.mockMvc.perform(
 				get("/rest/1/car/" + testCar.getId())
 						.accept(MediaType.APPLICATION_JSON))
@@ -66,7 +66,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testInsert() throws Exception {
-		Car sampleCar = new Car("A-MK-143", false);
+		Car sampleCar = new Car("A-MK-143", false, null);
 		String json = new ObjectMapper().writeValueAsString(sampleCar);
 		this.mockMvc.perform(
 				post("/rest/1/car/insert")
@@ -79,7 +79,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testUpdate() throws Exception {
-		Car sampleCar = new Car("A-MK-143", false);
+		Car sampleCar = new Car("A-MK-143", false, null);
 		String json = new ObjectMapper().writeValueAsString(sampleCar);
 		this.mockMvc.perform(
 				put("/rest/1/car/update")
@@ -92,7 +92,7 @@ public class CarRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testDelete() throws Exception {
-		Car sampleCar = new Car("A-MK-143", false);
+		Car sampleCar = new Car("A-MK-143", false, null);
 		String json = new ObjectMapper().writeValueAsString(sampleCar);
 		this.mockMvc.perform(
 				post("/rest/1/car/insert")

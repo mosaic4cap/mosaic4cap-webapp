@@ -18,8 +18,8 @@ public class Car extends AbstractMosaic4CapEntity {
 	private String badge;
 	private boolean available;
 
-  @ManyToOne
-  @JoinColumn(name = "store_id")
+  @ManyToOne(targetEntity = Store.class)
+  @JoinColumn
   private Store store;
 
 	public Car() {

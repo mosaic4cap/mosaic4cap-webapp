@@ -47,7 +47,7 @@ public class DriverRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testGet() throws Exception {
-		Driver testDriver = dao.create(new Driver("value", "", null));
+		Driver testDriver = dao.create(new Driver(null, "value", "", null));
 		this.mockMvc.perform(
 				get("/rest/1/driver/" + testDriver.getId())
 						.accept(MediaType.APPLICATION_JSON))
@@ -66,7 +66,7 @@ public class DriverRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testInsert() throws Exception {
-		Driver sampleDriver = new Driver("value2", "", null);
+		Driver sampleDriver = new Driver(null, "value2", "", null);
 		String json = new ObjectMapper().writeValueAsString(sampleDriver);
 		this.mockMvc.perform(
 				post("/rest/1/driver/insert")
@@ -79,7 +79,7 @@ public class DriverRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testUpdate() throws Exception {
-		Driver sampleDriver = new Driver("value3", "", null);
+		Driver sampleDriver = new Driver(null, "value3", "", null);
 		String json = new ObjectMapper().writeValueAsString(sampleDriver);
 		this.mockMvc.perform(
 				put("/rest/1/driver/update")
@@ -92,7 +92,7 @@ public class DriverRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testDelete() throws Exception {
-		Driver sampleDriver = new Driver("value4", "", null);
+		Driver sampleDriver = new Driver(null, "value4", "", null);
 		String json = new ObjectMapper().writeValueAsString(sampleDriver);
 		this.mockMvc.perform(
 				post("/rest/1/driver/insert")

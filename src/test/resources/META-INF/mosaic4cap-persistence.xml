@@ -16,16 +16,18 @@
         <property name="hibernateProperties">
             <props>
                 <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.connection.autocommit">false</prop>
-                <prop key="hibernate.current_session_context_class">thread</prop>
-                <prop key="connection.pool_size">1</prop>
-                <prop key="current_session_context_class">thread</prop>
-                <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-            </props>
+		        <prop key="hibernate.connection.autocommit">false</prop>
+		        <prop key="hibernate.current_session_context_class">thread</prop>
+		        <prop key="hibernate.connection.pool_size">1</prop>
+		        <prop key="hibernate.hbm2ddl.auto">create</prop>
+		        <prop key="hibernate.format_sql">false</prop>
+		        <prop key="hibernate.use_sql_comments">false</prop>
+	        </props>
         </property>
-        <property name="dataSource" ref="dataProductionSource"/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
             <list>
                 <value>de.mosaic4cap.webapp.stereotypes.entities</value>
@@ -39,22 +41,19 @@
             </list>
         </property>
     </bean>
-    <bean id="dataProductionSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" destroy-method="close">
-    <!--<bean id="dataProductionSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">-->
+    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:mem:testdb"/>
-        <!--;DB_CLOSE_DELAY=-1;TRACE_LEVEL_SYSTEM_OUT=2;DATABASE_TO_UPPER=false;-->
+        <property name="url" value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;TRACE_LEVEL_SYSTEM_OUT=2;DATABASE_TO_UPPER=false;" />
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
-    <!--<bean id="dataProductionSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" destroy-method="close">-->
-    <!--<property name="url" value="jdbc:hsqldb:mem:mosaic"/>-->
-    <!--<property name="driverClass" value="org.hsqldb.jdbcDriver"/>-->
-    <!--<property name="username" value="sa"/>-->
-    <!--<property name="password" value=""/>-->
+    <!--<property name="url" value="jdbc:mysql://37.120.168.29/mosaic"/>-->
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+    <!--<property name="username" value="mosaic"/>-->
+    <!--<property name="password" value="mosaic"/>-->
     <!--</bean>-->
 
-    <jdbc:initialize-database data-source="dataProductionSource" enabled="true">
-        <jdbc:script location="sql/buisness_schema_sql_hsql.sql"/>
+    <jdbc:initialize-database data-source="dataSource" enabled="true">
+        <jdbc:script location="classpath:sql/buisness_schema_sql_hsql.sql" />
     </jdbc:initialize-database>
 </beans>

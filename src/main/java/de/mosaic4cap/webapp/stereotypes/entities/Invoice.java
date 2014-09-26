@@ -45,10 +45,9 @@ public class Invoice extends AbstractMosaic4CapEntity {
   @ElementCollection(targetClass = Double.class)
   private Set<Double> ecpayment;          //TODO: eigene Klasse für ec und bills (haben ja sowieso das gleiche schema)
 
-  @ManyToOne
-  @JoinColumn(name = "store_id")
+	@ManyToOne
+	@JoinColumn
   private Store store;
-
 
   @OneToOne
   private Driver driver;
@@ -71,8 +70,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
                  Store aStore,
                  Driver aDriver,
                  Car aCar,
-                 Date aDate,
-                 InvoiceType aState) {
+                 Date aDate) {
     income = aIncome;
     bills = aBills;
     ecpayment = aEcpayment;
@@ -80,7 +78,6 @@ public class Invoice extends AbstractMosaic4CapEntity {
     driver = aDriver;
     car = aCar;
     date = aDate;
-    state = aState;
   }
 
   public Double getIncome() {

@@ -22,7 +22,7 @@ public class Driver extends AbstractMosaic4CapEntity {
 
 
   @ManyToOne
-  @JoinColumn(name = "store_id")
+  @JoinColumn
   private Store store;
 
 	@Column(name = "firstname", length = 25)

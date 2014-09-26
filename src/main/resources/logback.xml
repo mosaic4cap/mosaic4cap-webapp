@@ -10,11 +10,16 @@
 
 	<logger name="org.hibernate.type" level="ERROR"/>
 	<logger name="org.hibernate" level="ERROR"/>
+	<!--<logger name="org.hibernate.type" level="DEBUG"/>-->
+	<!--<logger name="org.hibernate" level="DEBUG"/>-->
+
 	<logger name="org.thymeleaf" level="ERROR"/>
-	<logger name="org.apache" level="ERROR"/>
+
 	<logger name="org.springframework" level="ERROR"/>
 	<logger name="org.springframework.boot.actuate.endpoint.mvc" level="INFO"/>
 	<logger name="org.springframework.web.servlet.mvc.method.annotation" level="INFO"/>
+
+	<logger name="org.apache" level="ERROR"/>
 
 	<logger name="de.mosaic4cap.webapp" level="DEBUG"/>
 

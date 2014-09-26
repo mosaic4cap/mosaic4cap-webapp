@@ -31,7 +31,7 @@ public class Chef extends AbstractMosaic4CapEntity {
   //  @MapKeyColumn(name="storeid", unique = false, nullable = false, insertable = true, updatable = true)
   //  private Map<Long, Store> stores;
 
-  @OneToMany(mappedBy = "id")
+  @OneToMany(mappedBy = "chef")
   private Set<Store> stores;
   // http://viralpatel.net/blogs/hibernate-one-to-many-annotation-tutorial/
 

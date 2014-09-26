@@ -30,7 +30,7 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testInsert() throws Exception {
-		Car entity = new Car("1", true);
+		Car entity = new Car("1", true, null);
 
 		Car returnValue = carService.insert(entity);
 		assertEquals(returnValue, entity);
@@ -39,7 +39,7 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGet() throws Exception {
-		Car setupEntity = carService.insert(new Car("value", false));
+		Car setupEntity = carService.insert(new Car("value", false, null));
 		assertNotNull(setupEntity);
 
 		assertNotNull(carService.get(setupEntity.getId()));
@@ -48,10 +48,10 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGetAll() throws Exception {
-		Car setupEntity = carService.insert(new Car("value", false));
-		Car setupEntity2 = carService.insert(new Car("value2", false));
-		Car setupEntity3 = carService.insert(new Car("value3", false));
-		Car setupEntity4 = carService.insert(new Car("value4", false));
+		Car setupEntity = carService.insert(new Car("value", false, null));
+		Car setupEntity2 = carService.insert(new Car("value2", false, null));
+		Car setupEntity3 = carService.insert(new Car("value3", false, null));
+		Car setupEntity4 = carService.insert(new Car("value4", false, null));
 		assertNotNull(setupEntity);
 		assertNotNull(setupEntity2);
 		assertNotNull(setupEntity3);
@@ -63,7 +63,7 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testUpdate() throws Exception {
-		Car setupEntity = carService.insert(new Car("mergeEntity", false));
+		Car setupEntity = carService.insert(new Car("mergeEntity", false, null));
 		assertNotNull(setupEntity);
 
 		setupEntity.setBadge("mergeUpdateEntity");
@@ -74,7 +74,7 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteByObject() throws Exception {
-		Car setupEntity = carService.insert(new Car("removeByObjectEntity", false));
+		Car setupEntity = carService.insert(new Car("removeByObjectEntity", false, null));
 		assertNotNull(setupEntity);
 
 		carService.delete(setupEntity);
@@ -84,7 +84,7 @@ public class CarServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteById() throws Exception {
-		Car setupEntity = carService.insert(new Car("removeByIdEntity", false));
+		Car setupEntity = carService.insert(new Car("removeByIdEntity", false, null));
 		assertNotNull(setupEntity);
 
 		carService.delete(setupEntity.getId());

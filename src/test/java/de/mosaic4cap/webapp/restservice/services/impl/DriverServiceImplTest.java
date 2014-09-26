@@ -28,7 +28,7 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testInsert() throws Exception {
-		Driver entity = new Driver("1", "", null);
+		Driver entity = new Driver(null, "1", "", null);
 
 		Driver returnValue = driverService.insert(entity);
 		assertEquals(returnValue, entity);
@@ -37,7 +37,7 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGet() throws Exception {
-		Driver setupEntity = driverService.insert(new Driver("value", "", null));
+		Driver setupEntity = driverService.insert(new Driver(null, "value", "", null));
 		assertNotNull(setupEntity);
 
 		assertNotNull(driverService.get(setupEntity.getId()));
@@ -46,10 +46,10 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testGetAll() throws Exception {
-		Driver setupEntity = driverService.insert(new Driver("value", "", null));
-		Driver setupEntity2 = driverService.insert(new Driver("value2", "", null));
-		Driver setupEntity3 = driverService.insert(new Driver("value3", "", null));
-		Driver setupEntity4 = driverService.insert(new Driver("value4", "", null));
+		Driver setupEntity = driverService.insert(new Driver(null, "value", "", null));
+		Driver setupEntity2 = driverService.insert(new Driver(null, "value2", "", null));
+		Driver setupEntity3 = driverService.insert(new Driver(null, "value3", "", null));
+		Driver setupEntity4 = driverService.insert(new Driver(null, "value4", "", null));
 		assertNotNull(setupEntity);
 		assertNotNull(setupEntity2);
 		assertNotNull(setupEntity3);
@@ -61,7 +61,7 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testUpdate() throws Exception {
-		Driver setupEntity = driverService.insert(new Driver("mergeEntity", "", null));
+		Driver setupEntity = driverService.insert(new Driver(null, "mergeEntity", "", null));
 		assertNotNull(setupEntity);
 		setupEntity.setFirstName("mergeUpdateEntity");
 
@@ -72,7 +72,7 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteByObject() throws Exception {
-		Driver setupEntity = driverService.insert(new Driver("removeByObjectEntity", "", null));
+		Driver setupEntity = driverService.insert(new Driver(null, "removeByObjectEntity", "", null));
 		assertNotNull(setupEntity);
 
 		driverService.delete(setupEntity);
@@ -82,7 +82,7 @@ public class DriverServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testDeleteById() throws Exception {
-		Driver setupEntity = driverService.insert(new Driver("removeByIdEntity", "", null));
+		Driver setupEntity = driverService.insert(new Driver(null, "removeByIdEntity", "", null));
 		assertNotNull(setupEntity);
 
 		driverService.delete(setupEntity.getId());
