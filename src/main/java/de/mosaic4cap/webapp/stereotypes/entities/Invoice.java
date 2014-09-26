@@ -1,13 +1,15 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,84 +28,84 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 @Entity
 @Table(name = "invoice")
 public class Invoice extends AbstractMosaic4CapEntity {
-	private static final Logger LOGGER = Logger.getLogger(Invoice.class);
+  private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
-	private BigDecimal income;
+  private Double income;
 
-//  @OneToMany(targetEntity = BigDecimal.class)
-//  @JoinTable(name="invoice_bill")
-//  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
-  @OneToMany(mappedBy = "id")
-  private Set<BigDecimal> bills;
+  //  @OneToMany(targetEntity = Double.class)
+  //  @JoinTable(name="invoice_bill")
+  //  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
+  //  @OneToMany(mappedBy = "id")
+  @JoinTable(name = "invoice_bill")
+  @ElementCollection(targetClass = Double.class)
+  private Set<Double> bills;
 
-  @OneToMany(mappedBy = "id")
-  private Set<BigDecimal> ecpayment;          //TODO: eigene Klasse für ec und bills (haben ja sowieso das gleiche schema)
+  //  @OneToMany(mappedBy = "id")
+  @JoinTable(name = "invoice_ec")
+  @ElementCollection(targetClass = Double.class)
+  private Set<Double> ecpayment;          //TODO: eigene Klasse für ec und bills (haben ja sowieso das gleiche schema)
 
- 	@OneToOne
-	private Driver driver;
+  @ManyToOne
+  @JoinColumn(name = "store_id")
+  private Store store;
 
-	@OneToOne
-	private Store store;
 
-	@OneToOne
-	private Car car;
+  @OneToOne
+  private Driver driver;
 
-	@Temporal(TemporalType.DATE)
-	private Date date;
+  @OneToOne
+  private Car car;
 
-	@Enumerated(EnumType.ORDINAL)
-	private InvoiceType state = InvoiceType.OPEN;
+  @Temporal(TemporalType.DATE)
+  private Date date;
 
-	public Invoice() {
-	}
+  @Enumerated(EnumType.ORDINAL)
+  private InvoiceType state = InvoiceType.OPEN;
 
-  public Invoice(BigDecimal aIncome,
-                 Set<BigDecimal> aBills,
-                 Set<BigDecimal> aEcpayment,
-                 Driver aDriver,
+  public Invoice() {
+  }
+
+  public Invoice(Double aIncome,
+                 Set<Double> aBills,
+                 Set<Double> aEcpayment,
                  Store aStore,
+                 Driver aDriver,
                  Car aCar,
-                 Date aDate) {
+                 Date aDate,
+                 InvoiceType aState) {
     income = aIncome;
     bills = aBills;
     ecpayment = aEcpayment;
-    driver = aDriver;
     store = aStore;
+    driver = aDriver;
     car = aCar;
     date = aDate;
+    state = aState;
   }
 
-  public BigDecimal getIncome() {
+  public Double getIncome() {
+
     return income;
-
   }
 
-  public void setIncome(BigDecimal aIncome) {
+  public void setIncome(Double aIncome) {
     income = aIncome;
   }
 
-  public Set<BigDecimal> getBills() {
+  public Set<Double> getBills() {
     return bills;
   }
 
-  public void setBills(Set<BigDecimal> aBills) {
+  public void setBills(Set<Double> aBills) {
     bills = aBills;
   }
 
-  public Set<BigDecimal> getEcpayment() {
+  public Set<Double> getEcpayment() {
     return ecpayment;
   }
 
-  public void setEcpayment(Set<BigDecimal> aEcpayment) {
+  public void setEcpayment(Set<Double> aEcpayment) {
     ecpayment = aEcpayment;
-  }
-
-  public Driver getDriver() {
-    return driver;
-  }
-
-  public void setDriver(Driver aDriver) {
-    driver = aDriver;
   }
 
   public Store getStore() {
@@ -112,6 +114,14 @@ public class Invoice extends AbstractMosaic4CapEntity {
 
   public void setStore(Store aStore) {
     store = aStore;
+  }
+
+  public Driver getDriver() {
+    return driver;
+  }
+
+  public void setDriver(Driver aDriver) {
+    driver = aDriver;
   }
 
   public Car getCar() {
@@ -187,8 +197,8 @@ public class Invoice extends AbstractMosaic4CapEntity {
     result = 31 * result + (income != null ? income.hashCode() : 0);
     result = 31 * result + (bills != null ? bills.hashCode() : 0);
     result = 31 * result + (ecpayment != null ? ecpayment.hashCode() : 0);
-    result = 31 * result + (driver != null ? driver.hashCode() : 0);
     result = 31 * result + (store != null ? store.hashCode() : 0);
+    result = 31 * result + (driver != null ? driver.hashCode() : 0);
     result = 31 * result + (car != null ? car.hashCode() : 0);
     result = 31 * result + (date != null ? date.hashCode() : 0);
     result = 31 * result + (state != null ? state.hashCode() : 0);
@@ -201,34 +211,34 @@ public class Invoice extends AbstractMosaic4CapEntity {
            "income=" + income +
            ", bills=" + bills +
            ", ecpayment=" + ecpayment +
-           ", driver=" + driver +
            ", store=" + store +
+           ", driver=" + driver +
            ", car=" + car +
            ", date=" + date +
            ", state=" + state +
            '}';
   }
 
-  /* some buisness logic methods, <b>DO NOT DELETE</b> in order so autogenerate
-      getter and setter!
-       */
+  /* some buisness logic methods, <b>DO NOT DELETE</b> in order to autogenerate
+        getter and setter!
+         */
   @Transient
-  public BigDecimal getBillAmount() {
-    BigDecimal sum = new BigDecimal(0);
+  public Double getBillAmount() {
+    Double sum = 0.00;
     if (bills != null) {
-      for (BigDecimal d : bills) {
-        sum = sum.add(d);
+      for (double d : bills) {
+        sum = Double.sum(sum, d);
       }
     }
     return sum;
   }
 
   @Transient
-  public BigDecimal getECAmount() {
-    BigDecimal sum = new BigDecimal(0);
+  public Double getECAmount() {
+    Double sum = 0.00;
     if (ecpayment != null) {
-      for (BigDecimal d : ecpayment) {
-        sum = sum.add(d);
+      for (double d : ecpayment) {
+        sum = Double.sum(sum, d);
       }
     }
     return sum;

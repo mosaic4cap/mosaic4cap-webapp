@@ -1,6 +1,5 @@
 package de.mosaic4cap.webapp.restservice.services.impl;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -34,7 +33,7 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Test
 	@Override
 	public void testInsert() throws Exception {
-		Invoice entity = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+		Invoice entity = new Invoice(1.00, null, null, null, null, null, new Date());
 
 		Invoice returnValue = invoiceService.insert(entity);
 		assertEquals(returnValue, entity);
@@ -44,7 +43,7 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Override
 	public void testGet() throws Exception {
 		Invoice setupEntity = invoiceService
-				.insert(new Invoice(new BigDecimal(2), null, null, null, null, null, new Date()));
+				.insert(new Invoice(2.00, null, null, null, null, null, new Date()));
 		assertNotNull(setupEntity);
 
 		assertNotNull(invoiceService.get(setupEntity.getId()));
@@ -54,13 +53,13 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Override
 	public void testGetAll() throws Exception {
 		Invoice setupEntity = invoiceService
-				.insert(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
+				.insert(new Invoice(3.00, null, null, null, null, null, new Date()));
 		Invoice setupEntity2 = invoiceService
-				.insert(new Invoice(new BigDecimal(4), null, null, null, null, null, new Date()));
+				.insert(new Invoice(4.00, null, null, null, null, null, new Date()));
 		Invoice setupEntity3 = invoiceService
-				.insert(new Invoice(new BigDecimal(5), null, null, null, null, null, new Date()));
+				.insert(new Invoice(5.00, null, null, null, null, null, new Date()));
 		Invoice setupEntity4 = invoiceService
-				.insert(new Invoice(new BigDecimal(6), null, null, null, null, null, new Date()));
+				.insert(new Invoice(6.00, null, null, null, null, null, new Date()));
 		assertNotNull(setupEntity);
 		assertNotNull(setupEntity2);
 		assertNotNull(setupEntity3);
@@ -73,9 +72,9 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Override
 	public void testUpdate() throws Exception {
 		Invoice setupEntity = invoiceService
-				.insert(new Invoice(new BigDecimal(7), null, null, null, null, null, new Date()));
+				.insert(new Invoice(7.00, null, null, null, null, null, new Date()));
 		assertNotNull(setupEntity);
-		setupEntity.setIncome(new BigDecimal(1234));
+		setupEntity.setIncome(1234.00);
 
 		Invoice updatedEntity = invoiceService.update(setupEntity);
 		assertEquals(updatedEntity, setupEntity);
@@ -85,7 +84,7 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Override
 	public void testDeleteByObject() throws Exception {
 		Invoice setupEntity = invoiceService
-				.insert(new Invoice(new BigDecimal(8), null, null, null, null, null, new Date()));
+				.insert(new Invoice(8.00, null, null, null, null, null, new Date()));
 		assertNotNull(setupEntity);
 
 		invoiceService.delete(setupEntity);
@@ -96,7 +95,7 @@ public class InvoiceServiceImplTest extends GenericServiceTestCase {
 	@Override
 	public void testDeleteById() throws Exception {
 		Invoice setupEntity = invoiceService
-				.insert(new Invoice(new BigDecimal(9), null, null, null, null, null, new Date()));
+				.insert(new Invoice(9.00, null, null, null, null, null, new Date()));
 		assertNotNull(setupEntity);
 
 		invoiceService.delete(setupEntity.getId());

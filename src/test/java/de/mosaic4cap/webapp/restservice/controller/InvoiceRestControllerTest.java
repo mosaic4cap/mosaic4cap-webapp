@@ -1,6 +1,5 @@
 package de.mosaic4cap.webapp.restservice.controller;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.dao.InvoiceDao;
 import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
-import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -52,7 +50,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 	@Test
 	public void testGet() throws Exception {
 		Invoice testInvoice = dao
-				.create(new Invoice(new BigDecimal(3), null, null, null, null, null, new Date()));
+				.create(new Invoice(3.00, null, null, null, null, null, new Date()));
 		this.mockMvc.perform(
 				get("/rest/1/invoice/" + testInvoice.getId())
 						.accept(MediaType.APPLICATION_JSON))
@@ -71,7 +69,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testInsert() throws Exception {
-		Invoice sampleInvoice = new Invoice(new BigDecimal(2), null, null, null, null, null, new Date());
+		Invoice sampleInvoice = new Invoice(2.00, null, null, null, null, null, new Date());
 		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 		this.mockMvc.perform(
 				post("/rest/1/invoice/insert")
@@ -84,7 +82,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testUpdate() throws Exception {
-		Invoice sampleInvoice = new Invoice(new BigDecimal(1), null, null, null, null, null, new Date());
+		Invoice sampleInvoice = new Invoice(3.00, null, null, null, null, null, new Date());
 		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 		this.mockMvc.perform(
 				put("/rest/1/invoice/update")
@@ -97,7 +95,7 @@ public class InvoiceRestControllerTest extends RestControllerTestCase {
 	@Override
 	@Test
 	public void testDelete() throws Exception {
-		Invoice sampleInvoice = new Invoice(new BigDecimal(4), null, null, null, null, null, new Date());
+		Invoice sampleInvoice = new Invoice(4.00, null, null, null, null, null, new Date());
 		String json = new ObjectMapper().writeValueAsString(sampleInvoice);
 		this.mockMvc.perform(
 				post("/rest/1/invoice/insert")

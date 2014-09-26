@@ -1,6 +1,5 @@
 package de.mosaic4cap.webapp.stereotypes.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -32,30 +31,30 @@ public class InvoiceContainer extends Container {
 		store = pStore;
 	}
 
-	public BigDecimal getEcAmount() {
-		BigDecimal sum = new BigDecimal(0);
+	public Double getEcAmount() {
+		double sum = 0.00;
 		for (Invoice s : partials) {
-      for (BigDecimal d : s.getEcpayment()) {
-				sum = sum.add(d);
+      for (Double d : s.getEcpayment()) {
+				sum += d;
 			}
 		}
 		return sum;
 	}
 
-	public BigDecimal getBillAmount() {
-		BigDecimal sum = new BigDecimal(0);
+	public Double getBillAmount() {
+    double sum = 0.00;
 		for (Invoice s : partials) {
-      for (BigDecimal d : s.getBills()) {
-        sum = sum.add(d);
+      for (Double d : s.getBills()) {
+        sum += d;
 			}
 		}
 		return sum;
 	}
 
-	public BigDecimal getAmount() {
-		BigDecimal sum = new BigDecimal(0);
+	public Double getAmount() {
+		double sum = 0.00;
 		for (Invoice s : partials) {
-			sum = sum.add(s.getIncome());
+			sum += s.getIncome();
 		}
 		return sum;
 	}

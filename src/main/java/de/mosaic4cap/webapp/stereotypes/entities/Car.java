@@ -1,6 +1,8 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
@@ -16,67 +18,87 @@ public class Car extends AbstractMosaic4CapEntity {
 	private String badge;
 	private boolean available;
 
+  @ManyToOne
+  @JoinColumn(name = "store_id")
+  private Store store;
+
 	public Car() {
 	}
 
-	public Car(String pBadge, boolean pAvailable) {
-		badge = pBadge;
-		available = pAvailable;
-	}
+  public Car(String aBadge, boolean aAvailable, Store aStore) {
+    badge = aBadge;
+    available = aAvailable;
+    store = aStore;
+  }
 
-	public String getBadge() {
-		return badge;
-	}
+  public String getBadge() {
 
-	public void setBadge(String pBadge) {
-		badge = pBadge;
-	}
+    return badge;
+  }
 
-	public boolean isAvailable() {
-		return available;
-	}
+  public void setBadge(String aBadge) {
+    badge = aBadge;
+  }
 
-	public void setAvailable(boolean pAvailable) {
-		available = pAvailable;
-	}
+  public boolean isAvailable() {
+    return available;
+  }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		if (!super.equals(o)) {
-			return false;
-		}
+  public void setAvailable(boolean aAvailable) {
+    available = aAvailable;
+  }
 
-		Car lCar = (Car) o;
+  public Store getStore() {
+    return store;
+  }
 
-		if (available != lCar.available) {
-			return false;
-		}
-		if (badge != null ? !badge.equals(lCar.badge) : lCar.badge != null) {
-			return false;
-		}
+  public void setStore(Store aStore) {
+    store = aStore;
+  }
 
-		return true;
-	}
+  @Override
+  public boolean equals(Object o) {
 
-	@Override
-	public int hashCode() {
-		int lresult = super.hashCode();
-		lresult = 31 * lresult + (badge != null ? badge.hashCode() : 0);
-		lresult = 31 * lresult + (available ? 1 : 0);
-		return lresult;
-	}
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
 
-	@Override
-	public String toString() {
-		return "Car{" +
-					 "badge='" + badge + '\'' +
-					 ", available=" + available +
-					 '}';
-	}
+    Car car = (Car) o;
+
+    if (available != car.available) {
+      return false;
+    }
+    if (badge != null ? !badge.equals(car.badge) : car.badge != null) {
+      return false;
+    }
+    if (store != null ? !store.equals(car.store) : car.store != null) {
+      return false;
+    }
+
+    return true;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    result = 31 * result + (badge != null ? badge.hashCode() : 0);
+    result = 31 * result + (available ? 1 : 0);
+    result = 31 * result + (store != null ? store.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Car{" +
+           "badge='" + badge + '\'' +
+           ", available=" + available +
+           ", store=" + store +
+           '}';
+  }
 }

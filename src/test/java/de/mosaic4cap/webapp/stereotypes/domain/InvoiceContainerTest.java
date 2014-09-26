@@ -1,7 +1,5 @@
 package de.mosaic4cap.webapp.stereotypes.domain;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,26 +27,26 @@ public class InvoiceContainerTest {
 	public void setup() {
 		/*List<Invoice> partials = new ArrayList<>();
 
-		List<BigDecimal> billList = new ArrayList<>();
-		billList.add(new BigDecimal(10.20));
-		billList.add(new BigDecimal(4.12));
+		List<double> billList = new ArrayList<>();
+		billList.add(new double(10.20));
+		billList.add(new double(4.12));
 
-		List<BigDecimal> ecList = new ArrayList<>();
-		ecList.add(new BigDecimal(10.24));
-		ecList.add(new BigDecimal(4.95));
-		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		List<double> ecList = new ArrayList<>();
+		ecList.add(new double(10.24));
+		ecList.add(new double(4.95));
+		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
 
-		billList.add(new BigDecimal(50));
+		billList.add(new double(50));
 		ecList.remove(1);
-		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
 
 		billList.remove(1);
 		billList.remove(0);
-		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
 
 		billList.clear();
 		ecList.clear();
-		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
+		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
 
 		container = new InvoiceContainer(new Date(), partials, null);*/
 		container = new InvoiceContainer(new Date(), null, null);
@@ -61,26 +59,26 @@ public class InvoiceContainerTest {
 		assertThat(container.getBillAmount(), is(calcBill(container.getPartials())));
 	}
 
-	private BigDecimal calcIn(List<Invoice> l) {
-		BigDecimal sum = new BigDecimal(0);
+	private double calcIn(List<Invoice> l) {
+		double sum = 0.00;
 		for (Invoice s : l) {
-			sum = sum.add(s.getIncome());
+			sum += s.getIncome();
 		}
 		return sum;
 	}
 
-	private BigDecimal calcEC(List<Invoice> l) {
-		BigDecimal sum = new BigDecimal(0);
+	private double calcEC(List<Invoice> l) {
+		double sum = 0.00;
 		for (Invoice s : l) {
-			sum = sum.add(s.getECAmount());
+			sum += s.getECAmount();
 		}
 		return sum;
 	}
 
-	private BigDecimal calcBill(List<Invoice> l) {
-		BigDecimal sum = new BigDecimal(0);
+	private double calcBill(List<Invoice> l) {
+		double sum = 0.00;
 		for (Invoice s : l) {
-			sum = sum.add(s.getBillAmount());
+			sum += s.getBillAmount();
 		}
 		return sum;
 	}
