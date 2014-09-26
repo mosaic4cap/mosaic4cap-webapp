@@ -1,11 +1,13 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 
@@ -26,45 +28,51 @@ public class Chef extends AbstractMosaic4CapEntity {
   /**
    * Stores this chef owns
    */
-  //	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @Transient
-  private List<Store> stores;
+  @OneToMany(targetEntity = Store.class)
+  @JoinTable(name="chef_store")
+  @MapKeyColumn(name="storeid", unique = false, nullable = false, insertable = true, updatable = true)
+  private Map<Long, Store> stores;
+
+  // http://viralpatel.net/blogs/hibernate-one-to-many-annotation-tutorial/
 
   public Chef() {
   }
 
-  public Chef(String pFirstName, String pLastName, List<Store> pStores) {
-    firstName = pFirstName;
-    lastName = pLastName;
-    stores = pStores;
+  public Chef(String aFirstName,
+              String aLastName,
+              Map<Long, Store> aStores) {
+    firstName = aFirstName;
+    lastName = aLastName;
+    stores = aStores;
   }
 
   public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(String pFirstName) {
-    firstName = pFirstName;
+  public void setFirstName(String aFirstName) {
+    firstName = aFirstName;
   }
 
   public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(String pLastName) {
-    lastName = pLastName;
+  public void setLastName(String aLastName) {
+    lastName = aLastName;
   }
 
-  public List<Store> getStores() {
+  public Map<Long, Store> getStores() {
     return stores;
   }
 
-  public void setStores(List<Store> pStores) {
-    stores = pStores;
+  public void setStores(Map<Long, Store> aStores) {
+    stores = aStores;
   }
 
   @Override
   public boolean equals(Object o) {
+
     if (this == o) {
       return true;
     }
@@ -75,15 +83,15 @@ public class Chef extends AbstractMosaic4CapEntity {
       return false;
     }
 
-    Chef lChef = (Chef) o;
+    Chef chef = (Chef) o;
 
-    if (firstName != null ? !firstName.equals(lChef.firstName) : lChef.firstName != null) {
+    if (firstName != null ? !firstName.equals(chef.firstName) : chef.firstName != null) {
       return false;
     }
-    if (lastName != null ? !lastName.equals(lChef.lastName) : lChef.lastName != null) {
+    if (lastName != null ? !lastName.equals(chef.lastName) : chef.lastName != null) {
       return false;
     }
-    if (stores != null ? !stores.equals(lChef.stores) : lChef.stores != null) {
+    if (stores != null ? !stores.equals(chef.stores) : chef.stores != null) {
       return false;
     }
 
@@ -92,11 +100,11 @@ public class Chef extends AbstractMosaic4CapEntity {
 
   @Override
   public int hashCode() {
-    int lresult = super.hashCode();
-    lresult = 31 * lresult + (firstName != null ? firstName.hashCode() : 0);
-    lresult = 31 * lresult + (lastName != null ? lastName.hashCode() : 0);
-    lresult = 31 * lresult + (stores != null ? stores.hashCode() : 0);
-    return lresult;
+    int result = super.hashCode();
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (stores != null ? stores.hashCode() : 0);
+    return result;
   }
 
   @Override

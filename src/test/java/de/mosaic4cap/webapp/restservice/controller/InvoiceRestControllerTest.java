@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import de.mosaic4cap.webapp.Application;
 import de.mosaic4cap.webapp.restservice.dao.InvoiceDao;
 import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
+import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;

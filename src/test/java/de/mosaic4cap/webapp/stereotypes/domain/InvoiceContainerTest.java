@@ -27,7 +27,7 @@ public class InvoiceContainerTest {
 
 	@Before
 	public void setup() {
-		List<Invoice> partials = new ArrayList<>();
+		/*List<Invoice> partials = new ArrayList<>();
 
 		List<BigDecimal> billList = new ArrayList<>();
 		billList.add(new BigDecimal(10.20));
@@ -50,7 +50,8 @@ public class InvoiceContainerTest {
 		ecList.clear();
 		partials.add(new Invoice(new BigDecimal(300), billList, ecList, null, null, null, null));
 
-		container = new InvoiceContainer(new Date(), partials, null);
+		container = new InvoiceContainer(new Date(), partials, null);*/
+		container = new InvoiceContainer(new Date(), null, null);
 	}
 
 	@Test
