@@ -3,7 +3,6 @@ package de.mosaic4cap.webapp.stereotypes.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -36,8 +35,8 @@ public class InvoiceContainer extends Container {
 	public BigDecimal getEcAmount() {
 		BigDecimal sum = new BigDecimal(0);
 		for (Invoice s : partials) {
-      for (Map.Entry entry : s.getEcpayment().entrySet()) {
-				sum = sum.add((BigDecimal) entry.getValue());
+      for (BigDecimal d : s.getEcpayment()) {
+				sum = sum.add(d);
 			}
 		}
 		return sum;
@@ -46,8 +45,8 @@ public class InvoiceContainer extends Container {
 	public BigDecimal getBillAmount() {
 		BigDecimal sum = new BigDecimal(0);
 		for (Invoice s : partials) {
-      for (Map.Entry entry : s.getBills().entrySet()) {
-        sum = sum.add((BigDecimal) entry.getValue());
+      for (BigDecimal d : s.getBills()) {
+        sum = sum.add(d);
 			}
 		}
 		return sum;

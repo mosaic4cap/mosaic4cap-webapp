@@ -2,13 +2,11 @@ package de.mosaic4cap.webapp.stereotypes.entities;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinTable;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,17 +30,16 @@ public class Invoice extends AbstractMosaic4CapEntity {
 
 	private BigDecimal income;
 
-  @OneToMany(targetEntity = BigDecimal.class)
-  @JoinTable(name="invoice_bill")
-  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
-  private Map<Long, BigDecimal> bills;    //TODO: überlegung ob eigenes Bill und EC Object sinnvoll ist, welches ein array aus einzelnen werten enthält
+//  @OneToMany(targetEntity = BigDecimal.class)
+//  @JoinTable(name="invoice_bill")
+//  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
+  @OneToMany(mappedBy = "id")
+  private Set<BigDecimal> bills;
 
-  @OneToMany(targetEntity = BigDecimal.class)
-  @JoinTable(name="invoice_ec")
-  @MapKeyColumn(name="ecid", unique = false, nullable = true, insertable = true, updatable = true)
-  private Map<Long, BigDecimal> ecpayment;
+  @OneToMany(mappedBy = "id")
+  private Set<BigDecimal> ecpayment;          //TODO: eigene Klasse für ec und bills (haben ja sowieso das gleiche schema)
 
-	@OneToOne
+ 	@OneToOne
 	private Driver driver;
 
 	@OneToOne
@@ -61,11 +58,12 @@ public class Invoice extends AbstractMosaic4CapEntity {
 	}
 
   public Invoice(BigDecimal aIncome,
-                 Map<Long, BigDecimal> aBills,
-                 Map<Long, BigDecimal> aEcpayment,
+                 Set<BigDecimal> aBills,
+                 Set<BigDecimal> aEcpayment,
                  Driver aDriver,
                  Store aStore,
-                 Car aCar, Date aDate) {
+                 Car aCar,
+                 Date aDate) {
     income = aIncome;
     bills = aBills;
     ecpayment = aEcpayment;
@@ -76,27 +74,27 @@ public class Invoice extends AbstractMosaic4CapEntity {
   }
 
   public BigDecimal getIncome() {
-
     return income;
+
   }
 
   public void setIncome(BigDecimal aIncome) {
     income = aIncome;
   }
 
-  public Map<Long, BigDecimal> getBills() {
+  public Set<BigDecimal> getBills() {
     return bills;
   }
 
-  public void setBills(Map<Long, BigDecimal> aBills) {
+  public void setBills(Set<BigDecimal> aBills) {
     bills = aBills;
   }
 
-  public Map<Long, BigDecimal> getEcpayment() {
+  public Set<BigDecimal> getEcpayment() {
     return ecpayment;
   }
 
-  public void setEcpayment(Map<Long, BigDecimal> aEcpayment) {
+  public void setEcpayment(Set<BigDecimal> aEcpayment) {
     ecpayment = aEcpayment;
   }
 
@@ -212,14 +210,14 @@ public class Invoice extends AbstractMosaic4CapEntity {
   }
 
   /* some buisness logic methods, <b>DO NOT DELETE</b> in order so autogenerate
-    getter and setter!
-     */
+      getter and setter!
+       */
   @Transient
   public BigDecimal getBillAmount() {
     BigDecimal sum = new BigDecimal(0);
     if (bills != null) {
-      for (Map.Entry d : bills.entrySet()) {
-        sum = sum.add((BigDecimal)d.getValue());
+      for (BigDecimal d : bills) {
+        sum = sum.add(d);
       }
     }
     return sum;
@@ -229,8 +227,8 @@ public class Invoice extends AbstractMosaic4CapEntity {
   public BigDecimal getECAmount() {
     BigDecimal sum = new BigDecimal(0);
     if (ecpayment != null) {
-      for (Map.Entry d : ecpayment.entrySet()) {
-        sum = sum.add((BigDecimal)d.getValue());
+      for (BigDecimal d : ecpayment) {
+        sum = sum.add(d);
       }
     }
     return sum;

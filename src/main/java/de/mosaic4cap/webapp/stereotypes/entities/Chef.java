@@ -1,11 +1,9 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinTable;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,25 +26,26 @@ public class Chef extends AbstractMosaic4CapEntity {
   /**
    * Stores this chef owns
    */
-  @OneToMany(targetEntity = Store.class)
-  @JoinTable(name="chef_store")
-  @MapKeyColumn(name="storeid", unique = false, nullable = false, insertable = true, updatable = true)
-  private Map<Long, Store> stores;
+  //  @OneToMany(targetEntity = Store.class)
+  //  @JoinTable(name="chef_store")
+  //  @MapKeyColumn(name="storeid", unique = false, nullable = false, insertable = true, updatable = true)
+  //  private Map<Long, Store> stores;
 
+  @OneToMany(mappedBy = "id")
+  private Set<Store> stores;
   // http://viralpatel.net/blogs/hibernate-one-to-many-annotation-tutorial/
 
   public Chef() {
   }
 
-  public Chef(String aFirstName,
-              String aLastName,
-              Map<Long, Store> aStores) {
+  public Chef(String aFirstName, String aLastName, Set<Store> aStores) {
     firstName = aFirstName;
     lastName = aLastName;
     stores = aStores;
   }
 
   public String getFirstName() {
+
     return firstName;
   }
 
@@ -62,11 +61,11 @@ public class Chef extends AbstractMosaic4CapEntity {
     lastName = aLastName;
   }
 
-  public Map<Long, Store> getStores() {
+  public Set<Store> getStores() {
     return stores;
   }
 
-  public void setStores(Map<Long, Store> aStores) {
+  public void setStores(Set<Store> aStores) {
     stores = aStores;
   }
 

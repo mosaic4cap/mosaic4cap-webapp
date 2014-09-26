@@ -1,13 +1,13 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
-import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinTable;
-import javax.persistence.MapKeyColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,43 +23,43 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
 @Entity
 @Table(name = "store")
 public class Store extends AbstractMosaic4CapEntity {
-	private static final Logger LOGGER = Logger.getLogger(Store.class);
+  private static final Logger LOGGER = Logger.getLogger(Store.class);
 
-	@Column(name = "store_key")
-	private String storeKey;
+  @Column(name = "store_key")
+  private String storeKey;
 
   @Column(name = "store_type")
   @Enumerated(EnumType.ORDINAL)
   private StoreType storeType;
 
-  @OneToMany(targetEntity = Driver.class)
-  @JoinTable(name="store_driver")
-  @MapKeyColumn(name="driverid", unique = false, nullable = false, insertable = true, updatable = true)
-  private Map<Long, Driver> driver; // http://viralpatel.net/blogs/hibernate-many-to-many-annotation-mapping-tutorial/ ?
+  @ManyToOne
+  @JoinColumn(name = "chef_id")
+  private Chef chef;
 
-  @OneToMany(targetEntity = Car.class)
-  @JoinTable(name="store_car")
-  @MapKeyColumn(name="carid", unique = false, nullable = false, insertable = true, updatable = true)
-  private Map<Long, Car> car;
+  @OneToMany(mappedBy = "id")
+  private Set<Driver> drivers;
 
-  @OneToMany(targetEntity = Invoice.class)
-  @JoinTable(name="store_invoice")
-  @MapKeyColumn(name="invoiceid", unique = false, nullable = false, insertable = true, updatable = true)
-  private Map<Long, Invoice> invoice;
+  @OneToMany(mappedBy = "id")
+  private Set<Car> cars;
 
+  @OneToMany(mappedBy = "id")
+  private Set<Invoice> invoices;
 
-	public Store() { }
+  public Store() {
+  }
 
   public Store(String aStoreKey,
                StoreType aStoreType,
-               Map<Long, Driver> aDriver,
-               Map<Long, Car> aCar,
-               Map<Long, Invoice> aInvoice) {
+               Chef aChef,
+               Set<Driver> aDrivers,
+               Set<Car> aCars,
+               Set<Invoice> aInvoices) {
     storeKey = aStoreKey;
     storeType = aStoreType;
-    driver = aDriver;
-    car = aCar;
-    invoice = aInvoice;
+    chef = aChef;
+    drivers = aDrivers;
+    cars = aCars;
+    invoices = aInvoices;
   }
 
   public String getStoreKey() {
@@ -79,28 +79,36 @@ public class Store extends AbstractMosaic4CapEntity {
     storeType = aStoreType;
   }
 
-  public Map<Long, Driver> getDriver() {
-    return driver;
+  public Chef getChef() {
+    return chef;
   }
 
-  public void setDriver(Map<Long, Driver> aDriver) {
-    driver = aDriver;
+  public void setChef(Chef aChef) {
+    chef = aChef;
   }
 
-  public Map<Long, Car> getCar() {
-    return car;
+  public Set<Driver> getDrivers() {
+    return drivers;
   }
 
-  public void setCar(Map<Long, Car> aCar) {
-    car = aCar;
+  public void setDrivers(Set<Driver> aDrivers) {
+    drivers = aDrivers;
   }
 
-  public Map<Long, Invoice> getInvoice() {
-    return invoice;
+  public Set<Car> getCars() {
+    return cars;
   }
 
-  public void setInvoice(Map<Long, Invoice> aInvoice) {
-    invoice = aInvoice;
+  public void setCars(Set<Car> aCars) {
+    cars = aCars;
+  }
+
+  public Set<Invoice> getInvoices() {
+    return invoices;
+  }
+
+  public void setInvoices(Set<Invoice> aInvoices) {
+    invoices = aInvoices;
   }
 
   @Override
@@ -118,13 +126,16 @@ public class Store extends AbstractMosaic4CapEntity {
 
     Store store = (Store) o;
 
-    if (car != null ? !car.equals(store.car) : store.car != null) {
+    if (cars != null ? !cars.equals(store.cars) : store.cars != null) {
       return false;
     }
-    if (driver != null ? !driver.equals(store.driver) : store.driver != null) {
+    if (chef != null ? !chef.equals(store.chef) : store.chef != null) {
       return false;
     }
-    if (invoice != null ? !invoice.equals(store.invoice) : store.invoice != null) {
+    if (drivers != null ? !drivers.equals(store.drivers) : store.drivers != null) {
+      return false;
+    }
+    if (invoices != null ? !invoices.equals(store.invoices) : store.invoices != null) {
       return false;
     }
     if (storeKey != null ? !storeKey.equals(store.storeKey) : store.storeKey != null) {
@@ -142,9 +153,10 @@ public class Store extends AbstractMosaic4CapEntity {
     int result = super.hashCode();
     result = 31 * result + (storeKey != null ? storeKey.hashCode() : 0);
     result = 31 * result + (storeType != null ? storeType.hashCode() : 0);
-    result = 31 * result + (driver != null ? driver.hashCode() : 0);
-    result = 31 * result + (car != null ? car.hashCode() : 0);
-    result = 31 * result + (invoice != null ? invoice.hashCode() : 0);
+    result = 31 * result + (chef != null ? chef.hashCode() : 0);
+    result = 31 * result + (drivers != null ? drivers.hashCode() : 0);
+    result = 31 * result + (cars != null ? cars.hashCode() : 0);
+    result = 31 * result + (invoices != null ? invoices.hashCode() : 0);
     return result;
   }
 
@@ -153,9 +165,10 @@ public class Store extends AbstractMosaic4CapEntity {
     return "Store{" +
            "storeKey='" + storeKey + '\'' +
            ", storeType=" + storeType +
-           ", driver=" + driver +
-           ", car=" + car +
-           ", invoice=" + invoice +
+           ", chef=" + chef +
+           ", drivers=" + drivers +
+           ", cars=" + cars +
+           ", invoices=" + invoices +
            '}';
   }
 }
