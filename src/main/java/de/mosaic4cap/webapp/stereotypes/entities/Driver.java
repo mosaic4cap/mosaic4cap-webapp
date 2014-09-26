@@ -101,28 +101,23 @@ public class Driver extends AbstractMosaic4CapEntity {
     if (lastName != null ? !lastName.equals(driver.lastName) : driver.lastName != null) {
       return false;
     }
-    if (store != null ? !store.equals(driver.store) : driver.store != null) {
-      return false;
-    }
 
     return true;
   }
 
-  @Override
-  public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + (store != null ? store.hashCode() : 0);
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (birthDay != null ? birthDay.hashCode() : 0);
-    return result;
-  }
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+		result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+		result = 31 * result + (birthDay != null ? birthDay.hashCode() : 0);
+		return result;
+	}
 
-  @Override
+	@Override
   public String toString() {
     return "Driver{" +
-           "store=" + store +
-           ", firstName='" + firstName + '\'' +
+           "firstName='" + firstName + '\'' +
            ", lastName='" + lastName + '\'' +
            ", birthDay=" + birthDay +
            '}';

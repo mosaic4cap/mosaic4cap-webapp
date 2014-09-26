@@ -2,8 +2,10 @@ package de.mosaic4cap.webapp.stereotypes.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,7 +33,7 @@ public class Chef extends AbstractMosaic4CapEntity {
   //  @MapKeyColumn(name="storeid", unique = false, nullable = false, insertable = true, updatable = true)
   //  private Map<Long, Store> stores;
 
-  @OneToMany(mappedBy = "chef")
+  @OneToMany(mappedBy = "chef", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<Store> stores;
   // http://viralpatel.net/blogs/hibernate-one-to-many-annotation-tutorial/
 
@@ -90,11 +92,8 @@ public class Chef extends AbstractMosaic4CapEntity {
     if (lastName != null ? !lastName.equals(chef.lastName) : chef.lastName != null) {
       return false;
     }
-    if (stores != null ? !stores.equals(chef.stores) : chef.stores != null) {
-      return false;
-    }
 
-    return true;
+		return true;
   }
 
   @Override
@@ -102,7 +101,6 @@ public class Chef extends AbstractMosaic4CapEntity {
     int result = super.hashCode();
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (stores != null ? stores.hashCode() : 0);
     return result;
   }
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.transaction.annotation.Transactional;
 
 import de.mosaic4cap.webapp.restservice.dao.GenericDAO;
 import de.mosaic4cap.webapp.restservice.services.GenericService;
@@ -18,16 +19,19 @@ public abstract class AbstractGenericService<T extends AbstractMosaic4CapEntity,
 	private GenericDAO<T, ID> dao;
 
 	@Override
+	@Transactional
 	public T insert(T newInstance) throws Exception {
 		return dao.create(newInstance);
 	}
 
 	@Override
+	@Transactional
 	public T get(ID id) throws Exception {
 		return dao.retrieve(id);
 	}
 
 	@Override
+	@Transactional
 	public List<T> getAll() throws Exception {
 		List<T> entitiyList = dao.retrieveAll();
 		LOGGER.info("received object list: " + entitiyList);
@@ -35,16 +39,19 @@ public abstract class AbstractGenericService<T extends AbstractMosaic4CapEntity,
 	}
 
 	@Override
+	@Transactional
 	public T update(T transientObject) throws Exception {
 		return dao.merge(transientObject);
 	}
 
 	@Override
+	@Transactional
 	public void delete(T persistentObject) throws Exception {
 		dao.remove(persistentObject);
 	}
 
 	@Override
+	@Transactional
 	public void delete(ID id) throws Exception {
 		dao.removeById(id);
 	}

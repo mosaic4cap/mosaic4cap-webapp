@@ -165,7 +165,6 @@ public class Store extends AbstractMosaic4CapEntity {
 		return "Store{" +
 					 "storeKey='" + storeKey + '\'' +
 					 ", storeType=" + storeType +
-					 ", chef=" + chef +
 					 ", drivers=" + drivers +
 					 ", cars=" + cars +
 					 ", invoices=" + invoices +

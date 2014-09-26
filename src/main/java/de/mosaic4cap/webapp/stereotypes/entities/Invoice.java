@@ -181,9 +181,6 @@ public class Invoice extends AbstractMosaic4CapEntity {
     if (state != invoice.state) {
       return false;
     }
-    if (store != null ? !store.equals(invoice.store) : invoice.store != null) {
-      return false;
-    }
 
     return true;
   }
@@ -194,7 +191,6 @@ public class Invoice extends AbstractMosaic4CapEntity {
     result = 31 * result + (income != null ? income.hashCode() : 0);
     result = 31 * result + (bills != null ? bills.hashCode() : 0);
     result = 31 * result + (ecpayment != null ? ecpayment.hashCode() : 0);
-    result = 31 * result + (store != null ? store.hashCode() : 0);
     result = 31 * result + (driver != null ? driver.hashCode() : 0);
     result = 31 * result + (car != null ? car.hashCode() : 0);
     result = 31 * result + (date != null ? date.hashCode() : 0);
@@ -208,7 +204,6 @@ public class Invoice extends AbstractMosaic4CapEntity {
            "income=" + income +
            ", bills=" + bills +
            ", ecpayment=" + ecpayment +
-           ", store=" + store +
            ", driver=" + driver +
            ", car=" + car +
            ", date=" + date +
