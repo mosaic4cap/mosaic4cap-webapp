@@ -110,4 +110,14 @@ public class InvoiceContainer extends Container {
 	public void setPartials(List<Invoice> pPartials) {
 		partials = pPartials;
 	}
+
+	@Override
+	public String toString() {
+		return "InvoiceContainer{" +
+					 "date=" + date +
+					 ", partials=" + partials +
+					 ", store=" + store +
+					 ", state=" + state +
+					 '}';
+	}
 }

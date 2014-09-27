@@ -1,5 +1,6 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
   //  @OneToMany(mappedBy = "id")
   @JoinTable(name = "invoice_ec")
   @ElementCollection(targetClass = Double.class)
-  private Set<Double> ecpayment;          //TODO: eigene Klasse für ec und bills (haben ja sowieso das gleiche schema)
+  private Set<Double> ecpayment;
 
 	@ManyToOne
 	@JoinColumn
@@ -56,7 +57,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
   private Car car;
 
   @Temporal(TemporalType.DATE)
-  private Date date;
+  private Date date = new Date();
 
   @Enumerated(EnumType.ORDINAL)
   private InvoiceType state = InvoiceType.OPEN;
@@ -235,4 +236,11 @@ public class Invoice extends AbstractMosaic4CapEntity {
     }
     return sum;
   }
+
+	@Transient
+	public Date getModDate() throws Exception{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		String date = sdf.format(this.date);
+		return sdf.parse(date);
+	}
 }
