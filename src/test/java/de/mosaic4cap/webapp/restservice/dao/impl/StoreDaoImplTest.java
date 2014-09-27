@@ -44,7 +44,7 @@ public class StoreDaoImplTest {
     Chef chef = chefDao.retrieve(Long.valueOf(1));
     LOGGER.info(chef);
 
-    assertThat(chef.getStores().size(), is(3));
+    assertThat(chef.getStores().size(), is(6));
   }
 
   @Test

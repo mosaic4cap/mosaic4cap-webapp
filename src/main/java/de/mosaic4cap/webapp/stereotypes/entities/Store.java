@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -36,13 +37,13 @@ public class Store extends AbstractMosaic4CapEntity {
 	@JoinColumn
 	private Chef chef;
 
-	@OneToMany(mappedBy = "store")
+	@OneToMany(mappedBy = "store", fetch = FetchType.EAGER)
 	private Set<Driver> drivers;
 
-	@OneToMany(mappedBy = "store")
+	@OneToMany(mappedBy = "store", fetch = FetchType.EAGER)
 	private Set<Car> cars;
 
-	@OneToMany(mappedBy = "store")
+	@OneToMany(mappedBy = "store", fetch = FetchType.EAGER)
 	private Set<Invoice> invoices;
 
 	public Store() {

@@ -3,10 +3,8 @@ package de.mosaic4cap.webapp.restservice.dao.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Property;
-import org.springframework.transaction.annotation.Transactional;
 
 import de.mosaic4cap.webapp.restservice.dao.StoreDao;
 import de.mosaic4cap.webapp.stereotypes.annotation.Dao;
@@ -24,7 +22,9 @@ public class StoreDaoImpl extends HibernateDao<Store, Long> implements StoreDao 
 			final Transaction transaction = getSessionFactory().getCurrentSession().beginTransaction();
 			try {
 				Store store = (Store) getSessionFactory().getCurrentSession()
-						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE store_key = '" + key + "' LIMIT 1").uniqueResult();
+						.createCriteria(Store.class).add(Property.forName("storeKey").eq(key))
+//						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE store_key = '" + key + "'")
+						.uniqueResult();
 				transaction.commit();
 				return store;
 			} catch (Exception ex) {
@@ -46,9 +46,10 @@ public class StoreDaoImpl extends HibernateDao<Store, Long> implements StoreDao 
 			final Transaction transaction = getSessionFactory().getCurrentSession().beginTransaction();
 			try {
 				Store store = (Store) getSessionFactory().getCurrentSession()
-						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE id = :s_id AND chef_id = :chefa")
-						.setLong("s_id", id)
-						.setLong("chefa", chef)
+						.createCriteria(Store.class).add(Property.forName("chef_id").eq(chef)).add(Property.forName("id").eq(id))
+//						.createQuery("from de.mosaic4cap.webapp.stereotypes.entities.Store WHERE id = :s_id AND chef_id = :chefa")
+//						.setLong("s_id", id)
+//						.setLong("chefa", chef)
 						.uniqueResult();
 				transaction.commit();
 				return store;
