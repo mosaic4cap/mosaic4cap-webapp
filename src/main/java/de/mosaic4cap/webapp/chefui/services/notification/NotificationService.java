@@ -7,8 +7,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import de.mosaic4cap.webapp.core.BaseService;
-
 /**
  * Created by svenklemmer on 19.09.14.
  * <p>
@@ -19,15 +17,10 @@ import de.mosaic4cap.webapp.core.BaseService;
  * on hover those objects will set hasRead to true
  */
 @Service
-public class NotificationService extends BaseService<Notification> {
+public class NotificationService {
 	private static final Logger LOGGER = Logger.getLogger(NotificationService.class);
 
-	@Override
-	public Notification put(Notification obj) throws Exception {
-		return super.put(obj);
-	}
 
-	@Override
 	public List<Notification> getAll() throws Exception {
 		List<Notification> notificationList = new ArrayList<>();
 		notificationList.add(new Notification(NotificationType.DEPLOYMENT, "Test", "TestMessage", new Date()));
