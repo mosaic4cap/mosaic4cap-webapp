@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-@ImportResource("/META-INF/mosaic4cap-thymeleaf.xml")
+@ImportResource(value = { "/META-INF/mosaic4cap-thymeleaf.xml", "/META-INF/mosaic4cap-persistence.xml"})
 public class Application extends SpringBootServletInitializer {
 
 	//CHECKSTYLE:OFF

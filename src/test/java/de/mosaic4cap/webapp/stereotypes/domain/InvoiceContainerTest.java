@@ -1,7 +1,10 @@
 package de.mosaic4cap.webapp.stereotypes.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
@@ -25,31 +28,29 @@ public class InvoiceContainerTest {
 
 	@Before
 	public void setup() {
-		/*List<Invoice> partials = new ArrayList<>();
+		List<Invoice> partials = new ArrayList<>();
 
-		List<double> billList = new ArrayList<>();
-		billList.add(new double(10.20));
-		billList.add(new double(4.12));
+		Set<Double> billList = new HashSet<>();
+		billList.add(10.20);
+		billList.add(4.12);
 
-		List<double> ecList = new ArrayList<>();
-		ecList.add(new double(10.24));
-		ecList.add(new double(4.95));
-		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
+		Set<Double> ecList = new HashSet<>();
+		ecList.add(10.24);
+		ecList.add(4.95);
+		partials.add(new Invoice(300.00, billList, ecList, null, null, null, null));
 
-		billList.add(new double(50));
-		ecList.remove(1);
-		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
+		billList.add(50.25);
+		ecList.remove(4.95);
+		partials.add(new Invoice(300.00, billList, ecList, null, null, null, null));
 
-		billList.remove(1);
-		billList.remove(0);
-		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
+		billList.remove(10.20);
+		partials.add(new Invoice(300.00, billList, ecList, null, null, null, null));
 
 		billList.clear();
 		ecList.clear();
-		partials.add(new Invoice(new double(300), billList, ecList, null, null, null, null));
+		partials.add(new Invoice(300.00, billList, ecList, null, null, null, null));
 
-		container = new InvoiceContainer(new Date(), partials, null);*/
-		container = new InvoiceContainer(new Date(), null, null);
+		container = new InvoiceContainer(new Date(), partials, null);
 	}
 
 	@Test

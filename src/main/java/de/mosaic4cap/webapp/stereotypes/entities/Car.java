@@ -1,17 +1,15 @@
 package de.mosaic4cap.webapp.stereotypes.entities;
 
-import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.apache.log4j.Logger;
 
 /**
  * Created by Lobedan on 30.08.2014.
  */
-@Entity
+@javax.persistence.Entity
 @Table(name = "car")
 public class Car extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Car.class);
@@ -33,7 +31,6 @@ public class Car extends AbstractMosaic4CapEntity {
 	}
 
 	public String getBadge() {
-
 		return badge;
 	}
 

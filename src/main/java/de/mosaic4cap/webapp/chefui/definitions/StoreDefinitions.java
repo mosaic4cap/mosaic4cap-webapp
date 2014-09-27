@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import de.mosaic4cap.webapp.restservice.services.StoreService;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
 /**
@@ -24,11 +23,12 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
 public class StoreDefinitions implements Definitions {
 	private static final Logger LOGGER = Logger.getLogger(StoreDefinitions.class);
 
-	@Autowired
-	private StoreService storeService;
+//	@Autowired
+//	private StoreService storeService;
 
 	@ModelAttribute(value = "allStores")
 	public List<Store> getAllStores() throws Exception {
-		return storeService.getAll(new Long(1));
+//		return storeService.getAll(new Long(1));
+	return null;
 	}
 }

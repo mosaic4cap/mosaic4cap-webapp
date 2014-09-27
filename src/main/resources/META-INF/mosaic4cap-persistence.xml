@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns="http://www.springframework.org/schema/beans" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 	<!--<tx:annotation-driven />-->
 	<context:annotation-config/>
 
 	<!-- database definitions -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"/>
+	<jpa:repositories base-package="de.mosaic4cap.webapp.restservice.repository" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="hibernateProperties">
-			<props>
-				<!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-				<prop key="hibernate.dialect">${spring.datasource.dialect}</prop>
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.connection.autocommit">false</prop>
-				<prop key="hibernate.current_session_context_class">thread</prop>
-				<prop key="hibernate.connection.pool_size">1</prop>
-				<prop key="current_session_context_class">thread</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				<prop key="hibernate.format_sql">false</prop>
-				<prop key="hibernate.use_sql_comments">false</prop>
-			</props>
-		</property>
-		<property name="dataSource" ref="dataSource"/>
+	<!-- Entity Manager -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
 				<value>de.mosaic4cap.webapp.stereotypes.entities</value>
 			</list>
 		</property>
-		<property name="annotatedPackages">
-			<list>
-				<value>de.mosaic4cap.webapp.stereotypes.entities</value>
-			</list>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="true" />
+				<property name="databasePlatform" value="${spring.datasource.dialect}" />
+				<property name="generateDdl" value="true" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+			</props>
 		</property>
 	</bean>
-	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" destroy-method="close">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="url" value="${spring.datasource.url}"/>
 		<property name="driverClassName" value="${spring.datasource.driverClassName}"/>
 		<property name="username" value="${spring.datasource.username}"/>
 		<property name="password" value="${spring.datasource.password}"/>
 	</bean>
 
+	<jdbc:initialize-database data-source="dataSource" enabled="true">
+		<jdbc:script location="classpath:sql/buisness_schema_sql_hsql.sql"/>
+	</jdbc:initialize-database>
+
 	<!-- insert application.properties -->
-	<context:property-placeholder location="classpath:/application.properties"/>
+	<context:property-placeholder location="classpath:/persistence.properties"/>
 
 </beans>

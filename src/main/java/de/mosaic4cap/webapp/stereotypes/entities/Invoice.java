@@ -219,7 +219,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
     Double sum = 0.00;
     if (bills != null) {
       for (double d : bills) {
-        sum = Double.sum(sum, d);
+        sum += d;
       }
     }
     return sum;
@@ -230,7 +230,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
     Double sum = 0.00;
     if (ecpayment != null) {
       for (double d : ecpayment) {
-        sum = Double.sum(sum, d);
+				sum += d;
       }
     }
     return sum;

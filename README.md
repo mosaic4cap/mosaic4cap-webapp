@@ -12,7 +12,7 @@ Mosaic4Cap <-> Call - a - Pizza Application
 ## "Frameworks"
 * Spring Framework
 * Spring Boot
-* Hibernate
+* Spring Data JPA
 * Webjars
 * Thymeleaf HTML 5 Template Enginge
 * Cucumber BDD
