@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import de.mosaic4cap.webapp.restservice.services.StoreService;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
 /**
  * Created by Lobedan on 24.09.2014.
  * <p>
  * ControllerAdvice to push storedata directly into thymleaf
- * it uses {@link de.mosaic4cap.webapp.restservice.controller.StoreRestController} to get all
+ * it uses {@link de.mosaic4cap.webapp.restservice.services.StoreService} to get all
  * data and push it with {@link org.springframework.web.bind.annotation.ModelAttribute} into
  * html template
  *
@@ -23,12 +24,11 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
 public class StoreDefinitions implements Definitions {
 	private static final Logger LOGGER = Logger.getLogger(StoreDefinitions.class);
 
-//	@Autowired
-//	private StoreService storeService;
+	@Autowired
+	private StoreService storeService;
 
-	@ModelAttribute(value = "allStores")
+	@ModelAttribute(value = "allStores") //TODO: add parameter
 	public List<Store> getAllStores() throws Exception {
-//		return storeService.getAll(new Long(1));
-	return null;
+		return storeService.findAllByChefId(1);
 	}
 }
