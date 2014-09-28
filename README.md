@@ -21,4 +21,5 @@ Mosaic4Cap <-> Call - a - Pizza Application
 * Cucumber BDD
 * JUnit
 * Maven
-* test
+
+* Test mit TeamCity BuildTool bald evtl. auf eigenem Server
