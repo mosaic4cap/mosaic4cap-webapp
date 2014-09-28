@@ -38,5 +38,4 @@ public class InvoiceRepositoryTest {
 		List<Invoice> invoiceList = repository.findByStoreId(10L);
 		assertThat(invoiceList.size(), is(0));
 	}
-
 }

@@ -54,10 +54,10 @@ public class InvoiceService extends BaseRestService<Invoice, Long> implements II
 				}
 			}
 
-			hashMap.entrySet().forEach(entry -> invoiceContainers.add(new InvoiceContainer(entry.getKey(), entry.getValue(), entry.getValue().get(0).getStore()))
+			hashMap.entrySet().forEach(entry -> invoiceContainers
+					.add(new InvoiceContainer(entry.getKey(), entry.getValue(), entry.getValue().get(0).getStore()))
 			);
 
-			invoiceContainers.forEach(LOGGER::error);
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}

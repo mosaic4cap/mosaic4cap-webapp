@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import org.apache.log4j.Logger;
 
 import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
@@ -23,6 +27,8 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.StoreType;
  */
 @Entity
 @Table(name = "store")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Store extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Store.class);
 
@@ -64,7 +70,6 @@ public class Store extends AbstractMosaic4CapEntity {
 	}
 
 	public String getStoreKey() {
-
 		return storeKey;
 	}
 

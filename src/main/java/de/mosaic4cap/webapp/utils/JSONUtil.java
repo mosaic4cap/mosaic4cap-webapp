@@ -2,6 +2,7 @@ package de.mosaic4cap.webapp.utils;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,5 +25,9 @@ public class JSONUtil {
 
 	public static <T> T fromJSON(String json, Class<T> valueType) throws IOException {
 		return OBJECT_MAPPER.readValue(json, valueType);
+	}
+
+	public static <T> T fromJSON(String json, TypeReference<?> valueTypeRef) throws Exception {
+		return OBJECT_MAPPER.readValue(json, valueTypeRef);
 	}
 }

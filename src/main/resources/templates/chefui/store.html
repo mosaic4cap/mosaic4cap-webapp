@@ -33,7 +33,7 @@
 			<div class="row" th:unless="${#lists.isEmpty(allStores)}">
 				<div class="col-md-4" th:each="store : ${allStores}">
 					<div class="panel panel-info">
-						<div class="panel-heading">Store: Identification</div>
+						<div class="panel-heading">Store: <span th:text="${store.storeKey}">Identification</span></div>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-md-2"><i class="fa fa-building-o fa-5x"></i></div>
@@ -47,13 +47,13 @@
 								<div class="col-md-4">
 									<ul class="list-unstyled">
 										<li>Mitarbeiter:
-											<small><i>xy</i></small>
+											<small><i th:text="${#sets.size(store.drivers)}">0</i></small>
 										</li>
 										<li>Autos:
-											<small><i>xy</i></small>
+											<small><i th:text="${#sets.size(store.cars)}">0</i></small>
 										</li>
 										<li>Umsatz:
-											<small><i>uvwxyz.xx &euro;</i></small>
+											<small><i>0.00 &euro;</i></small>
 										</li>
 									</ul>
 								</div>

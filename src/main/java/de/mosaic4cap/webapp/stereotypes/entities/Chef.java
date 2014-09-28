@@ -9,6 +9,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -16,6 +20,8 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "chef")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Chef extends AbstractMosaic4CapEntity {
   private static final Logger LOGGER = Logger.getLogger(Chef.class);
 

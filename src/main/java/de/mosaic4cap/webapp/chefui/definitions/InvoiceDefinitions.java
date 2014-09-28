@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import de.mosaic4cap.webapp.restservice.services.InvoiceService;
 import de.mosaic4cap.webapp.stereotypes.domain.InvoiceContainer;
+import de.mosaic4cap.webapp.utils.JSONUtil;
 
 /**
  * Created by Lobedan on 24.09.2014.
@@ -25,8 +26,17 @@ public class InvoiceDefinitions implements Definitions {
 	@Autowired
 	private InvoiceService service;
 
+	private List<InvoiceContainer> globalList;
+
 	@ModelAttribute(value = "allInvoices") //TODO: add parameters to access different stores
-	public List<InvoiceContainer> getAllInvoices() {
-		return service.getGroupedInvoices(1);
+	public List<InvoiceContainer> getAllInvoices() throws Exception {
+		this.globalList =  service.getGroupedInvoices(1);
+		return globalList;
+	}
+
+	@ModelAttribute(value = "allInvoicesJSON") //TODO: add parameters to access different stores
+	public String getAllInvoicesASJson() throws Exception {
+//		List<InvoiceContainer> list =  service.getGroupedInvoices(1);
+		return JSONUtil.toJSON(globalList);
 	}
 }

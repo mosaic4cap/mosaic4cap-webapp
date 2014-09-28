@@ -29,218 +29,218 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
 @Entity
 @Table(name = "invoice")
 public class Invoice extends AbstractMosaic4CapEntity {
-  private static final Logger LOGGER = Logger.getLogger(Invoice.class);
+	private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
-  private Double income;
+	private Double income;
 
-  //  @OneToMany(targetEntity = Double.class)
-  //  @JoinTable(name="invoice_bill")
-  //  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
-  //  @OneToMany(mappedBy = "id")
-  @JoinTable(name = "invoice_bill")
-  @ElementCollection(targetClass = Double.class)
-  private Set<Double> bills;
+	//  @OneToMany(targetEntity = Double.class)
+	//  @JoinTable(name="invoice_bill")
+	//  @MapKeyColumn(name="billid", unique = false, nullable = true, insertable = true, updatable = true)
+	//  @OneToMany(mappedBy = "id")
+	@JoinTable(name = "invoice_bill")
+	@ElementCollection(targetClass = Double.class)
+	private Set<Double> bills;
 
-  //  @OneToMany(mappedBy = "id")
-  @JoinTable(name = "invoice_ec")
-  @ElementCollection(targetClass = Double.class)
-  private Set<Double> ecpayment;
+	//  @OneToMany(mappedBy = "id")
+	@JoinTable(name = "invoice_ec")
+	@ElementCollection(targetClass = Double.class)
+	private Set<Double> ecpayment;
 
 	@ManyToOne
 	@JoinColumn
-  private Store store;
+	private Store store;
 
-  @OneToOne
-  private Driver driver;
+	@OneToOne
+	private Driver driver;
 
-  @OneToOne
-  private Car car;
+	@OneToOne
+	private Car car;
 
-  @Temporal(TemporalType.DATE)
-  private Date date = new Date();
+	@Temporal(TemporalType.DATE)
+	private Date date = new Date();
 
-  @Enumerated(EnumType.ORDINAL)
-  private InvoiceType state = InvoiceType.OPEN;
+	@Enumerated(EnumType.ORDINAL)
+	private InvoiceType state = InvoiceType.OPEN;
 
-  public Invoice() {
-  }
+	public Invoice() {
+	}
 
-  public Invoice(Double aIncome,
-                 Set<Double> aBills,
-                 Set<Double> aEcpayment,
-                 Store aStore,
-                 Driver aDriver,
-                 Car aCar,
-                 Date aDate) {
-    income = aIncome;
-    bills = aBills;
-    ecpayment = aEcpayment;
-    store = aStore;
-    driver = aDriver;
-    car = aCar;
-    date = aDate;
-  }
+	public Invoice(Double aIncome,
+								 Set<Double> aBills,
+								 Set<Double> aEcpayment,
+								 Store aStore,
+								 Driver aDriver,
+								 Car aCar,
+								 Date aDate) {
+		income = aIncome;
+		bills = aBills;
+		ecpayment = aEcpayment;
+		store = aStore;
+		driver = aDriver;
+		car = aCar;
+		date = aDate;
+	}
 
-  public Double getIncome() {
+	public Double getIncome() {
 
-    return income;
-  }
+		return income;
+	}
 
-  public void setIncome(Double aIncome) {
-    income = aIncome;
-  }
+	public void setIncome(Double aIncome) {
+		income = aIncome;
+	}
 
-  public Set<Double> getBills() {
-    return bills;
-  }
+	public Set<Double> getBills() {
+		return bills;
+	}
 
-  public void setBills(Set<Double> aBills) {
-    bills = aBills;
-  }
+	public void setBills(Set<Double> aBills) {
+		bills = aBills;
+	}
 
-  public Set<Double> getEcpayment() {
-    return ecpayment;
-  }
+	public Set<Double> getEcpayment() {
+		return ecpayment;
+	}
 
-  public void setEcpayment(Set<Double> aEcpayment) {
-    ecpayment = aEcpayment;
-  }
+	public void setEcpayment(Set<Double> aEcpayment) {
+		ecpayment = aEcpayment;
+	}
 
-  public Store getStore() {
-    return store;
-  }
+	public Store getStore() {
+		return store;
+	}
 
-  public void setStore(Store aStore) {
-    store = aStore;
-  }
+	public void setStore(Store aStore) {
+		store = aStore;
+	}
 
-  public Driver getDriver() {
-    return driver;
-  }
+	public Driver getDriver() {
+		return driver;
+	}
 
-  public void setDriver(Driver aDriver) {
-    driver = aDriver;
-  }
+	public void setDriver(Driver aDriver) {
+		driver = aDriver;
+	}
 
-  public Car getCar() {
-    return car;
-  }
+	public Car getCar() {
+		return car;
+	}
 
-  public void setCar(Car aCar) {
-    car = aCar;
-  }
+	public void setCar(Car aCar) {
+		car = aCar;
+	}
 
-  public Date getDate() {
-    return date;
-  }
+	public Date getDate() {
+		return date;
+	}
 
-  public void setDate(Date aDate) {
-    date = aDate;
-  }
+	public void setDate(Date aDate) {
+		date = aDate;
+	}
 
-  public InvoiceType getState() {
-    return state;
-  }
+	public InvoiceType getState() {
+		return state;
+	}
 
-  public void setState(InvoiceType aState) {
-    state = aState;
-  }
+	public void setState(InvoiceType aState) {
+		state = aState;
+	}
 
-  @Override
-  public boolean equals(Object o) {
+	@Override
+	public boolean equals(Object o) {
 
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    if (!super.equals(o)) {
-      return false;
-    }
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		if (!super.equals(o)) {
+			return false;
+		}
 
-    Invoice invoice = (Invoice) o;
+		Invoice invoice = (Invoice) o;
 
-    if (bills != null ? !bills.equals(invoice.bills) : invoice.bills != null) {
-      return false;
-    }
-    if (car != null ? !car.equals(invoice.car) : invoice.car != null) {
-      return false;
-    }
-    if (date != null ? !date.equals(invoice.date) : invoice.date != null) {
-      return false;
-    }
-    if (driver != null ? !driver.equals(invoice.driver) : invoice.driver != null) {
-      return false;
-    }
-    if (ecpayment != null ? !ecpayment.equals(invoice.ecpayment) : invoice.ecpayment != null) {
-      return false;
-    }
-    if (income != null ? !income.equals(invoice.income) : invoice.income != null) {
-      return false;
-    }
-    if (state != invoice.state) {
-      return false;
-    }
+		if (bills != null ? !bills.equals(invoice.bills) : invoice.bills != null) {
+			return false;
+		}
+		if (car != null ? !car.equals(invoice.car) : invoice.car != null) {
+			return false;
+		}
+		if (date != null ? !date.equals(invoice.date) : invoice.date != null) {
+			return false;
+		}
+		if (driver != null ? !driver.equals(invoice.driver) : invoice.driver != null) {
+			return false;
+		}
+		if (ecpayment != null ? !ecpayment.equals(invoice.ecpayment) : invoice.ecpayment != null) {
+			return false;
+		}
+		if (income != null ? !income.equals(invoice.income) : invoice.income != null) {
+			return false;
+		}
+		if (state != invoice.state) {
+			return false;
+		}
 
-    return true;
-  }
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + (income != null ? income.hashCode() : 0);
-    result = 31 * result + (bills != null ? bills.hashCode() : 0);
-    result = 31 * result + (ecpayment != null ? ecpayment.hashCode() : 0);
-    result = 31 * result + (driver != null ? driver.hashCode() : 0);
-    result = 31 * result + (car != null ? car.hashCode() : 0);
-    result = 31 * result + (date != null ? date.hashCode() : 0);
-    result = 31 * result + (state != null ? state.hashCode() : 0);
-    return result;
-  }
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (income != null ? income.hashCode() : 0);
+		result = 31 * result + (bills != null ? bills.hashCode() : 0);
+		result = 31 * result + (ecpayment != null ? ecpayment.hashCode() : 0);
+		result = 31 * result + (driver != null ? driver.hashCode() : 0);
+		result = 31 * result + (car != null ? car.hashCode() : 0);
+		result = 31 * result + (date != null ? date.hashCode() : 0);
+		result = 31 * result + (state != null ? state.hashCode() : 0);
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    return "Invoice{" +
-           "income=" + income +
-           ", bills=" + bills +
-           ", ecpayment=" + ecpayment +
-           ", driver=" + driver +
-           ", car=" + car +
-           ", date=" + date +
-           ", state=" + state +
-           '}';
-  }
+	@Override
+	public String toString() {
+		return "Invoice{" +
+					 "income=" + income +
+					 ", bills=" + bills +
+					 ", ecpayment=" + ecpayment +
+					 ", driver=" + driver +
+					 ", car=" + car +
+					 ", date=" + date +
+					 ", state=" + state +
+					 '}';
+	}
 
-  /* some buisness logic methods, <b>DO NOT DELETE</b> in order to autogenerate
-        getter and setter!
-         */
-  @Transient
-  public Double getBillAmount() {
-    Double sum = 0.00;
-    if (bills != null) {
-      for (double d : bills) {
-        sum += d;
-      }
-    }
-    return sum;
-  }
-
-  @Transient
-  public Double getECAmount() {
-    Double sum = 0.00;
-    if (ecpayment != null) {
-      for (double d : ecpayment) {
+	/* some buisness logic methods, <b>DO NOT DELETE</b> in order to autogenerate
+				getter and setter!
+				 */
+	@Transient
+	public Double getBillAmount() {
+		Double sum = 0.00;
+		if (bills != null) {
+			for (double d : bills) {
 				sum += d;
-      }
-    }
-    return sum;
-  }
+			}
+		}
+		return sum;
+	}
 
 	@Transient
-	public Date getModDate() throws Exception{
+	public Double getECAmount() {
+		Double sum = 0.00;
+		if (ecpayment != null) {
+			for (double d : ecpayment) {
+				sum += d;
+			}
+		}
+		return sum;
+	}
+
+	@Transient
+	public Date getModDate() throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-		String date = sdf.format(this.date);
-		return sdf.parse(date);
+		String tmpdate = sdf.format(this.date);
+		return sdf.parse(tmpdate);
 	}
 }

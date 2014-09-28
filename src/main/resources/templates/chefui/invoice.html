@@ -14,12 +14,15 @@
 	<script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
 	<script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
 
-	<title></title>
-	<style>
 
-	</style>
+	<script src="../../../js/mosaic4cap.js"></script>
+	<script src="../../../js/services/crudService.js"></script>
+	<script src="../../../js/controller/invoiceController.js"></script>
+
+	<title></title>
 </head>
-<body>
+<body ng-app="mosaic4cap">
+
 <div th:replace="fragments/header :: navigation"></div>
 
 <div id="wrapper">
@@ -27,15 +30,17 @@
 	<div th:replace="fragments/sidebar :: navigation-chefui"></div>
 
 	<!-- Page Content -->
-	<div id="page-content-wrapper">
-		<div class="container-fluid">
+	<div id="page-content-wrapper" >
+		<div class="container-fluid" th:attr="data-invoices=${allInvoicesJSON}" ng-controller="invoiceController" id="invoices">
 			<div class="row">
 				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 					<div class="row">
 						<div class="panel panel-default">
+
 							<div class="panel-heading">
-								<strong>Abrechnungen <span class="label label-danger">5 Offen</span> <span
-										class="label label-success">10 Abgeschlossen</span></strong>
+								<strong>Abrechnungen: <span th:text="${#lists.size(allInvoices)}"></span> insgesamt {{invoices.count}}
+									<!--<span class="label label-danger" th:text="${#lists.size(allInvoices)}">0 Offen</span> <span
+										class="label label-success">10 Abgeschlossen</span>--></strong>
 
 								<div class="btn-group btn-group-sm">
 									<button type="button" class="btn btn-default">
@@ -217,7 +222,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="well">
+				{{invoices | json}}
+			</div>
 		</div>
+
 	</div>
 	<!-- /#page-content-wrapper -->
 

@@ -59,12 +59,14 @@ public class StoreServiceTest {
 	@Test
 	public void canFindByStoreKeyAndChefIDFailureStoreKey() throws Exception {
 		Store s = service.findByStoreKeyAndChefId("Sample Store 5", 1);
-		assertThat(s, nullValue());}
+		assertThat(s, nullValue());
+	}
 
 	@Test
 	public void canFindByStoreKeyAndChefIDFailure() throws Exception {
 		Store s = service.findByStoreKeyAndChefId("hans", 2);
-		assertThat(s, nullValue());}
+		assertThat(s, nullValue());
+	}
 
 	@Test
 	public void canFindAllByChefIDSuccess() throws Exception {

@@ -180,6 +180,11 @@
 			<artifactId>jquery-ui</artifactId>
 			<version>1.10.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jasmine</artifactId>
+			<version>2.0.0</version>
+		</dependency>
 
 		<!-- style libaries -->
 		<dependency>
@@ -293,6 +298,33 @@
 		</pluginManagement>
 
 		<plugins>
+			<!--<plugin>-->
+				<!--<groupId>com.github.searls</groupId>-->
+				<!--<artifactId>jasmine-maven-plugin</artifactId>-->
+				<!--<version>1.3.1.5</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<goals>-->
+							<!--<goal>test</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<configuration>-->
+					<!--<preloadSources>-->
+						<!--<source>webjars/jquery/2.1.0/jquery.js</source>-->
+					<!--</preloadSources>-->
+					<!--<jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>-->
+					<!--<sourceIncludes>-->
+						<!--<include>**/*.js</include>-->
+					<!--</sourceIncludes>-->
+					<!--<jsTestSrcDir>${project.basedir}/src/test/webapp/js</jsTestSrcDir>-->
+					<!--<specIncludes>-->
+						<!--<include>**/*.js</include>-->
+						<!--<include>**/*.coffee</include>-->
+					<!--</specIncludes>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -311,6 +343,22 @@
 			<!--<skipTests>false</skipTests>-->
 			<!--</configuration>-->
 			<!--</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${project.basedir}</directory>
+							<includes>
+								<include>*.zip</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
 		</plugins>
 
 		<resources>

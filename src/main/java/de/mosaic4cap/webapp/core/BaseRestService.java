@@ -15,23 +15,24 @@ import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
  * Created by Lobedan on 27.09.2014.
  */
 @SuppressWarnings("unchecked")
-public abstract class BaseRestService<T extends AbstractMosaic4CapEntity, ID extends Serializable> implements IBaseRestService<T, ID> {
+public abstract class BaseRestService<T extends AbstractMosaic4CapEntity, ID extends Serializable>
+		implements IBaseRestService<T, ID> {
 	private static final Logger LOGGER = Logger.getLogger(BaseRestService.class);
 
 	private CrudRepository repository;
 
 	@Override
-	public T get(long id){
+	public T get(long id) {
 		return (T) repository.findOne(id);
 	}
 
 	@Override
-	public List<T> getAll(){
+	public List<T> getAll() {
 		return (List<T>) repository.findAll();
 	}
 
 	@Override
-	public T push(T obj){
+	public T push(T obj) {
 		return (T) repository.save(obj);
 	}
 
@@ -44,7 +45,7 @@ public abstract class BaseRestService<T extends AbstractMosaic4CapEntity, ID ext
 	}
 
 	@Override
-	public boolean delete(T obj){
+	public boolean delete(T obj) {
 		try {
 			repository.delete(obj);
 		} catch (EmptyResultDataAccessException e) {

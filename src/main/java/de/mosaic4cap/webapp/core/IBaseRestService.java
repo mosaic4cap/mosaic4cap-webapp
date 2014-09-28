@@ -10,6 +10,7 @@ import de.mosaic4cap.webapp.stereotypes.entities.AbstractMosaic4CapEntity;
 /**
  * Created by Lobedan on 27.09.2014.
  */
+@SuppressWarnings("unchecked")
 public interface IBaseRestService<T extends AbstractMosaic4CapEntity, ID extends Serializable> {
 
 	public T get(long id);
