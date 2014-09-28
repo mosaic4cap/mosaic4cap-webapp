@@ -27,208 +27,223 @@
 
 <div id="wrapper">
 
-	<div th:replace="fragments/sidebar :: navigation-chefui"></div>
+<div th:replace="fragments/sidebar :: navigation-chefui"></div>
 
-	<!-- Page Content -->
-	<div id="page-content-wrapper" >
-		<div class="container-fluid" th:attr="data-invoices=${allInvoicesJSON}" ng-controller="invoiceController" id="invoices">
-			<div class="row">
-				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-					<div class="row">
-						<div class="panel panel-default">
+<!-- Page Content -->
+<div id="page-content-wrapper">
+<div class="container-fluid" th:attr="data-invoices=${allInvoicesJSON}" ng-controller="invoiceController" id="invoices">
+<div class="row">
+<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+	<div class="row">
+		<div class="panel panel-default">
 
-							<div class="panel-heading">
-								<strong>Abrechnungen: <span th:text="${#lists.size(allInvoices)}"></span> insgesamt {{invoices.count}}
-									<!--<span class="label label-danger" th:text="${#lists.size(allInvoices)}">0 Offen</span> <span
-										class="label label-success">10 Abgeschlossen</span>--></strong>
+			<div class="panel-heading">
+				<strong>Abrechnungen: <i th:text="${#lists.size(allInvoices)}">0</i> insgesamt
+					<!--<span class="label label-danger" th:text="${#lists.size(allInvoices)}">0 Offen</span> <span
+						class="label label-success">10 Abgeschlossen</span>--></strong>
 
-								<div class="btn-group btn-group-sm">
-									<button type="button" class="btn btn-default">
-										<i class="fa fa-sort-amount-asc"></i>
-									</button>
-									<button type="button" class="btn btn-default">
-										<i class="fa fa-sort-amount-desc"></i>
-									</button>
-								</div>
-
-							</div>
-							<div class="panel-body">
-								<div class="list-group" th:unless="${#lists.isEmpty(allInvoices)}">
-									<a href="#" class="list-group-item" th:each="invoice : ${allInvoices}">
-										<h4 class="list-group-item-heading">Abrechnung: <i th:text="${{invoice.date}}">dd.MM.yyyy</i>
-											<span class="label" th:classappend="${invoice.state.state.label}"
-												  th:text="${invoice.state.txt}">Offen</span>
-										</h4>
-
-										<p class="list-group-item-text">
-										<ul class="list-inline invoice-footer">
-										<li>Umsatz: <b> <span th:text="${invoice.amount}">0,00</span>&euro;</b></li>
-										<li><b th:text="${invoice.partialsCount}">0</b> Teilabrechnungen</li>
-										<li><b th:text="${invoice.ecCount}">0</b> EC Zahlungen</li>
-										<li><b th:text="${invoice.billCount}">0</b> Rechnungen</li>
-										</ul>
-										</p>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-1 col-lg-1"></div>
-				<div class="col-md-6 col-lg-6">
-					<div class="row">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="row">
-									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-										<ul class="pager">
-											<li class="previous"><a href="#">&larr; Vorherige</a></li>
-										</ul>
-									</div>
-									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
-										 style="text-align: center; padding-top: 15px;">
-										<h4>Abrechnung x/y, dd.MM.yyyy</h4>
-									</div>
-									<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-										<ul class="pager">
-											<li class="next"><a href="#">N&auml;chste &rarr;</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel-body">
-								<div class="container-fluid well">
-
-									<div class="table-responsive">
-										<form class="form" role="form">
-											<table class="table table-hover">
-												<thead>
-												<tr>
-													<th>Position</th>
-													<th>Gemeldet</th>
-													<th>Tats&auml;chlich</th>
-												</tr>
-												</thead>
-												<tbody>
-												<tr>
-													<td>Fahrer</td>
-													<td><p class="form-controll-static">\$fahrer</p></td>
-													<td><input type="text" class="form-control" placeholder="\$fahrer"/>
-													</td>
-												</tr>
-												<tr>
-													<td>Auto</td>
-													<td><p class="form-controll-static">\$auto</p></td>
-													<td>
-														<select class="form-control">
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
-														</select>
-													</td>
-												</tr>
-												<tr>
-													<td>Einnahme</td>
-													<td><p class="form-controll-static">\$fahrer</p></td>
-													<td><input type="text" class="form-control" placeholder="\$fahrer"/>
-													</td>
-												</tr>
-												<tr>
-													<td>Ausgabe</td>
-													<td>
-														<p class="form-controll-static">
-														<ul class="list-unstyled">
-															<li>Pos 1</li>
-															<li>Pos 2</li>
-															<li>Pos 3</li>
-															<li>Pos 4</li>
-															<li>Pos 5</li>
-															<li>POS1-POS5</li>
-														</ul>
-														</p>
-													</td>
-													<td>
-														<p class="form-controll-static">
-														<ul class="list-unstyled">
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-														</ul>
-														</p>
-													</td>
-												</tr>
-												<tr>
-													<td>EC Karte</td>
-													<td>
-														<p class="form-controll-static">
-														<ul class="list-unstyled">
-															<li>Pos 1</li>
-															<li>Pos 2</li>
-															<li>Pos 3</li>
-															<li>Pos 4</li>
-															<li>Pos 5</li>
-															<li>POS1-POS5</li>
-														</ul>
-														</p>
-													</td>
-													<td>
-														<p class="form-controll-static">
-														<ul class="list-unstyled">
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-															<li><input type="text" class="form-control"
-																	   placeholder="\pos1"/></li>
-														</ul>
-														</p>
-													</td>
-												</tr>
-												<tr>
-													<td>Gesamt</td>
-													<td><p class="form-controll-static">\$gesamt</p></td>
-													<td><input type="text" class="form-control" placeholder="Gesamt"/>
-													</td>
-												</tr>
-												<tr>
-													<td colspan="3" style="text-align: center">
-														<button type="button" class="btn btn-default btn-lg">Drucken
-														</button>
-													</td>
-												</tr>
-												</tbody>
-											</table>
-										</form>
-									</div>
-									<!-- /. table-form-invoice -->
-
-								</div>
-								<!-- /. container-flud well -->
-							</div>
-						</div>
-					</div>
+				<div class="btn-group btn-group-sm">
+					<button type="button" class="btn btn-default">
+						<i class="fa fa-sort-amount-asc" ng-click="predicate = 'date'; reverse=false"></i>
+					</button>
+					<button type="button" class="btn btn-default">
+						<i class="fa fa-sort-amount-desc" ng-click="predicate = 'date'; reverse=true"></i>
+					</button>
 				</div>
 			</div>
-			<div class="well">
-				{{invoices | json}}
+			<div class="panel-body">
+				<div class="list-group">
+					<div ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
+						<!--shows only if invoice is set-->
+						<a href="#" class="list-group-item active" ng-if="setted_invoice == $index">
+							<h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
+								<span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
+								<span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
+							</h4>
+
+							<p class="list-group-item-text">
+							<ul class="list-inline invoice-footer">
+								<li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
+								<li><b>{{invoice.partialsCount}}</b> Teilabrechnungen</li>
+								<li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
+								<li><b>{{invoice.billCount}}</b> Rechnungen</li>
+							</ul>
+							</p>
+						</a>
+
+						<!-- shows if invoice is NOT set, which is default -->
+						<a href="#" class="list-group-item" ng-if="setted_invoice != $index"
+						   ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
+							<h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
+								<span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
+								<span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
+							</h4>
+
+							<p class="list-group-item-text">
+							<ul class="list-inline invoice-footer">
+								<li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
+								<li><b>{{invoice.partialsCount}}</b> Teilabrechnungen</li>
+								<li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
+								<li><b>{{invoice.billCount}}</b> Rechnungen</li>
+							</ul>
+							</p>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
-
 	</div>
-	<!-- /#page-content-wrapper -->
+</div>
+<div class="col-md-1 col-lg-1"></div>
+<div class="col-md-6 col-lg-6">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<ul class="pager">
+							<li class="previous" ng-if="setted_par_invoice > 0">
+								<button class="btn btn-default" ng-click="previous()">&larr; Vorherige</button>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+						 style="text-align: center; padding-top: 15px;">
+						<h4>Abrechnung {{setted_par_invoice+1}}/{{invoices[setted_invoice].partialsCount}}, {{invoices[setted_invoice].partials[setted_par_invoice].date | date:"dd.MM.yyyy"}}</h4>
+					</div>
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+						<ul class="pager">
+							<li class="next" ng-if="invoices[setted_invoice].partialsCount-1 > setted_par_invoice">
+								<button class="btn btn-default" ng-click="next()">N&auml;chste &rarr;</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="container-fluid well">
+
+					<div class="table-responsive">
+						<form class="form" role="form">
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Position</th>
+									<th>Gemeldet</th>
+									<th>Tats&auml;chlich</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>Fahrer</td>
+									<td><p class="form-controll-static">
+										{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}
+										{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}</p>
+									</td>
+									<td><input type="text" class="form-control"
+											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}} {{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Auto</td>
+									<td><p class="form-controll-static">
+										{{invoices[setted_invoice].partials[setted_par_invoice].car}}</p></td>
+									<td>
+										<select class="form-control">
+											<option>1</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Einnahme</td>
+									<td><p class="form-controll-static">
+										{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}</p></td>
+									<td><input type="text" class="form-control"
+											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Ausgabe</td>
+									<td>
+										<p class="form-controll-static">
+										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
+											<li>{{ec | currency:'&euro;'}}</li>
+										</ul>
+										<ul class="list-unstyled">
+											<li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}</i></li>
+										</ul>
+										</p>
+									</td>
+									<td>
+										<p class="form-controll-static">
+										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
+											<li><input type="text" class="form-control" placeholder="{{ec | currency:'&euro;'}}"/></li>
+										</ul>
+										<ul class="list-unstyled">
+											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}"/></li>
+										</ul>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td>EC Karte</td>
+									<td>
+										<p class="form-controll-static">
+										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
+											<li>{{bill | currency:'&euro;'}}</li>
+										</ul>
+										<ul class="list-unstyled">
+											<li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}</i></li>
+										</ul>
+										</p>
+									</td>
+									<td>
+										<p class="form-controll-static">
+										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
+											<li><input type="text" class="form-control" placeholder="{{bill | currency:'&euro;'}}"/></li>
+										</ul>
+										<ul class="list-unstyled">
+											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}"/></li>
+										</ul>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td>Gesamt</td>
+									<td><p class="form-controll-static">{{complete_count | currency:'&euro;'}}</p></td>
+									<td><input type="text" class="form-control" placeholder="{{complete_count | currency:'&euro;'}}"/>
+									</td>
+								</tr>
+								<!--<tr>-->
+									<!--<td colspan="3" style="text-align: center">-->
+										<!--<button type="button" class="btn btn-default btn-lg">Drucken-->
+										<!--</button>-->
+									<!--</td>-->
+								<!--</tr>-->
+								</tbody>
+							</table>
+						</form>
+					</div>
+					<!-- /. table-form-invoice -->
+
+				</div>
+				<!-- /. container-flud well -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="well">
+	{{invoices | json}}
+</div>
+</div>
+
+</div>
+<!-- /#page-content-wrapper -->
 
 </div>
 </body>
