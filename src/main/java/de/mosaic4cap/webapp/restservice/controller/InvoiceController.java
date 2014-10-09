@@ -31,7 +31,10 @@ public class InvoiceController extends BaseRestController {
   @Autowired
   private ResponseBuilder responseBuilder;
 
-  @RequestMapping(value = "/invoice/post", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/invoice/post",
+      method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
   public PostResponse postInvoice(@RequestBody InvoiceContainer container) {
     LOGGER.info(container.getPartials());
     service.updateInvoices(container.getPartials());
