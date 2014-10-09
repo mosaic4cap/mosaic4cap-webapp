@@ -67,6 +67,13 @@ public class InvoiceService extends BaseRestService<Invoice, Long> implements II
 
   @Override
   public List<Invoice> updateInvoices(List<Invoice> invoices) {
+    //is list empty? then return a empty list
+    if (invoices.size() == 0) {
+      return new ArrayList<>();
+    }
+    if (invoices.contains(null)) {
+      throw new IllegalArgumentException("ArrayList may not contain null element @" + this.getClass().getName());
+    }
     repository.save(invoices); //assume nothing bad happend, then return input invoices
     return invoices;
   }
