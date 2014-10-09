@@ -1,7 +1,10 @@
 package de.mosaic4cap.webapp.stereotypes.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.apache.log4j.Logger;
 
@@ -14,6 +17,7 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
  * <p>
  * Container for invoice objects with some buisnesslogic in it
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InvoiceContainer extends Container {
 	private static final Logger LOGGER = Logger.getLogger(InvoiceContainer.class);
 
@@ -29,7 +33,16 @@ public class InvoiceContainer extends Container {
 		date = pDate;
 		partials = pPartials;
 		store = pStore;
+
+    state = areAllClosed() ? InvoiceType.CLOSED : InvoiceType.OPEN;
 	}
+
+  public boolean areAllClosed() {
+    List<Boolean> closed = new ArrayList<>();
+
+    partials.forEach(i -> closed.add(i.getState() == InvoiceType.CLOSED));
+    return !closed.contains(false);
+  }
 
 	public Double getEcAmount() {
 		double sum = 0.00;

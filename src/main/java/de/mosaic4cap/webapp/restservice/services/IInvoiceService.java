@@ -12,4 +12,6 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
 public interface IInvoiceService extends IBaseRestService<Invoice, Long> {
 	List<Invoice> getAllByStoreId(long storeId);
 	public List<InvoiceContainer> getGroupedInvoices(long storeid);
+
+  public List<Invoice> updateInvoices(List<Invoice> invoices);
 }

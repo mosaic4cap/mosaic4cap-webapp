@@ -298,7 +298,7 @@
 		</pluginManagement>
 
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>com.github.klieber</groupId>
 				<artifactId>phantomjs-maven-plugin</artifactId>
 				<version>0.4</version>
@@ -335,8 +335,8 @@
 					<preloadSources>
 						<source>webjars/jquery.js</source>
 						<source>webjars/angular.js</source>
-						<!--<source>${project.basedir}/src/main/webapp/vendor/jquery/1.10.2/jquery.js</source>-->
-						<!--<source>${project.basedir}/src/main/webapp/vendor/angular/1.0.5/angular.js</source>-->
+						-<source>${project.basedir}/src/main/webapp/vendor/jquery/1.10.2/jquery.js</source>
+						<source>${project.basedir}/src/main/webapp/vendor/angular/1.0.5/angular.js</source>
 					</preloadSources>
 					<jsSrcDir>${project.basedir}/src/main/webapp/js</jsSrcDir>
 					<sourceIncludes>
@@ -348,7 +348,7 @@
 						<include>**/*.coffee</include>
 					</specIncludes>
 				</configuration>
-			</plugin>
+			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

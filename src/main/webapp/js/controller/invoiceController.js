@@ -42,4 +42,21 @@ angular.module('controller.invoiceController', [
 						  - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
 
 
+                        $scope.update = function() {
+                            $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].state = "CLOSED";
+                            crudService.post($scope.invoices[$scope.setted_invoice], "/rest/invoice/post")
+                                    .success(function (data) {
+                                                 $rootScope.messages = { message: "Abrechnungen erfolgreich gespeichert!", type: "alert-success"};
+                                                 $log.log("[invoiceController.post] saved data", container);
+                                             })
+                                    .error(function (data, status) {
+                                               $log.log("[invoiceController.post] could not save data", data, status);
+                                               if (data.error) {
+                                                   $rootScope.messages = { message: data.error, type: "alert-danger" };
+                                               } else {
+                                                   $rootScope.messages = { message: "Server nicht erreichbar!", type: "alert-danger" };
+                                               }
+                                           });
+                        }
+
 					});

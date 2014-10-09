@@ -140,22 +140,21 @@
 										{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}
 										{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}</p>
 									</td>
-									<td><input type="text" class="form-control"
-											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}} {{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}"/>
-									</td>
-								</tr>
+									<td>
+                                        <ul class="list-inline">
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.firstName"/></li>
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.lastName" /></li>
+                                        </ul>
+                                    </td>
+                                </tr>
 								<tr>
 									<td>Auto</td>
 									<td><p class="form-controll-static">
-										{{invoices[setted_invoice].partials[setted_par_invoice].car}}</p></td>
+										{{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}</p></td>
 									<td>
-										<select class="form-control">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
-										</select>
+										<input type="text" class="form-control" placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].car.badge"/>
 									</td>
 								</tr>
 								<tr>
@@ -163,11 +162,11 @@
 									<td><p class="form-controll-static">
 										{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}</p></td>
 									<td><input type="text" class="form-control"
-											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}"/>
+											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].income"/>
 									</td>
 								</tr>
 								<tr>
-									<td>Ausgabe</td>
+									<td>EC-Karte</td>
 									<td>
 										<p class="form-controll-static">
 										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
@@ -180,17 +179,17 @@
 									</td>
 									<td>
 										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
-											<li><input type="text" class="form-control" placeholder="{{ec | currency:'&euro;'}}"/></li>
+										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment track by $index">
+											<li><input type="text" class="form-control" placeholder="{{ec | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecpayment[$index]" /></li>
 										</ul>
 										<ul class="list-unstyled">
-											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}"/></li>
+											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecamount"/></li>
 										</ul>
 										</p>
 									</td>
 								</tr>
 								<tr>
-									<td>EC Karte</td>
+									<td>Rechnungen</td>
 									<td>
 										<p class="form-controll-static">
 										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
@@ -203,11 +202,11 @@
 									</td>
 									<td>
 										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
-											<li><input type="text" class="form-control" placeholder="{{bill | currency:'&euro;'}}"/></li>
+										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills track by $index">
+											<li><input type="text" class="form-control" placeholder="{{bill | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].bills[$index]"/></li>
 										</ul>
 										<ul class="list-unstyled">
-											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}"/></li>
+											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].billAmount"/></li>
 										</ul>
 										</p>
 									</td>
@@ -215,7 +214,12 @@
 								<tr>
 									<td>Gesamt</td>
 									<td><p class="form-controll-static">{{complete_count | currency:'&euro;'}}</p></td>
-									<td><input type="text" class="form-control" placeholder="{{complete_count | currency:'&euro;'}}"/>
+									<td><input type="text" class="form-control" placeholder="{{complete_count | currency:'&euro;'}}" ng-model="complete_count" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" style="text-align: center">
+										<button type="button" class="btn btn-default btn-lg" ng-click="update()">Speichern</button>
 									</td>
 								</tr>
 								<!--<tr>-->
@@ -238,7 +242,7 @@
 </div>
 </div>
 <div class="well">
-	{{invoices | json}}
+	<pre>{{invoices | json}}</pre>
 </div>
 </div>
 

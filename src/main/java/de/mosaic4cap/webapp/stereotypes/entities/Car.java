@@ -56,7 +56,6 @@ public class Car extends AbstractMosaic4CapEntity {
 
 	@Override
 	public boolean equals(Object o) {
-
 		if (this == o) {
 			return true;
 		}

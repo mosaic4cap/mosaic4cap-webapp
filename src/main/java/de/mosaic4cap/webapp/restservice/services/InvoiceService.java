@@ -30,6 +30,7 @@ public class InvoiceService extends BaseRestService<Invoice, Long> implements II
 		super.setRepository(repo);
 	}
 
+
 	@Override
 	public List<Invoice> getAllByStoreId(long storeId) {
 		return repository.findByStoreId(storeId);
@@ -63,4 +64,10 @@ public class InvoiceService extends BaseRestService<Invoice, Long> implements II
 		}
 		return invoiceContainers;
 	}
+
+  @Override
+  public List<Invoice> updateInvoices(List<Invoice> invoices) {
+    repository.save(invoices); //assume nothing bad happend, then return input invoices
+    return invoices;
+  }
 }

@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.apache.log4j.Logger;
 
 import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
@@ -28,6 +30,7 @@ import de.mosaic4cap.webapp.stereotypes.enumeration.InvoiceType;
  */
 @Entity
 @Table(name = "invoice")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoice extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Invoice.class);
 
