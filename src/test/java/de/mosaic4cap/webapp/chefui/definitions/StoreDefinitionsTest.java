@@ -8,7 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.mosaic4cap.webapp.Application;
+import de.mosaic4cap.webapp.chefui.controller.StoreCache;
 import de.mosaic4cap.webapp.restservice.services.StoreService;
+import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,5 +32,13 @@ public class StoreDefinitionsTest {
 	@Test
 	public void canGetAllStores() throws Exception {
 		assertThat(definitions.getAllStores(), is(service.findAllByChefId(1)));
+	}
+
+	@Test
+	public void canGetChoosenStore() throws Exception {
+		long id = 1;
+		StoreCache.get().setStoreId(id);
+		Store store = service.get(1);
+		assertThat(store, is(definitions.getStore()));
 	}
 }

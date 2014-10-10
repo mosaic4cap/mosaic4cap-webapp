@@ -15,5 +15,7 @@ public interface StoreRepository extends CrudRepository<Store, Long> {
 
 	public Store findByStoreKeyAndChefId(String storeKey, long chefid);
 
+	public Store findByIdAndChefId(long id, long chefid);
+
 	public List<Store> findAllByChefId(long chefId);
 }

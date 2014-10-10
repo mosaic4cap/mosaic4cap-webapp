@@ -19,9 +19,4 @@ public class HomeController extends AbstractChefUIController {
 	public String home() {
 		return "chefui/test";
 	}
-
-	@RequestMapping("/invoice")
-	public String invoice() {
-		return "chefui/invoice";
-	}
 }

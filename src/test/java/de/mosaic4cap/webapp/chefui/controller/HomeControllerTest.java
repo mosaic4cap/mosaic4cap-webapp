@@ -38,12 +38,5 @@ public class HomeControllerTest {
 				get("/chefui/"))
 				.andExpect(status().isOk());
 	}
-
-	@Test
-	public void invoiceRouteIsAccessable() throws Exception {
-		this.mockMvc.perform(
-				get("/chefui/invoice"))
-				.andExpect(status().isOk());
-	}
 }
 

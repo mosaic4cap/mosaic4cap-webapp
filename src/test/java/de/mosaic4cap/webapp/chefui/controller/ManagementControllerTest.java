@@ -40,13 +40,6 @@ public class ManagementControllerTest {
 	}
 
 	@Test
-	public void employeeRouteIsAccessable() throws Exception {
-		this.mockMvc.perform(
-				get("/chefui/manage/employee"))
-				.andExpect(status().isOk());
-	}
-
-	@Test
 	public void salesRouteIsAccessable() throws Exception {
 		this.mockMvc.perform(
 				get("/chefui/manage/sales"))

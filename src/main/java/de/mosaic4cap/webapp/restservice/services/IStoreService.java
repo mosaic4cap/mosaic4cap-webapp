@@ -14,5 +14,7 @@ public interface IStoreService extends IBaseRestService<Store, Long> {
 
 	public Store findByStoreKeyAndChefId(String storeKey, long chefid);
 
+	public Store findByStoreIdAndChefId(long storeId, long chefid);
+
 	public List<Store> findAllByChefId(long chefId);
 }

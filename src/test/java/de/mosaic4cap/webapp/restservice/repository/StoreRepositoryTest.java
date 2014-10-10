@@ -88,6 +88,28 @@ public class StoreRepositoryTest {
 		List<Store> storeList = repository.findAllByChefId(2);
 		assertThat(storeList.size(), is(0));
 	}
+
+	@Test
+	public void canFindStoreByIdAndChefSuccess() throws Exception {
+		Store store = repository.findByIdAndChefId(1, 1);
+		assertThat(store, notNullValue());
+
+		store = repository.findByIdAndChefId(2, 1);
+		assertThat(store, notNullValue());
+	}
+
+	@Test
+	public void canFindStoreByIdAndChefFailureWrongChef() throws Exception {
+		Store store = repository.findByIdAndChefId(1, 3);
+		assertThat(store, nullValue());
+	}
+
+	@Test
+	public void canFindStoreByIdAndChefFailureWrongId() throws Exception {
+		Store store = repository.findByIdAndChefId(1001, 1);
+		assertThat(store, nullValue());
+	}
+
 //
 //	@Test
 //	public void canDeleteStoreByKeySuccess() throws Exception {

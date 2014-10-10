@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import de.mosaic4cap.webapp.chefui.controller.StoreCache;
 import de.mosaic4cap.webapp.restservice.services.StoreService;
 import de.mosaic4cap.webapp.stereotypes.entities.Store;
 
@@ -17,8 +18,6 @@ import de.mosaic4cap.webapp.stereotypes.entities.Store;
  * it uses {@link de.mosaic4cap.webapp.restservice.services.StoreService} to get all
  * data and push it with {@link org.springframework.web.bind.annotation.ModelAttribute} into
  * html template
- *
- * TODO: replace storeService.getAll with real userinformations
  */
 @ControllerAdvice
 public class StoreDefinitions implements Definitions {
@@ -27,8 +26,27 @@ public class StoreDefinitions implements Definitions {
 	@Autowired
 	private StoreService storeService;
 
-	@ModelAttribute(value = "allStores") //TODO: add parameter
+	/**
+	 * Passes all stores related to logged in chef to thymeleaf template engine
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	@ModelAttribute(value = "allStores") //TODO: add parameter from authentication, related to issue #11
 	public List<Store> getAllStores() throws Exception {
 		return storeService.findAllByChefId(1);
 	}
+
+	/**
+	 * passes choosen store by chef to thymeleaf
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+  @ModelAttribute(value = "choosenStore")
+  public Store getStore() throws Exception {
+    LOGGER.debug("Selected StoreId " + StoreCache.get().getStoreId());
+		LOGGER.debug("Store " + storeService.get(StoreCache.get().getStoreId()));
+    return storeService.findByStoreIdAndChefId(StoreCache.get().getStoreId(), 1);
+  }
 }

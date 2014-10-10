@@ -35,6 +35,11 @@ public class StoreService extends BaseRestService<Store, Long> implements IStore
 	}
 
 	@Override
+	public Store findByStoreIdAndChefId(long storeId, long chefid) {
+		return repository.findByIdAndChefId(storeId, chefid);
+	}
+
+	@Override
 	public List<Store> findAllByChefId(long chefId) {
 		return repository.findAllByChefId(chefId);
 	}

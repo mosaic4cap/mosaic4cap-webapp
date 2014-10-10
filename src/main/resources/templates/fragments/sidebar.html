@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
-	<link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
 
-	<link href="../../../css/sidebar.css" rel="stylesheet"/>
+    <link href="../../../css/sidebar.css" rel="stylesheet"/>
 </head>
 <body>
 <div id="sidebar-wrapper" th:fragment="navigation-chefui">
-	<ul class="sidebar-nav">
-		<li class="sidebar-brand">
-			<a href="/chefui/"><i class="fa fa-tachometer"></i> <span
-					th:text="#{sidebar.dashboard}">Dashboard</span></a>
-		</li>
-		<li><a href="#"><i class="fa fa-calendar"></i> <s><span th:text="#{sidebar.schedule}">Dienstplan</span></s></a>
-		</li>
-		<li><a href="/chefui/manage/store"><i class="fa fa-building"></i> <span th:text="#{sidebar.store}">Storeverwaltung</span></a>
-		</li>
-		<li><a href="/chefui/manage/sales"><i class="fa fa-line-chart"></i> <span th:text="#{sidebar.sales}">Umsatzstatistik</span></a>
-		</li>
-		<li><a href="#"><i class="fa fa-cogs"></i> <s><span th:text="#{sidebar.settings}">Einstellungen</span></s></a>
-		</li>
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="/chefui/"><i class="fa fa-tachometer"></i> <span
+                    th:text="#{sidebar.dashboard}">Dashboard</span></a>
+        </li>
+        <li><a href="#"><i class="fa fa-calendar"></i> <s><span th:text="#{sidebar.schedule}">Dienstplan</span></s></a>
+        </li>
+        <li><a href="/chefui/manage/store"><i class="fa fa-building"></i> <span th:text="#{sidebar.store}">Storeverwaltung</span></a>
+        </li>
+        <li><a href="/chefui/manage/sales"><i class="fa fa-line-chart"></i> <span th:text="#{sidebar.sales}">Umsatzstatistik</span></a>
+        </li>
+        <li><a href="#"><i class="fa fa-cogs"></i> <s><span th:text="#{sidebar.settings}">Einstellungen</span></s></a>
+        </li>
 
-		<li><h4>Store xy</h4></li>
-		<li><a href="/chefui/invoice/"><i class="fa fa-eur"></i> <span
-				th:text="#{sidebar.store.invoice}">Abrechnungen</span></a></li>
-		<li><a href="/chefui/manage/employee"><i class="fa fa-user"></i> <span th:text="#{sidebar.store.employee}">Mitarbeiter</span></a>
-		</li>
-		<li><a href="/chefui/manage/car"><i class="fa fa-car"></i> <span th:text="#{sidebar.store.car}">Fuhrpark</span></a>
-		</li>
-	</ul>
+        <div th:if="*{choosenStore} != null">
+            <li><h4>Store <span th:text="*{choosenStore.storeKey}">Alibaba</span></h4></li>
+            <li><a href="/chefui/manage/store/"
+                   th:href="@{/chefui/store/{storeId}/dashboard(storeId=*{choosenStore.id})}"><i
+                    class="fa fa-tachometer"></i> <span
+                    th:text="#{sidebar.store.overview}">&Uuml;bersicht</span></a></li>
+            <li><a href="/chefui/manage/store/"
+                   th:href="@{/chefui/store/{storeId}/invoice(storeId=*{choosenStore.id})}"><i
+                    class="fa fa-eur"></i> <span
+                    th:text="#{sidebar.store.invoice}">Abrechnungen</span></a></li>
+            <li><a href="/chefui/manage/store/"
+                   th:href="@{/chefui/store/{storeId}/employee(storeId=*{choosenStore.id})}"><i class="fa fa-user"></i>
+                <span th:text="#{sidebar.store.employee}">Mitarbeiter</span></a>
+            </li>
+            <li><a href="/chefui/manage/store/" th:href="@{/chefui/store/{storeId}/car(storeId=*{choosenStore.id})}"><i
+                    class="fa fa-car"></i> <span th:text="#{sidebar.store.car}">Fuhrpark</span></a>
+            </li>
+        </div>
+    </ul>
 </div>
 </body>
 </html>

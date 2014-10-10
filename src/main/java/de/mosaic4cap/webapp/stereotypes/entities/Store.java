@@ -119,7 +119,6 @@ public class Store extends AbstractMosaic4CapEntity {
 
 	@Override
 	public boolean equals(Object o) {
-
 		if (this == o) {
 			return true;
 		}
