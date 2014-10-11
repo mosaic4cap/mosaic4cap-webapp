@@ -20,50 +20,59 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  */
 @Service
 public class InvoiceService extends BaseRestService<Invoice, Long> implements IInvoiceService {
-	private static final Logger LOGGER = Logger.getLogger(InvoiceService.class);
+  private static final Logger LOGGER = Logger.getLogger(InvoiceService.class);
 
-	private InvoiceRepository repository;
+  private InvoiceRepository repository;
 
-	@Autowired
-	public void setRepository(InvoiceRepository repo) {
-		repository = repo;
-		super.setRepository(repo);
-	}
+  @Autowired
+  public void setRepository(InvoiceRepository repo) {
+    repository = repo;
+    super.setRepository(repo);
+  }
 
+  @Override
+  public List<Invoice> getAllByStoreId(long storeId) {
+    return repository.findByStoreId(storeId);
+  }
 
-	@Override
-	public List<Invoice> getAllByStoreId(long storeId) {
-		return repository.findByStoreId(storeId);
-	}
+  @Override
+  public List<InvoiceContainer> getGroupedInvoices(long storeid) {
+    List<InvoiceContainer> invoiceContainers = new ArrayList<>();
 
-	@Override
-	public List<InvoiceContainer> getGroupedInvoices(long storeid) {
-		List<InvoiceContainer> invoiceContainers = new ArrayList<>();
+    try {
+      List<Invoice> allInvoices = repository.findByStoreId(storeid);
 
-		try {
-			List<Invoice> allInvoices = repository.findByStoreId(storeid);
+      Map<Date, List<Invoice>> hashMap = new HashMap<>();
 
-			Map<Date, List<Invoice>> hashMap = new HashMap<>();
-
-			for (Invoice i : allInvoices) {
-				if (!hashMap.containsKey(i.getModDate())) {
-					List<Invoice> list = new ArrayList<>();
-					list.add(i);
-					hashMap.put(i.getModDate(), list);
-				} else {
-					hashMap.get(i.getModDate()).add(i);
-				}
-			}
-
-			hashMap.entrySet().forEach(entry -> invoiceContainers
-					.add(new InvoiceContainer(entry.getKey(), entry.getValue(), entry.getValue().get(0).getStore()))
-			);
-
-		} catch (Exception e) {
-			LOGGER.error(e);
-		}
-		return invoiceContainers;
-	}
+      for (Invoice i : allInvoices) {
+        if (!hashMap.containsKey(i.getModDate())) {
+          List<Invoice> list = new ArrayList<>();
+          list.add(i);
+          hashMap.put(i.getModDate(), list);
+        } else {
+          hashMap.get(i.getModDate()).add(i);
+        }
+      }
+      //just modify chef in every invoice
+      hashMap.entrySet().forEach(entry -> /*{
+                                   entry.getValue().get(0).getStore().setChef(null);
+																	 entry.getValue().get(0).getStore().setCars(null);
+																	 entry.getValue().get(0).getStore().setDrivers(null);
+																	 entry.getValue().get(0).getStore().getInvoices().forEach(i -> {
+																		 i.setStore(null);
+																		 i.getDriver().setStore(null);
+																		 i.getCar().setStore(null);
+																	 });*/
+                                     invoiceContainers.add(new InvoiceContainer(entry.getKey(),
+                                                                                entry.getValue(),
+                                                                                entry.getValue().get(0).getStore()))
+                                 //}
+      );
+    } catch (Exception e) {
+      LOGGER.error(e);
+    }
+    return invoiceContainers;
+  }
 
   @Override
   public List<Invoice> updateInvoices(List<Invoice> invoices) {

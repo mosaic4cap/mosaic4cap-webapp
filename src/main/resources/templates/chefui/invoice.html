@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
-	<link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="" th:href="@{/webjars/font-awesome/4.2.0/css/font-awesome.min.css}" rel="stylesheet"/>
 
-	<link href="../../../css/bootstrap.theme.css" rel="stylesheet"/>
-	<link href="../../../css/sidebar.css" rel="stylesheet"/>
-	<link href="../../../css/invoice.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap.theme.css" rel="stylesheet"/>
+    <link href="../../../css/sidebar.css" rel="stylesheet"/>
+    <link href="../../../css/invoice.css" rel="stylesheet"/>
 
-	<script src="" th:src="@{/webjars/jquery/2.1.0/jquery.min.js}"></script>
-	<script src="" th:src="@{/webjars/jquery-ui/1.10.4/ui/jquery-ui.js}"></script>
-	<script src="" th:src="@{/webjars/angularjs/1.3.0-rc.2/angular.min.js}"></script>
-	<script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
-	<script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
+    <script src="" th:src="@{/webjars/jquery/2.1.0/jquery.min.js}"></script>
+    <script src="" th:src="@{/webjars/jquery-ui/1.10.4/ui/jquery-ui.js}"></script>
+    <script src="" th:src="@{/webjars/angularjs/1.3.0-rc.2/angular.min.js}"></script>
+    <script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+    <script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
 
 
-	<script src="../../../js/mosaic4cap.js"></script>
-	<script src="../../../js/services/crudService.js"></script>
-	<script src="../../../js/controller/invoiceController.js"></script>
+    <script src="../../../js/modules/invoice.js"></script>
+    <script src="../../../js/modules/configuration.js"></script>
+    <script src="../../../js/services/crudService.js"></script>
+    <script src="../../../js/controller/invoiceController.js"></script>
 
-	<title></title>
+    <title></title>
 </head>
-<body ng-app="mosaic4cap">
+<body ng-app="mosaic4cap-chefui-invoice">
 
 <div th:replace="fragments/header :: navigation"></div>
 
@@ -34,215 +35,244 @@
 <div class="container-fluid" th:attr="data-invoices=${allInvoicesJSON}" ng-controller="invoiceController" id="invoices">
 <div class="row">
 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-	<div class="row">
-		<div class="panel panel-default">
+    <div class="row">
+        <div class="panel panel-default">
 
-			<div class="panel-heading">
-				<strong>Abrechnungen: <i th:text="${#lists.size(allInvoices)}">0</i> insgesamt
-					<!--<span class="label label-danger" th:text="${#lists.size(allInvoices)}">0 Offen</span> <span
-						class="label label-success">10 Abgeschlossen</span>--></strong>
+            <div class="panel-heading">
+                <strong>Abrechnungen: <i th:text="${#lists.size(allInvoices)}">0</i> insgesamt</strong>
 
-				<div class="btn-group btn-group-sm">
-					<button type="button" class="btn btn-default">
-						<i class="fa fa-sort-amount-asc" ng-click="predicate = 'date'; reverse=false"></i>
-					</button>
-					<button type="button" class="btn btn-default">
-						<i class="fa fa-sort-amount-desc" ng-click="predicate = 'date'; reverse=true"></i>
-					</button>
-				</div>
-			</div>
-			<div class="panel-body">
-				<div class="list-group">
-					<div ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
-						<!--shows only if invoice is set-->
-						<a href="#" class="list-group-item active" ng-if="setted_invoice == $index">
-							<h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
-								<span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
-								<span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
-							</h4>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-default">
+                        <i class="fa fa-sort-amount-asc" ng-click="predicate = 'date'; reverse=false"></i>
+                    </button>
+                    <button type="button" class="btn btn-default">
+                        <i class="fa fa-sort-amount-desc" ng-click="predicate = 'date'; reverse=true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <div ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
+                        <!--shows only if invoice is set-->
+                        <a href="#" class="list-group-item active" ng-if="setted_invoice == $index">
+                            <h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
+                                <span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
+                                <span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
+                            </h4>
 
-							<p class="list-group-item-text">
-							<ul class="list-inline invoice-footer">
-								<li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
-								<li><b>{{invoice.partialsCount}}</b> Teilabrechnungen</li>
-								<li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
-								<li><b>{{invoice.billCount}}</b> Rechnungen</li>
-							</ul>
-							</p>
-						</a>
+                            <p class="list-group-item-text">
+                            <ul class="list-inline invoice-footer">
+                                <li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
+                                <li><b>{{invoice.partials.length}}</b> Teilabrechnungen</li>
+                                <li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
+                                <li><b>{{invoice.billCount}}</b> Rechnungen</li>
+                            </ul>
+                            </p>
+                        </a>
 
-						<!-- shows if invoice is NOT set, which is default -->
-						<a href="#" class="list-group-item" ng-if="setted_invoice != $index"
-						   ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
-							<h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
-								<span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
-								<span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
-							</h4>
+                        <!-- shows if invoice is NOT set, which is default -->
+                        <a href="#" class="list-group-item" ng-if="setted_invoice != $index"
+                           ng-repeat="invoice in invoices track by $index" ng-click="setInvoice($index)">
+                            <h4 class="list-group-item-heading">Abrechnung: <i>{{invoice.date | date: 'dd.MM.yyyy'}}</i>
+                                <span class="label label-danger" ng-if="invoice.state == 'OPEN'">Offen</span>
+                                <span class="label label-success" ng-if="invoice.state == 'CLOSED'">Abgeschlossen</span>
+                            </h4>
 
-							<p class="list-group-item-text">
-							<ul class="list-inline invoice-footer">
-								<li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
-								<li><b>{{invoice.partialsCount}}</b> Teilabrechnungen</li>
-								<li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
-								<li><b>{{invoice.billCount}}</b> Rechnungen</li>
-							</ul>
-							</p>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <p class="list-group-item-text">
+                            <ul class="list-inline invoice-footer">
+                                <li>Umsatz: <b> <span>{{invoice.amount}}</span>&euro;</b></li>
+                                <li><b>{{invoice.partials.length}}</b> Teilabrechnungen</li>
+                                <li><b>{{invoice.ecCount}}</b> EC Zahlungen</li>
+                                <li><b>{{invoice.billCount}}</b> Rechnungen</li>
+                            </ul>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="col-md-1 col-lg-1"></div>
 <div class="col-md-6 col-lg-6">
-	<div class="row">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<div class="row">
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<ul class="pager">
-							<li class="previous" ng-if="setted_par_invoice > 0">
-								<button class="btn btn-default" ng-click="previous()">&larr; Vorherige</button>
-							</li>
-						</ul>
-					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
-						 style="text-align: center; padding-top: 15px;">
-						<h4>Abrechnung {{setted_par_invoice+1}}/{{invoices[setted_invoice].partialsCount}}, {{invoices[setted_invoice].partials[setted_par_invoice].date | date:"dd.MM.yyyy"}}</h4>
-					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-						<ul class="pager">
-							<li class="next" ng-if="invoices[setted_invoice].partialsCount-1 > setted_par_invoice">
-								<button class="btn btn-default" ng-click="next()">N&auml;chste &rarr;</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="panel-body">
-				<div class="container-fluid well">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <ul class="pager">
+                            <li class="previous" ng-if="setted_par_invoice > 0">
+                                <button class="btn btn-default" ng-click="previous()">&larr; Vorherige</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"
+                         style="text-align: center; padding-top: 15px;">
+                        <h4>Abrechnung {{setted_par_invoice+1}}/{{invoices[setted_invoice].partials.length}},
+                            {{invoices[setted_invoice].partials[setted_par_invoice].date | date:"dd.MM.yyyy"}}</h4>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <ul class="pager">
+                            <li class="next" ng-if="invoices[setted_invoice].partials.length-1 > setted_par_invoice">
+                                <button class="btn btn-default" ng-click="next()">N&auml;chste &rarr;</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="container-fluid well">
 
-					<div class="table-responsive">
-						<form class="form" role="form">
-							<table class="table table-hover">
-								<thead>
-								<tr>
-									<th>Position</th>
-									<th>Gemeldet</th>
-									<th>Tats&auml;chlich</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td>Fahrer</td>
-									<td><p class="form-controll-static">
-										{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}
-										{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}</p>
-									</td>
-									<td>
+                    <div class="table-responsive">
+                        <form class="form" role="form">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Gemeldet</th>
+                                    <th>Tats&auml;chlich</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Fahrer</td>
+                                    <td><p class="form-controll-static">
+                                        {{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}
+                                        {{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}</p>
+                                    </td>
+                                    <td>
                                         <ul class="list-inline">
                                             <li><input type="text" class="form-control"
-                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.firstName"/></li>
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.firstName}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.firstName"/>
+                                            </li>
                                             <li><input type="text" class="form-control"
-                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.lastName" /></li>
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].driver.lastName}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].driver.lastName"/>
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
-								<tr>
-									<td>Auto</td>
-									<td><p class="form-controll-static">
-										{{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}</p></td>
-									<td>
-										<input type="text" class="form-control" placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].car.badge"/>
-									</td>
-								</tr>
-								<tr>
-									<td>Einnahme</td>
-									<td><p class="form-controll-static">
-										{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}</p></td>
-									<td><input type="text" class="form-control"
-											   placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].income"/>
-									</td>
-								</tr>
-								<tr>
-									<td>EC-Karte</td>
-									<td>
-										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
-											<li>{{ec | currency:'&euro;'}}</li>
-										</ul>
-										<ul class="list-unstyled">
-											<li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}</i></li>
-										</ul>
-										</p>
-									</td>
-									<td>
-										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment track by $index">
-											<li><input type="text" class="form-control" placeholder="{{ec | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecpayment[$index]" /></li>
-										</ul>
-										<ul class="list-unstyled">
-											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecamount"/></li>
-										</ul>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<td>Rechnungen</td>
-									<td>
-										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
-											<li>{{bill | currency:'&euro;'}}</li>
-										</ul>
-										<ul class="list-unstyled">
-											<li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}</i></li>
-										</ul>
-										</p>
-									</td>
-									<td>
-										<p class="form-controll-static">
-										<ul class="list-unstyled" ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills track by $index">
-											<li><input type="text" class="form-control" placeholder="{{bill | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].bills[$index]"/></li>
-										</ul>
-										<ul class="list-unstyled">
-											<li><input type="text" class="form-control"  placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}" ng-model="invoices[setted_invoice].partials[setted_par_invoice].billAmount"/></li>
-										</ul>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<td>Gesamt</td>
-									<td><p class="form-controll-static">{{complete_count | currency:'&euro;'}}</p></td>
-									<td><input type="text" class="form-control" placeholder="{{complete_count | currency:'&euro;'}}" ng-model="complete_count" />
-									</td>
-								</tr>
-								<tr>
-									<td colspan="3" style="text-align: center">
-										<button type="button" class="btn btn-default btn-lg" ng-click="update()">Speichern</button>
-									</td>
-								</tr>
-								<!--<tr>-->
-									<!--<td colspan="3" style="text-align: center">-->
-										<!--<button type="button" class="btn btn-default btn-lg">Drucken-->
-										<!--</button>-->
-									<!--</td>-->
-								<!--</tr>-->
-								</tbody>
-							</table>
-						</form>
-					</div>
-					<!-- /. table-form-invoice -->
+                                <tr>
+                                    <td>Auto</td>
+                                    <td><p class="form-controll-static">
+                                        {{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}</p></td>
+                                    <td>
+                                        <input type="text" class="form-control"
+                                               placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].car.badge}}"
+                                               ng-model="invoices[setted_invoice].partials[setted_par_invoice].car.badge"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Einnahme</td>
+                                    <td><p class="form-controll-static">
+                                        {{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}</p>
+                                    </td>
+                                    <td><input type="text" class="form-control"
+                                               placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].income | currency:'&euro;'}}"
+                                               ng-model="invoices[setted_invoice].partials[setted_par_invoice].income"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EC-Karte</td>
+                                    <td>
+                                        <p class="form-controll-static">
+                                        <ul class="list-unstyled"
+                                            ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment">
+                                            <li>{{ec | currency:'&euro;'}}</li>
+                                        </ul>
+                                        <ul class="list-unstyled">
+                                            <li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].ecamount
+                                                | currency:'&euro;'}}</i></li>
+                                        </ul>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="form-controll-static">
+                                        <ul class="list-unstyled"
+                                            ng-repeat="ec in invoices[setted_invoice].partials[setted_par_invoice].ecpayment track by $index">
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{ec | currency:'&euro;'}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecpayment[$index]"/>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-unstyled">
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].ecamount | currency:'&euro;'}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].ecamount"/>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Rechnungen</td>
+                                    <td>
+                                        <p class="form-controll-static">
+                                        <ul class="list-unstyled"
+                                            ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills">
+                                            <li>{{bill | currency:'&euro;'}}</li>
+                                        </ul>
+                                        <ul class="list-unstyled">
+                                            <li><b>Gesamt:</b> <i>{{invoices[setted_invoice].partials[setted_par_invoice].billAmount
+                                                | currency:'&euro;'}}</i></li>
+                                        </ul>
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="form-controll-static">
+                                        <ul class="list-unstyled"
+                                            ng-repeat="bill in invoices[setted_invoice].partials[setted_par_invoice].bills track by $index">
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{bill | currency:'&euro;'}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].bills[$index]"/>
+                                            </li>
+                                        </ul>
+                                        <ul class="list-unstyled">
+                                            <li><input type="text" class="form-control"
+                                                       placeholder="{{invoices[setted_invoice].partials[setted_par_invoice].billAmount | currency:'&euro;'}}"
+                                                       ng-model="invoices[setted_invoice].partials[setted_par_invoice].billAmount"/>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gesamt</td>
+                                    <td><p class="form-controll-static">{{complete_count | currency:'&euro;'}}</p></td>
+                                    <td><input type="text" class="form-control"
+                                               placeholder="{{complete_count | currency:'&euro;'}}"
+                                               ng-model="complete_count"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align: center">
+                                        <button type="button" class="btn btn-default btn-lg" ng-click="update()">
+                                            Speichern
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!--<tr>-->
+                                <!--<td colspan="3" style="text-align: center">-->
+                                <!--<button type="button" class="btn btn-default btn-lg">Drucken-->
+                                <!--</button>-->
+                                <!--</td>-->
+                                <!--</tr>-->
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <!-- /. table-form-invoice -->
 
-				</div>
-				<!-- /. container-flud well -->
-			</div>
-		</div>
-	</div>
+                </div>
+                <!-- /. container-flud well -->
+            </div>
+        </div>
+    </div>
 </div>
 </div>
-<div class="well">
-	<pre>{{invoices | json}}</pre>
+<div class="well" ng-if="enviroment == 'development'">
+    <pre>{{invoices | json}}</pre>
 </div>
 </div>
 

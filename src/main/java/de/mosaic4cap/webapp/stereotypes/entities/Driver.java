@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -20,7 +22,7 @@ import org.apache.log4j.Logger;
 public class Driver extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
-
+@JsonIgnore
   @ManyToOne
   @JoinColumn
   private Store store;

@@ -8,7 +8,7 @@ import de.mosaic4cap.webapp.stereotypes.PostResponse;
 
 /**
  * Created by svenklemmer on 09.10.14.
- *
+ * <p>
  * Builder for creating standard response messages for get, post, put and delete
  * request methods
  * can also be used to display exceptions on a normal controller
@@ -32,9 +32,14 @@ public class ResponseBuilder implements IResponseBuilder {
   }
 
   public ResponseBuilder postResponse() {
-    this.object = new PostResponse();
-    return this;
-  }
+    StringBuilder sb = new StringBuilder();
+    if (objectList != null) {
+      sb.append("Received Objectlist ").append("with ").append(objectList.size()).append(" Elements");
+      sb.append("\n").append(objectList);
+    }
+      this.object = new PostResponse(sb.toString());
+      return this;
+    }
 
   public ResponseBuilder putResponse() {
     this.object = new PostResponse();

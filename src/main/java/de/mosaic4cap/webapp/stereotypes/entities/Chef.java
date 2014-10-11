@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 @Entity
 @Table(name = "chef")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Chef extends AbstractMosaic4CapEntity {
   private static final Logger LOGGER = Logger.getLogger(Chef.class);
@@ -99,7 +99,7 @@ public class Chef extends AbstractMosaic4CapEntity {
       return false;
     }
 
-		return true;
+    return true;
   }
 
   @Override

@@ -29,6 +29,6 @@ public class NotificationDefinitionsTest {
 
 	@Test
 	public void canGetNotificationList() throws Exception {
-		assertThat(notificationService.getAll(), is(definitions.getNotifications()));
+		assertThat(notificationService.getAll().size(), is(definitions.getNotifications().size()));
 	}
 }
