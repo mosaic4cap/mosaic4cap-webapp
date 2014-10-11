@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.mosaic4cap.webapp.Application;
+import de.mosaic4cap.webapp.chefui.controller.StoreCache;
 import de.mosaic4cap.webapp.stereotypes.domain.InvoiceContainer;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -27,7 +28,8 @@ public class InvoiceDefinitionsTest {
 	private InvoiceDefinitions definitions;
 
 	@Test
-	public void canGetAllInvoices() throws Exception {
+	public void canGetAllInvoicesInAContainer() throws Exception {
+		StoreCache.get().setStoreId(1);
 		List<InvoiceContainer> invoiceContainers = definitions.getAllInvoices();
 		assertThat(invoiceContainers.size(), is(1));
 	}
