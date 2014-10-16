@@ -34,7 +34,7 @@ public class EmployeeDefinitions implements Definitions {
 
   @ModelAttribute(value = "allEmployeesJSON")
   public String getAllEmployeessJSON() throws Exception {
-    return JSONUtil.toJSON(service.findByStoreId(StoreCache.get().getStoreId()));
+    return JSONUtil.toJson(service.findByStoreId(StoreCache.get().getStoreId()));
   }
 
 

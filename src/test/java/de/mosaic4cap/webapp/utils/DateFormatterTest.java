@@ -40,4 +40,6 @@ public class DateFormatterTest {
 		Date d = new Date();
 		assertThat(new SimpleDateFormat("dd.MM.yyyy").format(d), is(dateFormatter.print(d, Locale.ENGLISH)));
 	}
+
+
 }

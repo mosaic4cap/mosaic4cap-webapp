@@ -38,6 +38,6 @@ public class InvoiceDefinitions implements Definitions {
 	@ModelAttribute(value = "allInvoicesJSON") //TODO: add parameters to access different stores
 	public String getAllInvoicesASJson() throws Exception {
 //		List<InvoiceContainer> list =  service.getGroupedInvoices(1);
-		return JSONUtil.toJSON(globalList);
+		return JSONUtil.toJson(globalList);
 	}
 }

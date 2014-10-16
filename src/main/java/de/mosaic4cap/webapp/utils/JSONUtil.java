@@ -10,6 +10,9 @@ import org.apache.log4j.Logger;
 
 /**
  * Created by Lobedan on 01.09.2014.
+ *
+ * Simply wrapps around jackson json mapper
+ * it simplyfies its usage
  */
 public class JSONUtil {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -19,15 +22,15 @@ public class JSONUtil {
 		OBJECT_MAPPER.configure(feature, state);
 	}
 
-	public static String toJSON(Object value) throws Exception {
+	public static String toJson(Object value) throws Exception {
 		return OBJECT_MAPPER.writeValueAsString(value);
 	}
 
-	public static <T> T fromJSON(String json, Class<T> valueType) throws IOException {
+	public static <T> T fromJson(String json, Class<T> valueType) throws IOException {
 		return OBJECT_MAPPER.readValue(json, valueType);
 	}
 
-	public static <T> T fromJSON(String json, TypeReference<?> valueTypeRef) throws Exception {
+	public static <T> T fromJsonToList(String json, TypeReference<?> valueTypeRef) throws Exception {
 		return OBJECT_MAPPER.readValue(json, valueTypeRef);
 	}
 }
