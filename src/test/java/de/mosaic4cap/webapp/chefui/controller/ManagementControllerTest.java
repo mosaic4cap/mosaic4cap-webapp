@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
 public class ManagementControllerTest {
-	private static final Logger LOGGER = Logger.getLogger(HomeControllerTest.class);
+	private static final Logger LOGGER = Logger.getLogger(ManagementControllerTest.class);
 
 	@Autowired
 	private ManagementController controller;

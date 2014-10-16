@@ -20,11 +20,11 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class)
-public class HomeControllerTest {
-	private static final Logger LOGGER = Logger.getLogger(HomeControllerTest.class);
+public class ChefUiHomeControllerTest {
+	private static final Logger LOGGER = Logger.getLogger(ChefUiHomeControllerTest.class);
 
 	@Autowired
-	private HomeController controller;
+	private ChefUiHomeController controller;
 	private MockMvc mockMvc;
 
 	@Before

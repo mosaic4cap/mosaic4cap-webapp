@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.utils;
+package de.mosaic4cap.webapp.stepdefs;
 
 import org.apache.log4j.Logger;
 
@@ -6,6 +6,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import de.mosaic4cap.webapp.utils.JSONUtil;
 import de.mosaic4cap.webapp.utils.helper.TestObject;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.utils;
+package de.mosaic4cap.webapp.stepdefs;
 
 import java.util.zip.ZipInputStream;
 
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import de.mosaic4cap.webapp.utils.ZipUtil;
 
 /**
  * Created by Lobedan on 09.09.2014.

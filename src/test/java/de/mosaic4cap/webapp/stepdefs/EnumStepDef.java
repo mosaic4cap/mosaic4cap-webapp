@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.utils;
+package de.mosaic4cap.webapp.stepdefs;
 
 import org.apache.log4j.Logger;
 import org.junit.Rule;
@@ -8,6 +8,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import de.mosaic4cap.webapp.utils.EnumUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -40,8 +41,7 @@ public class EnumStepDef {
 	}
 
 	@Then("i should get an IllegalArgumentException")
-	public void checkForException() {
-	}
+	public void checkForException() { }
 
 	@And("^it should print \"([^\"]*)\"$")
 	public void checkValue(String value) {
