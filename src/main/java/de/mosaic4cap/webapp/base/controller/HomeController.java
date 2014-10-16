@@ -12,18 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
   private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @RequestMapping(value = {
+      "/",
+      "/home",
+      "/start",
+  }, method = RequestMethod.GET)
   public String indexPage() throws Exception {
     return "index";
-  }
-
-  @RequestMapping(value = "/home", method = RequestMethod.GET)
-  public String homePage() throws Exception {
-    return "redirect:index";
-  }
-
-  @RequestMapping(value = "/start", method = RequestMethod.GET)
-  public String startPage() throws Exception {
-    return "redirect:index";
   }
 }

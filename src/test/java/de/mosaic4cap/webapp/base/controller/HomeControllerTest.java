@@ -1,5 +1,8 @@
 package de.mosaic4cap.webapp.base.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,25 +37,20 @@ public class HomeControllerTest {
 
   @Test
   public void canAccessIndexPage() throws Exception {
-    this.mockMvc.perform(
-        get("/"))
-        .andExpect(view().name("index"))
-        .andExpect(status().isOk());
-  }
+    List<String> routes = new ArrayList<>();
+    routes.add("/");
+    routes.add("/home");
+    routes.add("/start");
 
-  @Test
-  public void canAccessIndexPageViaStart() throws Exception {
-    this.mockMvc.perform(
-        get("/start"))
-        .andExpect(view().name("redirect:index"))
-        .andExpect(status().isFound());
-  }
-
-  @Test
-  public void canAccessIndexPageViaHome() throws Exception {
-    this.mockMvc.perform(
-        get("/home"))
-        .andExpect(view().name("redirect:index"))
-        .andExpect(status().isFound());
+    routes.forEach(s -> {
+      try {
+        this.mockMvc.perform(
+            get(s))
+            .andExpect(view().name("index"))
+            .andExpect(status().isOk());
+      } catch (Exception e) {
+        LOGGER.error(e);
+      }
+    });
   }
 }
