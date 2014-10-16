@@ -12,8 +12,8 @@ import de.mosaic4cap.webapp.core.AbstractChefUIController;
  * Controller for all base views like dashboard
  */
 @Controller
-public class HomeController extends AbstractChefUIController {
-	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
+public class ChefUiHomeController extends AbstractChefUIController {
+	private static final Logger LOGGER = Logger.getLogger(ChefUiHomeController.class);
 
 	@RequestMapping("/")
 	public String home() {
