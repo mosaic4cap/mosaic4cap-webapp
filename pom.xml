@@ -13,7 +13,7 @@
 	<groupId>de.mosaic4cap</groupId>
 	<artifactId>de.mosaic4cap.webapp</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<properties>
 		<!-- spring project versions-->
@@ -40,6 +40,7 @@
 		<!--<tomcat.version>7.0.54</tomcat.version>-->
 		<tomcat.version>8.0.11</tomcat.version>
 		<java.version>1.8</java.version>
+		<webserver.url>http://37.120.168.29:8080/</webserver.url>
 
 		<!-- startclass for spring boot -->
 		<start-class>de.mosaic4cap.webapp.Application</start-class>
@@ -373,6 +374,18 @@
 					</filesets>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/mosaic</path>
+					<update>true</update>
+					<url>${webserver.url}/manager/text</url>
+					<server>TomcatServer</server>
+				</configuration>
+			</plugin>
 		</plugins>
 
 		<resources>
@@ -391,11 +404,11 @@
 	<repositories>
 		<repository>
 			<id>mosaic-releases</id>
-			<url>http://37.120.168.29:8080/nexus/content/repositories/mosaic-releases</url>
+			<url>${webserver.url}/nexus/content/repositories/mosaic-releases</url>
 		</repository>
 		<repository>
 			<id>mosaic-snapshots</id>
-			<url>http://37.120.168.29:8080/nexus/content/repositories/mosaic-snapshots</url>
+			<url>${webserver.url}/nexus/content/repositories/mosaic-snapshots</url>
 		</repository>
 	</repositories>
 
