@@ -16,6 +16,7 @@ public class HomeController {
       "/",
       "/home",
       "/start",
+      "/index"
   }, method = RequestMethod.GET)
   public String indexPage() throws Exception {
     return "index";

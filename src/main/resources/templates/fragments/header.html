@@ -27,7 +27,7 @@
 
 			<!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" th:if="${configuration.enviroment.ident} == 'development'">
 					<ul class="breadcrumb list-inline">
 						<li><a href="#">Home</a></li>
 						<li><a href="#">Library</a></li>

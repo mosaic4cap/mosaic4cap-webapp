@@ -41,6 +41,7 @@ public class HomeControllerTest {
     routes.add("/");
     routes.add("/home");
     routes.add("/start");
+    routes.add("/index");
 
     routes.forEach(s -> {
       try {

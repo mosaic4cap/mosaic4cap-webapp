@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 /**
  * Created by svenklemmer on 10.10.14.
  */
-public class StoreCache {
+public final class StoreCache {
   private static final Logger LOGGER = Logger.getLogger(StoreCache.class);
   protected static StoreCache unique = null;
   private long storeId;
