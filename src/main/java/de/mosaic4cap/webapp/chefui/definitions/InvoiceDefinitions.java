@@ -31,13 +31,12 @@ public class InvoiceDefinitions implements Definitions {
 
 	@ModelAttribute(value = "allInvoices") //TODO: add parameters to access different stores
 	public List<InvoiceContainer> getAllInvoices() throws Exception {
-		this.globalList =  service.getGroupedInvoices(StoreCache.get().getStoreId());
-		return globalList;
+		return service.getGroupedInvoices(StoreCache.get().getStoreId());
 	}
 
 	@ModelAttribute(value = "allInvoicesJSON") //TODO: add parameters to access different stores
 	public String getAllInvoicesASJson() throws Exception {
 //		List<InvoiceContainer> list =  service.getGroupedInvoices(1);
-		return JSONUtil.toJson(globalList);
+		return JSONUtil.toJson(service.getGroupedInvoices(StoreCache.get().getStoreId()));
 	}
 }
