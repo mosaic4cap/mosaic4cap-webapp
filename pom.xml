@@ -19,7 +19,7 @@
 		<!-- spring project versions-->
 		<spring.version>4.0.6.RELEASE</spring.version>
 		<spring.boot.version>1.1.6.RELEASE</spring.boot.version>
-		<!--<spring.security.version>3.2.4.RELEASE</spring.security.version>-->
+		<spring.security.version>3.2.4.RELEASE</spring.security.version>
 		<!--<spring.security.oauth.version>1.0.5.RELEASE</spring.security.oauth.version>-->
 
 		<!-- 3th party framework versions -->
@@ -247,6 +247,26 @@
 		</dependency>
 
 		<!-- spring security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity3</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -398,8 +418,19 @@
 				<directory>src/test/resources</directory>
 			</testResource>
 		</testResources>
-
 	</build>
+
+<!--	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.1.1.BUILD-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>-->
 
 	<repositories>
 		<repository>
@@ -409,6 +440,11 @@
 		<repository>
 			<id>mosaic-snapshots</id>
 			<url>${webserver.url}/nexus/content/repositories/mosaic-snapshots</url>
+		</repository>
+		<repository>
+			<id>spring-snapshot</id>
+			<name>Spring Snapshot Repository</name>
+			<url>http://repo.springsource.org/snapshot</url>
 		</repository>
 	</repositories>
 

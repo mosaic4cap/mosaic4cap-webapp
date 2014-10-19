@@ -11,7 +11,7 @@
 	<context:annotation-config/>
 
 	<!-- database definitions -->
-	<jpa:repositories base-package="de.mosaic4cap.webapp.restservice.repository" />
+	<jpa:repositories base-package="de.mosaic4cap.webapp.restservice.repository, de.mosaic4cap.webapp.security" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -23,6 +23,7 @@
 		<property name="packagesToScan">
 			<list>
 				<value>de.mosaic4cap.webapp.stereotypes.entities</value>
+				<value>de.mosaic4cap.webapp.security</value>
 			</list>
 		</property>
 		<property name="jpaVendorAdapter">

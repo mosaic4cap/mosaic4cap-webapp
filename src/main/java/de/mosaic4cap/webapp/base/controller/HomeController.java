@@ -21,4 +21,22 @@ public class HomeController {
   public String indexPage() throws Exception {
     return "index";
   }
+
+  @RequestMapping(value = {
+      "/login",
+      "/anmelden",
+  }, method = RequestMethod.GET)
+  public String login() {
+    return "login";
+
+  }
+
+ /* @RequestMapping(value = {
+      "/logout",
+      "/abmelden",
+  }, method = RequestMethod.GET)
+  public String logout() {
+    return "logout";
+
+  }*/
 }

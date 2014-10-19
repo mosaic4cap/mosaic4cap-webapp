@@ -97,7 +97,12 @@
 							<li><a href="/user/profile"><i class="fa fa-user"></i> Profil</a></li>
 							<li><a href="/user/settings"><i class="fa fa-cog"></i> Einstellungen</a></li>
 							<li class="divider"></li>
-							<li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+							<li>
+								<form th:action="@{/logout}" method="post">
+									<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+									<i class="fa fa-sign-out"></i> <input type="submit" value="Logout"  />
+								</form>
+							</li>
 						</ul>
 					</li>
 					<!-- /.dropdown usermanagement -->
