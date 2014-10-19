@@ -34,6 +34,8 @@ public class UserDetailsRepositoryTest {
 
     Set<Role> roles = new HashSet<>();
     roles.add(new Role("ADMIN"));
+    roles.add(new Role("CHEF"));
+    roles.add(new Role("FAHRER"));
     sample.setRoles(roles);
     User user = repo.findByEmail(sample.getEmail());
 
