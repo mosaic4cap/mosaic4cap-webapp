@@ -132,7 +132,7 @@
                                 </div>
                                 <br/>
 
-                                <div class="row" ng-if="enviroment == 'development'">
+                                <div class="row" th:if="${configuration.enviroment.ident} == 'development'">
                                     <pre>{{employee | json}}</pre>
                                 </div>
                             </div>

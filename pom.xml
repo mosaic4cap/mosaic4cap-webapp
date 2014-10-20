@@ -388,6 +388,7 @@
 							<directory>${project.basedir}</directory>
 							<includes>
 								<include>*.zip</include>
+								<include>coverage-error.log</include>
 							</includes>
 							<followSymlinks>false</followSymlinks>
 						</fileset>

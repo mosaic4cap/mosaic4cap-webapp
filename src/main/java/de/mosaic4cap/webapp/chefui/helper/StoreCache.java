@@ -27,10 +27,10 @@ public final class StoreCache {
 
   public void setStoreId(long aStoreId) {
     if (storeId != aStoreId) {
-      LOGGER.debug("Setting storeId to " + storeId);
+      LOGGER.debug("Setting storeId to " + aStoreId);
       storeId = aStoreId;
     } else {
-      LOGGER.debug("No need to change storeId from " + storeId + " to " + aStoreId);
+      LOGGER.debug("No need to change storeId from " + storeId + " to " + aStoreId + ((storeId == aStoreId) ? " its already set" : " error"));
     }
   }
 }

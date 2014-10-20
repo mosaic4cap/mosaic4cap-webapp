@@ -4,7 +4,7 @@
 angular.module('controller.storeController', [
     'services.crudService'
 ])
-        .controller('storeController', function ($scope, $rootScope, $log, crudService, $location) {
+        .controller('storeController', function ($scope, $rootScope, $log, crudService) {
 
                         crudService.get("/rest/store/all/")
                                 .success(function (data) {
