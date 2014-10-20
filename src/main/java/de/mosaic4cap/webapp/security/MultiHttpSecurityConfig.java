@@ -71,7 +71,7 @@ public class MultiHttpSecurityConfig {
           .antMatchers("/chefui/**").hasAnyRole("ADMIN", "CHEF")
           .antMatchers("/adminui/**").hasRole("ADMIN")
           .and()
-          .formLogin().loginPage("/login").failureUrl("/login/error")
+          .formLogin().loginPage("/login").failureUrl("/login?error")
           .usernameParameter("username").passwordParameter("password")
           .and()
 

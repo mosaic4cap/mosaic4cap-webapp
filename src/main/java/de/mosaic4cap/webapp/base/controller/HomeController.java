@@ -2,8 +2,10 @@ package de.mosaic4cap.webapp.base.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by svenklemmer on 16.10.14.
@@ -26,9 +28,12 @@ public class HomeController {
       "/login",
       "/anmelden",
   }, method = RequestMethod.GET)
-  public String login() {
+  public String login(@RequestParam(value = "error", required = false) String error, Model model) {
+    LOGGER.debug(error);
+    if (error != null) {
+      model.addAttribute("loginError", true);
+    }
     return "login";
-
   }
 
  /* @RequestMapping(value = {
