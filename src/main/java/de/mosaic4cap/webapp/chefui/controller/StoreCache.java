@@ -29,7 +29,7 @@ public final class StoreCache {
   }
 
   public void setStoreId(long aStoreId) {
-    if (storeId == -1 || storeId != aStoreId) {
+    if (storeId != aStoreId) {
       storeId = aStoreId;
     }
   }
