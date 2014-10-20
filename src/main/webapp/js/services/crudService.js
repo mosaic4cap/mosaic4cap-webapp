@@ -9,12 +9,12 @@ angular.module('services.crudService', [
 					return $http.get(url, {headers: {'Content-Type': 'application/json'}});
 				},
 				post: function (data, url) {
-					return $http.post(url, data/*,
+					return $http.post(url, data,
 									  {
 										  headers: {
 											  'Content-Type': 'application/json'
 										  }
-									  }*/
+									  }
 					);
 				}
 			};

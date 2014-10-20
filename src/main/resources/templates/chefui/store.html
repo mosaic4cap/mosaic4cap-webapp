@@ -13,9 +13,14 @@
     <script src="" th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
     <script src="" th:src="@{/webjars/angular-ui-bootstrap/0.11.0/ui-bootstrap.min.js}"></script>
 
+    <script src="../../../js/modules/store.js"></script>
+    <script src="../../../js/modules/configuration.js"></script>
+    <script src="../../../js/services/crudService.js"></script>
+    <script src="../../../js/controller/storeController.js"></script>
+
     <title></title>
 </head>
-<body>
+<body ng-app="mosaic4cap-chefui-store">
 
 <div th:replace="fragments/modals :: bankdata"></div>
 <div th:replace="fragments/modals :: adress"></div>
@@ -27,13 +32,13 @@
     <div th:replace="fragments/sidebar :: navigation-chefui"></div>
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper" ng-controller="storeController">
 
         <div class="container-fluid">
-            <div class="row" th:unless="${#lists.isEmpty(allStores)}">
-                <div class="col-md-4" th:each="store : ${allStores}">
+            <div class="row">
+                <div class="col-md-4" ng-repeat="store in stores track by $index">
                     <div class="panel panel-info">
-                        <div class="panel-heading">Store: <span th:text="${store.storeKey}">Identification</span></div>
+                        <div class="panel-heading">Store: {{store.storeKey}}</div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-2"><i class="fa fa-building-o fa-5x"></i></div>
@@ -47,10 +52,10 @@
                                 <div class="col-md-4">
                                     <ul class="list-unstyled">
                                         <li>Mitarbeiter:
-                                            <small><i th:text="${#sets.size(store.drivers)}">0</i></small>
+                                            <small><i>{{store.drivers.length}}</i></small>
                                         </li>
                                         <li>Autos:
-                                            <small><i th:text="${#sets.size(store.cars)}">0</i></small>
+                                            <small><i>{{store.cars.length}}</i></small>
                                         </li>
                                         <li>Umsatz:
                                             <small><i>0.00 &euro;</i></small>
@@ -67,12 +72,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-group">
-                                    <form>
-                                        <button class="btn btn-success btn-xs"
-                                                th:formaction="@{/chefui/store/{storeId}/dashboard(storeId=${store.id})}">
-                                            Ausw&auml;hlen
-                                        </button>
-                                    </form>
+                                    <button class="btn btn-success btn-xs" ng-click="select_store(store.id)" ng-if="store.id == ">Ausw&auml;hlen</button>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info btn-xs" data-bankdata-id="testBankData"
@@ -83,6 +83,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row" th:if="${configuration.enviroment.ident} == 'development'">
+            <div class="well">
+                <pre>{{stores | json}}</pre>
             </div>
         </div>
 

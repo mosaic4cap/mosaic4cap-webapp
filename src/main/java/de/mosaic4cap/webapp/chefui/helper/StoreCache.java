@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.chefui.controller;
+package de.mosaic4cap.webapp.chefui.helper;
 
 import org.apache.log4j.Logger;
 
@@ -21,6 +21,7 @@ public final class StoreCache {
   }
 
   public long getStoreId() {
+    LOGGER.debug("returning storeId" + storeId);
     if (storeId > 0) {
       return storeId;
     } else {
@@ -30,7 +31,10 @@ public final class StoreCache {
 
   public void setStoreId(long aStoreId) {
     if (storeId != aStoreId) {
+      LOGGER.debug("Setting storeId to " + storeId);
       storeId = aStoreId;
+    } else {
+      LOGGER.debug("No need to change storeId from " + storeId + " to " + aStoreId);
     }
   }
 }

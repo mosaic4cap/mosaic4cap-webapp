@@ -4,6 +4,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -19,6 +21,7 @@ public class Car extends AbstractMosaic4CapEntity {
 
 	@ManyToOne(targetEntity = Store.class)
 	@JoinColumn
+	@JsonIgnore
 	private Store store;
 
 	public Car() {

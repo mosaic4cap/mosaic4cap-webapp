@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.mosaic4cap.webapp.Application;
-import de.mosaic4cap.webapp.chefui.controller.StoreCache;
+import de.mosaic4cap.webapp.chefui.helper.StoreCache;
 import de.mosaic4cap.webapp.restservice.services.DriverService;
 
 import static org.hamcrest.CoreMatchers.is;

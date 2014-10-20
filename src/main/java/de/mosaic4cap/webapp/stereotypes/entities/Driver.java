@@ -22,9 +22,10 @@ import org.apache.log4j.Logger;
 public class Driver extends AbstractMosaic4CapEntity {
 	private static final Logger LOGGER = Logger.getLogger(Driver.class);
 
-  @JsonIgnore
+
   @ManyToOne
   @JoinColumn
+  @JsonIgnore
   private Store store;
 
 	@Column(name = "firstname", length = 25)

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import de.mosaic4cap.webapp.chefui.helper.StoreCache;
 import de.mosaic4cap.webapp.core.AbstractChefUIController;
 
 /**

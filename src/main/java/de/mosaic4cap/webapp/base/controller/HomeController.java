@@ -21,6 +21,7 @@ public class HomeController {
       "/index"
   }, method = RequestMethod.GET)
   public String indexPage() throws Exception {
+    LOGGER.debug("Accessing indexPage()");
     return "index";
   }
 
@@ -28,11 +29,9 @@ public class HomeController {
       "/login",
       "/anmelden",
   }, method = RequestMethod.GET)
-  public String login(@RequestParam(value = "error", required = false) String error, Model model) {
-    LOGGER.debug(error);
-    if (error != null) {
-      model.addAttribute("loginError", true);
-    }
+  public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
+    LOGGER.debug("Accessing loginPage()");
+    model.addAttribute("loginError", (error != null));
     return "login";
   }
 

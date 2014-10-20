@@ -1,4 +1,4 @@
-package de.mosaic4cap.webapp.chefui.controller;
+package de.mosaic4cap.webapp.chefui.helper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

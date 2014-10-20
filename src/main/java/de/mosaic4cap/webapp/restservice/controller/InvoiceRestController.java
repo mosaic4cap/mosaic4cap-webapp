@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.mosaic4cap.webapp.core.BaseRestController;
+import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.InvoiceService;
 import de.mosaic4cap.webapp.stereotypes.domain.InvoiceContainer;
 import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
@@ -23,8 +23,8 @@ import de.mosaic4cap.webapp.stereotypes.entities.Invoice;
  * process it before persisting
  */
 @RestController
-public class InvoiceController extends BaseRestController {
-  private static final Logger LOGGER = Logger.getLogger(InvoiceController.class);
+public class InvoiceRestController extends AbstractRestController {
+  private static final Logger LOGGER = Logger.getLogger(InvoiceRestController.class);
 
   @Autowired
   private InvoiceService service;

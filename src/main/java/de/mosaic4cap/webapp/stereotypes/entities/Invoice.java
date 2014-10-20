@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.apache.log4j.Logger;
@@ -51,6 +52,7 @@ public class Invoice extends AbstractMosaic4CapEntity {
 
 	@ManyToOne
 	@JoinColumn
+	@JsonIgnore
 	private Store store;
 
 	@OneToOne

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import de.mosaic4cap.webapp.chefui.controller.StoreCache;
+import de.mosaic4cap.webapp.chefui.helper.StoreCache;
 import de.mosaic4cap.webapp.restservice.services.DriverService;
 import de.mosaic4cap.webapp.stereotypes.entities.Driver;
 import de.mosaic4cap.webapp.utils.JSONUtil;

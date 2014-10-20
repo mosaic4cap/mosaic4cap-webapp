@@ -57,7 +57,10 @@ public class MultiHttpSecurityConfig {
           .authorizeRequests()
           .anyRequest().hasRole("ADMIN")
           .and()
-          .httpBasic();
+          .httpBasic()
+          .and()
+          .csrf()
+          .disable();
     }
   }
 
@@ -74,10 +77,12 @@ public class MultiHttpSecurityConfig {
           .formLogin().loginPage("/login").failureUrl("/login?error")
           .usernameParameter("username").passwordParameter("password")
           .and()
-
           .logout()
           .logoutUrl("/logout")
-          .logoutSuccessUrl("/");
+          .logoutSuccessUrl("/")
+          .and()
+          .csrf()
+          .disable();
     }
   }
 }

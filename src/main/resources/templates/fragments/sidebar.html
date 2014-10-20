@@ -22,21 +22,21 @@
         <li><a href="#"><i class="fa fa-cogs"></i> <s><span th:text="#{sidebar.settings}">Einstellungen</span></s></a>
         </li>
 
-        <div th:if="*{choosenStore} != null">
-            <li><h4>Store <span th:text="*{choosenStore.storeKey}">Alibaba</span></h4></li>
+        <div th:if="*{selectedStore} != null">
+            <li><h4>Store <span th:text="*{selectedStore}">0</span></h4></li>
             <li><a href="/chefui/manage/store/"
-                   th:href="@{/chefui/store/{storeId}/dashboard(storeId=*{choosenStore.id})}"><i
+                   th:href="@{/chefui/store/{storeId}/dashboard(storeId=*{selectedStore})}"><i
                     class="fa fa-tachometer"></i> <span
                     th:text="#{sidebar.store.overview}">&Uuml;bersicht</span></a></li>
             <li><a href="/chefui/manage/store/"
-                   th:href="@{/chefui/store/{storeId}/invoice(storeId=*{choosenStore.id})}"><i
+                   th:href="@{/chefui/store/{storeId}/invoice(storeId=*{selectedStore})}"><i
                     class="fa fa-eur"></i> <span
                     th:text="#{sidebar.store.invoice}">Abrechnungen</span></a></li>
             <li><a href="/chefui/manage/store/"
-                   th:href="@{/chefui/store/{storeId}/employee(storeId=*{choosenStore.id})}"><i class="fa fa-user"></i>
+                   th:href="@{/chefui/store/{storeId}/employee(storeId=*{selectedStore})}"><i class="fa fa-user"></i>
                 <span th:text="#{sidebar.store.employee}">Mitarbeiter</span></a>
             </li>
-            <li><a href="/chefui/manage/store/" th:href="@{/chefui/store/{storeId}/car(storeId=*{choosenStore.id})}"><i
+            <li><a href="/chefui/manage/store/" th:href="@{/chefui/store/{storeId}/car(storeId=*{selectedStore})}"><i
                     class="fa fa-car"></i> <span th:text="#{sidebar.store.car}">Fuhrpark</span></a>
             </li>
         </div>

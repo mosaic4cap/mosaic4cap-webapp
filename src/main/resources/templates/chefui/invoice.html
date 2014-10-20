@@ -277,7 +277,7 @@
     </div>
 </div>
 </div>
-<div class="well" ng-if="enviroment == 'development'">
+<div class="well" th:if="${configuration.enviroment.ident} == 'development'">
     <pre>{{invoices | json}}</pre>
 </div>
 </div>
