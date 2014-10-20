@@ -19,7 +19,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
-  private static final long serialVersionUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,29 +35,29 @@ public class Role implements Serializable {
   public Role() {
   }
 
-  public Role(String roleName) {
-    this.roleName = roleName;
+  public Role(String aRoleName) {
+    this.roleName = aRoleName;
   }
 
-  public Role(Integer id, String roleName) {
-    this.id = id;
-    this.roleName = roleName;
+  public Role(Integer aId, String aRoleName) {
+    this.id = aId;
+    this.roleName = aRoleName;
   }
 
   public Integer getId() {
     return id;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setId(Integer aId) {
+    this.id = aId;
   }
 
   public String getRoleName() {
     return roleName;
   }
 
-  public void setRoleName(String roleName) {
-    this.roleName = roleName;
+  public void setRoleName(String aRoleName) {
+    this.roleName = aRoleName;
   }
 
   public User getUser() {

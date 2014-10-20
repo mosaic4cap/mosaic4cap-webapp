@@ -44,11 +44,11 @@ public class User {
   public User() {
   }
 
-  public User(String name, String email, String password, Date dob) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.dob = dob;
+  public User(String aName, String aEmail, String aPassword, Date aDob) {
+    this.name = aName;
+    this.email = aEmail;
+    this.password = aPassword;
+    this.dob = aDob;
   }
 
   @Override
@@ -61,47 +61,47 @@ public class User {
     return id;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setId(int aId) {
+    this.id = aId;
   }
 
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setName(String aName) {
+    this.name = aName;
   }
 
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setEmail(String aEmail) {
+    this.email = aEmail;
   }
 
   public String getPassword() {
     return password;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setPassword(String aPassword) {
+    this.password = aPassword;
   }
 
   public Date getDob() {
     return dob;
   }
 
-  public void setDob(Date dob) {
-    this.dob = dob;
+  public void setDob(Date aDob) {
+    this.dob = aDob;
   }
 
   public Set<Role> getRoles() {
     return roles;
   }
 
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
+  public void setRoles(Set<Role> aRoles) {
+    this.roles = aRoles;
   }
 }
