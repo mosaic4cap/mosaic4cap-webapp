@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 public final class StoreCache {
   private static final Logger LOGGER = Logger.getLogger(StoreCache.class);
   protected static StoreCache unique = null;
-  private long storeId;
+  private long storeId = -1;
 
   private StoreCache() {
   }
@@ -21,12 +21,8 @@ public final class StoreCache {
   }
 
   public long getStoreId() {
-    LOGGER.debug("returning storeId" + storeId);
-    if (storeId > 0) {
-      return storeId;
-    } else {
-      return -1;
-    }
+    LOGGER.debug("returning storeId " + storeId);
+    return storeId;
   }
 
   public void setStoreId(long aStoreId) {
