@@ -5,6 +5,7 @@ package de.mosaic4cap.webapp.chefui.definitions;
  * <p>
  * General interface for all definition methods
  * <p>
+ *
  * TODO: Activate default getAuthentication definition (Issue #11)
  */
 public interface Definitions {
