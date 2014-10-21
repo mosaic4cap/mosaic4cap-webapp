@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import de.mosaic4cap.webapp.chefui.helper.StoreCache;
 import de.mosaic4cap.webapp.core.AbstractRestController;
 import de.mosaic4cap.webapp.restservice.services.InvoiceService;
 import de.mosaic4cap.webapp.stereotypes.domain.InvoiceContainer;
@@ -32,7 +33,12 @@ public class InvoiceRestController extends AbstractRestController {
   //@Autowired
   //private ResponseBuilder responseBuilder;
 
-  @RequestMapping(value = "/invoice/post",
+  @RequestMapping(value = "/invoice/all", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<InvoiceContainer> getAllInvoices() throws Exception {
+    return service.getGroupedInvoices(StoreCache.get().getStoreId());
+  }
+
+  @RequestMapping(value = "/invoice/save",
       method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   public InvoiceContainer postInvoice(@RequestBody(required = true) InvoiceContainer container) {
     LOGGER.error(container);

@@ -44,7 +44,7 @@ angular.module('controller.invoiceController', [
                         $scope.update = function () {
                             $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].state = "CLOSED";
                             crudService.post(angular.toJson($scope.invoices[$scope.setted_invoice]),
-                                             "/rest/invoice/post")
+                                             "/rest/invoice/save")
                                     .success(function (data) {
                                                  $rootScope.messages
                                                  = {
