@@ -35,14 +35,14 @@
 
 <!-- Page Content -->
 <div id="page-content-wrapper">
-<div class="container-fluid" th:attr="data-invoices=${allInvoicesJSON}" ng-controller="invoiceController" id="invoices">
+<div class="container-fluid" ng-controller="invoiceController" id="invoices">
 <div class="row">
 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
     <div class="row">
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                <strong>Abrechnungen: <i th:text="${#lists.size(allInvoices)}">0</i> insgesamt</strong>
+                <strong>Abrechnungen: <i>{{invoices.length}}</i> insgesamt</strong>
 
                 <div class="btn-group btn-group-sm">
                     <button type="button" class="btn btn-default">
@@ -105,7 +105,7 @@
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <ul class="pager">
                             <li class="previous" ng-if="setted_par_invoice > 0">
-                                <button class="btn btn-default" ng-click="previous()">&larr; Vorherige</button>
+                                <button class="btn btn-default" ng-click="previousInvoice()">&larr; Vorherige</button>
                             </li>
                         </ul>
                     </div>
@@ -117,7 +117,7 @@
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <ul class="pager">
                             <li class="next" ng-if="invoices[setted_invoice].partials.length-1 > setted_par_invoice">
-                                <button class="btn btn-default" ng-click="next()">N&auml;chste &rarr;</button>
+                                <button class="btn btn-default" ng-click="nextInvoice()">N&auml;chste &rarr;</button>
                             </li>
                         </ul>
                     </div>
@@ -127,7 +127,7 @@
                 <div class="container-fluid well">
 
                     <div class="table-responsive">
-                        <form class="form" role="form" th:formaction="'javascript:update()'">
+                        <form class="form" role="form">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -253,7 +253,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3" style="text-align: center">
-                                        <button type="submit" class="btn btn-default btn-lg">
+                                        <button type="submit" class="btn btn-default btn-lg" ng-click="updateInvoice()">
                                             Speichern
                                         </button>
                                     </td>

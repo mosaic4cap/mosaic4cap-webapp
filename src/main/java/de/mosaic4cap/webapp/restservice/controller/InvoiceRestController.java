@@ -35,6 +35,7 @@ public class InvoiceRestController extends AbstractRestController {
 
   @RequestMapping(value = "/invoice/all", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<InvoiceContainer> getAllInvoices() throws Exception {
+    LOGGER.debug("Accessing getAllInvoices(storeid = " + StoreCache.get().getStoreId() + ") via Rest");
     return service.getGroupedInvoices(StoreCache.get().getStoreId());
   }
 
