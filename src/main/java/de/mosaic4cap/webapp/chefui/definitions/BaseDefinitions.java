@@ -14,7 +14,7 @@ import de.mosaic4cap.webapp.stereotypes.Configuration;
  * thymleaf html view
  */
 @ControllerAdvice
-public class BaseDefinitions implements Definitions {
+public class BaseDefinitions {
   private static final Logger LOGGER = Logger.getLogger(BaseDefinitions.class);
 
   @Autowired

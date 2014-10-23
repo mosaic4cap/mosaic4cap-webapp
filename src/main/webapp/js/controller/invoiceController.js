@@ -5,6 +5,55 @@ angular.module('controller.invoiceController', [
 	'services.crudService'
 ])
 		.controller('invoiceController', function ($scope, $rootScope, $log, crudService, ENV) {
+
+			            /** need sample array cause otherwise side will not display loaded data
+			             * maybe this changes when intercepter for loading is implementet
+			             * TODO: make issue and implement
+			             */
+			            $scope.invoices = [
+				            {
+					            "date": '',
+					            "partials": [
+						            {
+							            "id": 0,
+							            "income": 0.00,
+							            "bills": [],
+							            "ecpayment": [],
+							            "driver": {
+								            "id": 0,
+								            "firstName": "",
+								            "lastName": "",
+								            "birthDay": ""
+							            },
+							            "car": {
+								            "id": 0,
+								            "badge": "",
+								            "available": false
+							            },
+							            "date": "",
+							            "state": "OPEN",
+							            "modDate": 0,
+							            "billAmount": 0.00,
+							            "ecamount": 0.00
+						            }
+					            ],
+					            "store": {
+						            "id": 0,
+						            "storeKey": "",
+						            "storeType": "",
+						            "drivers": [],
+						            "cars": [],
+						            "invoices": []
+					            },
+					            "state": "OPEN",
+					            "amount": 0.00,
+					            "ecAmount": 0.00,
+					            "billAmount": 0.00,
+					            "ecCount": 0.00,
+					            "billCount": 0.00
+				            }
+			            ];
+
 			            crudService.get("/rest/invoice/all/")
 					            .success(function (data) {
 						                     $log.log("[invoiceController.get] reading data", data);
@@ -17,42 +66,40 @@ angular.module('controller.invoiceController', [
 						                   }
 					                   });
 
+			            $scope.setted_invoice = 0;
+			            $scope.setted_par_invoice = 0;
 
-	                $scope.setted_invoice = 0;
-	                $scope.setted_par_invoice = 0;
+			            $scope.setInvoice = function (invoice) {
+				            $log.log("setInvoice to " + invoice);
+				            $scope.setted_invoice = invoice;
+			            };
 
-			            if (typeof $scope.invoices !== 'undefined') {
-
-				            $scope.setInvoice = function (invoice) {
-					            $scope.setted_invoice = invoice;
-				            };
-
-				            $scope.previousInvoice = function () {
-					            $scope.setted_par_invoice -= 1;
-					            $scope.complete_count
-					            = $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].income
-					              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].billAmount
-					              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
-
-					            $log.log($scope.setted_par_invoice);
-				            };
-
-				            $scope.nextInvoice = function () {
-					            $scope.setted_par_invoice += 1;
-					            $scope.complete_count
-					            = $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].income
-					              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].billAmount
-					              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
-
-					            $log.log($scope.setted_par_invoice);
-				            };
-
+			            $scope.previousInvoice = function () {
+				            $log.log("previous invoice");
+				            $scope.setted_par_invoice -= 1;
 				            $scope.complete_count
 				            = $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].income
 				              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].billAmount
 				              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
 
-			            }
+				            $log.log($scope.setted_par_invoice);
+			            };
+
+			            $scope.nextInvoice = function () {
+				            $log.log("nextInvoice");
+				            $scope.setted_par_invoice += 1;
+				            $scope.complete_count
+				            = $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].income
+				              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].billAmount
+				              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
+
+				            $log.log($scope.setted_par_invoice);
+			            };
+
+			            $scope.complete_count
+			            = $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].income
+			              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].billAmount
+			              - $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].ecamount;
 
 			            $scope.updateInvoice = function () {
 				            $scope.invoices[$scope.setted_invoice].partials[$scope.setted_par_invoice].state = "CLOSED";
